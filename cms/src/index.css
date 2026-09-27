@@ -1,0 +1,17 @@
+:root {
+  --blue-primary: #0369a1;
+  --blue-dark: #0284c7;
+  --blue-navy: #0f172a;
+  --blue-light: #e0f2fe;
+  --sidebar-w: 16rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+body { background: #f8fafc; color: #0f172a; }
+
+a { text-decoration: none; color: inherit; }
+
+/* Spinner keyframe used inline */
+@keyframes spin { to { transform: rotate(360deg); } }
