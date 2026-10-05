@@ -1,18 +1,70 @@
+import { useState, useEffect } from 'react'
+import { supabase } from '../../lib/supabase'
+import { fetchSettings } from '../../lib/content'
+import { useLang, L, S } from '../../lib/i18n'
 import { Building2, User, Eye, Target, Info, FileDown } from 'lucide-react'
 
+const FALLBACK_LEADERS = [
+  { name: "Dato' Seri Zakaria bin Abdul Razak", role: 'Pengarah Urusan', en: { role: 'Managing Director' } },
+  { name: 'Fariha Nur Iylia binti Mohamad Yasin', role: 'Pengarah', en: { role: 'Director' } },
+]
+
+const FALLBACK_OBJECTIVES = [
+  { title: 'Mewujudkan Peluang Pekerjaan', description: 'Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.', en: { title: 'Creating Employment Opportunities', description: 'Prioritising jobs for former national security forces personnel in professional security.' } },
+  { title: 'Membantu Pihak Berkuasa & Polis', description: 'Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.', en: { title: 'Supporting Authorities & Police', description: 'Assisting the Royal Malaysia Police (PDRM) in reducing property crime through effective preventive guarding.' } },
+  { title: 'Perlindungan Menyeluruh', description: 'Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.', en: { title: 'Comprehensive Protection', description: 'Providing optimum security protection for property, business premises and every individual life.' } },
+  { title: 'Latihan & Kesedaran Keselamatan', description: 'Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.', en: { title: 'Training & Security Awareness', description: 'Training, continuous education and instilling a dynamic security-awareness culture.' } },
+  { title: 'Teknologi & Piawaian Terkini', description: 'Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.', en: { title: 'Latest Technology & Standards', description: 'Integrating smart security automation and computerised patrol control for the digital era.' } },
+]
+
 export default function About() {
+  const { lang, t } = useLang()
+  const [settings, setSettings] = useState({})
+  const [leaders, setLeaders] = useState(FALLBACK_LEADERS)
+  const [objectives, setObjectives] = useState(FALLBACK_OBJECTIVES)
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const [s, leadersRes, objRes] = await Promise.all([
+          fetchSettings(supabase),
+          supabase.from('leaders').select('*').eq('is_active', true).order('sort_order'),
+          supabase.from('objectives').select('*').eq('is_active', true).order('sort_order'),
+        ])
+        setSettings(s)
+        if (leadersRes.data && leadersRes.data.length > 0) setLeaders(leadersRes.data)
+        if (objRes.data && objRes.data.length > 0) setObjectives(objRes.data)
+      } catch (err) {
+        console.warn('Could not fetch About content:', err)
+      }
+    }
+    load()
+  }, [])
+
+  const companyRows = [
+    [t.coName, S(settings, 'company_name', lang) || 'AFRA Services Sdn. Bhd.'],
+    [t.coReg, S(settings, 'company_reg_no', lang) || '881616-V'],
+    [t.coEst, S(settings, 'established_date', lang) || (lang === 'en' ? '7 December 2009' : '7 Disember 2009')],
+    [t.coAuthCap, S(settings, 'authorized_capital', lang) || 'RM 5,000,000.00'],
+    [t.coPaidCap, S(settings, 'paid_capital', lang) || 'RM 5,000,000.00'],
+    [t.coBank, S(settings, 'bank', lang) || 'Public Islamic Bank Berhad (Kuala Terengganu)'],
+    [t.coInsurer, S(settings, 'insurer', lang) || 'Lonpac Insurance Berhad'],
+    [t.coSecretary, S(settings, 'secretary', lang) || 'Zuki & Rashid Tax Accountants'],
+    [t.coAuditor, S(settings, 'auditor', lang) || 'ZRA Consultant Sdn. Bhd.'],
+  ]
+
   return (
     <>
-      {/* ── PAGE HEADER ── */}
+      {/* ── PAGE HEADER (CMS: Site Settings) ── */}
       <div className="page-header-banner">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <Info size={14} />
-            <span>Profil Korporat Syarikat</span>
+            <span>{S(settings, 'page_about_tag', lang) || (lang === 'en' ? 'Corporate Company Profile' : 'Profil Korporat Syarikat')}</span>
           </div>
-          <h1 className="page-header-title">TENTANG AFRA SERVICES</h1>
+          <h1 className="page-header-title">{S(settings, 'page_about_title', lang) || (lang === 'en' ? 'ABOUT AFRA SERVICES' : 'TENTANG AFRA SERVICES')}</h1>
           <p className="page-header-desc">
-            Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.
+            {S(settings, 'page_about_desc', lang) || (lang === 'en' ? 'Established on 7 December 2009, AFRA Services Sdn. Bhd. (881616-V) has grown into a reputable security guarding organisation with 13 strategic branches across the Peninsula, Sabah and Sarawak.' : 'Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.')}
           </p>
         </div>
       </div>
@@ -20,45 +72,33 @@ export default function About() {
       {/* ── ABOUT CONTENT LAYOUT ── */}
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="about-layout">
-          
+
           {/* Left Column: Official Profile Table & Leadership */}
           <div>
             <div className="info-card">
               <div className="info-card-title">
                 <Building2 size={16} />
-                <span>MAKLUMAT RASMI SYARIKAT</span>
+                <span>{S(settings, 'about_info_title', lang) || (lang === 'en' ? 'OFFICIAL COMPANY INFORMATION' : 'MAKLUMAT RASMI SYARIKAT')}</span>
               </div>
               <table className="info-table">
                 <tbody>
-                  <tr><td>Nama Syarikat</td><td>AFRA Services Sdn. Bhd.</td></tr>
-                  <tr><td>No. Pendaftaran</td><td style={{ color: 'var(--blue-primary)' }}>881616-V</td></tr>
-                  <tr><td>Tarikh Tubuh</td><td>7 Disember 2009</td></tr>
-                  <tr><td>Modal Dibenarkan</td><td style={{ color: 'var(--blue-primary)' }}>RM 5,000,000.00</td></tr>
-                  <tr><td>Modal Berbayar</td><td style={{ color: 'var(--blue-primary)' }}>RM 5,000,000.00</td></tr>
-                  <tr><td>Bank Utama</td><td>Public Islamic Bank Berhad (Kuala Terengganu)</td></tr>
-                  <tr><td>Penanggung Insurans</td><td>Lonpac Insurance Berhad</td></tr>
-                  <tr><td>Setiausaha Syarikat</td><td>Zuki &amp; Rashid Tax Accountants</td></tr>
-                  <tr><td>Syarikat Audit</td><td>ZRA Consultant Sdn. Bhd.</td></tr>
+                  {companyRows.map(([k, v]) => (
+                    <tr key={k}><td>{k}</td><td>{v}</td></tr>
+                  ))}
                 </tbody>
               </table>
             </div>
 
             <div className="leadership-grid">
-              <div className="leader-card">
-                <div className="leader-icon-box">
-                  <User size={20} />
+              {leaders.map((l, idx) => (
+                <div className="leader-card" key={l.id ?? idx}>
+                  <div className="leader-icon-box">
+                    <User size={20} />
+                  </div>
+                  <div className="leader-name">{l.name}</div>
+                  <div className="leader-role">{L(l, lang, 'role')}</div>
                 </div>
-                <div className="leader-name">Dato' Seri Zakaria<br />bin Abdul Razak</div>
-                <div className="leader-role">Pengarah Urusan</div>
-              </div>
-
-              <div className="leader-card">
-                <div className="leader-icon-box">
-                  <User size={20} />
-                </div>
-                <div className="leader-name">Fariha Nur Iylia<br />binti Mohamad Yasin</div>
-                <div className="leader-role">Pengarah</div>
-              </div>
+              ))}
             </div>
 
             <div style={{ marginTop: '1.5rem' }}>
@@ -70,86 +110,46 @@ export default function About() {
                 style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '0.6rem' }}
               >
                 <FileDown size={16} />
-                <span>MUAT TURUN PROFIL LENGKAP (PDF)</span>
+                <span>{S(settings, 'about_pdf_button', lang) || (lang === 'en' ? 'DOWNLOAD FULL PROFILE (PDF)' : 'MUAT TURUN PROFIL LENGKAP (PDF)')}</span>
               </a>
             </div>
           </div>
 
           {/* Right Column: Narrative, Vision, Mission & Objectives */}
           <div className="narrative-box">
-            <h2>Siapa Kami</h2>
-            <p>
-              AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.
-            </p>
-            <p>
-              Tenaga kerja dan anggota kami sebahagian besarnya terdiri daripada bekas anggota Pasukan Keselamatan negara (Polis &amp; Angkatan Tentera) yang menerapkan disiplin ketenteraan, ketelitian operasi, dan integriti yang tinggi dalam setiap penugasan.
-            </p>
+            <h2>{S(settings, 'about_narrative_heading', lang) || (lang === 'en' ? 'Who We Are' : 'Siapa Kami')}</h2>
+            <p>{S(settings, 'about_narrative_1', lang) || (lang === 'en' ? 'AFRA Services Sdn. Bhd. was established to provide high-calibre security guarding to the private sector, banking, industry and government agencies across Malaysia.' : 'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.')}</p>
+            <p>{S(settings, 'about_narrative_2', lang) || (lang === 'en' ? 'Our workforce consists largely of former national security personnel (Police & Armed Forces) who bring military discipline, operational precision and high integrity to every assignment.' : 'Tenaga kerja dan anggota kami sebahagian besarnya terdiri daripada bekas anggota Pasukan Keselamatan negara (Polis & Angkatan Tentera) yang menerapkan disiplin ketenteraan, ketelitian operasi, dan integriti yang tinggi dalam setiap penugasan.')}</p>
 
             <div className="vision-mission-box">
               <div className="vm-card">
                 <h3>
                   <Eye size={18} style={{ color: 'var(--blue-primary)' }} />
-                  <span>Visi Syarikat</span>
+                  <span>{S(settings, 'about_vision_label', lang) || (lang === 'en' ? 'Company Vision' : 'Visi Syarikat')}</span>
                 </h3>
-                <p>
-                  Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.
-                </p>
+                <p>{S(settings, 'vision', lang) || (lang === 'en' ? 'To be one of the strongest and most competitive Security Guarding companies in Malaysia, where trust and humanity are our priority.' : 'Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.')}</p>
               </div>
-              
+
               <div className="vm-card">
                 <h3>
                   <Target size={18} style={{ color: 'var(--blue-primary)' }} />
-                  <span>Misi Syarikat</span>
+                  <span>{S(settings, 'about_mission_label', lang) || (lang === 'en' ? 'Company Mission' : 'Misi Syarikat')}</span>
                 </h3>
-                <p>
-                  Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.
-                </p>
+                <p>{S(settings, 'mission', lang) || (lang === 'en' ? 'To continuously deliver and improve service quality, ensuring client property and lives remain safe and protected at all times.' : 'Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.')}</p>
               </div>
             </div>
 
-            <h2 style={{ marginTop: '2.5rem' }}>Objektif Penubuhan</h2>
+            <h2 style={{ marginTop: '2.5rem' }}>{S(settings, 'about_objectives_heading', lang) || (lang === 'en' ? 'Establishment Objectives' : 'Objektif Penubuhan')}</h2>
             <div style={{ marginTop: '1.25rem' }}>
-              
-              <div className="obj-item">
-                <span className="obj-num">01</span>
-                <div>
-                  <div className="obj-title">Mewujudkan Peluang Pekerjaan</div>
-                  <div className="obj-desc">Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.</div>
+              {objectives.map((o, idx) => (
+                <div className="obj-item" key={o.id ?? idx}>
+                  <span className="obj-num">{String(idx + 1).padStart(2, '0')}</span>
+                  <div>
+                    <div className="obj-title">{L(o, lang, 'title')}</div>
+                    {L(o, lang, 'description') && <div className="obj-desc">{L(o, lang, 'description')}</div>}
+                  </div>
                 </div>
-              </div>
-
-              <div className="obj-item">
-                <span className="obj-num">02</span>
-                <div>
-                  <div className="obj-title">Membantu Pihak Berkuasa &amp; Polis</div>
-                  <div className="obj-desc">Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.</div>
-                </div>
-              </div>
-
-              <div className="obj-item">
-                <span className="obj-num">03</span>
-                <div>
-                  <div className="obj-title">Perlindungan Menyeluruh</div>
-                  <div className="obj-desc">Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.</div>
-                </div>
-              </div>
-
-              <div className="obj-item">
-                <span className="obj-num">04</span>
-                <div>
-                  <div className="obj-title">Latihan &amp; Kesedaran Keselamatan</div>
-                  <div className="obj-desc">Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.</div>
-                </div>
-              </div>
-
-              <div className="obj-item">
-                <span className="obj-num">05</span>
-                <div>
-                  <div className="obj-title">Teknologi &amp; Piawaian Terkini</div>
-                  <div className="obj-desc">Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.</div>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
 

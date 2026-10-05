@@ -149,6 +149,16 @@ export function Spinner({ size = 24 }) {
   )
 }
 
+// English companion inputs for bilingual CMS forms.
+// Guna sebelah BM input: <Input label="Tajuk" .../> + <ENInput label="Tajuk" .../>
+export function ENInput({ label, ...props }) {
+  return <Input label={label ? `${label} (EN)` : 'English version'} {...props} />
+}
+
+export function ENTextarea({ label, ...props }) {
+  return <Textarea label={label ? `${label} (EN)` : 'English version'} {...props} />
+}
+
 export function EmptyState({ icon: Icon, title, description, action }) {
   return (
     <div style={{ textAlign: 'center', padding: '4rem 2rem' }}>

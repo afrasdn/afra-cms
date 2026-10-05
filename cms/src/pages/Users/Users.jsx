@@ -122,7 +122,7 @@ export default function Users() {
         ) : users.length === 0 ? (
           <EmptyState icon={UsersIcon} title="Tiada pengguna" description="Tambah pentadbir pertama." action={<Btn onClick={() => setShowForm(true)}>Tambah Pentadbir</Btn>} />
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className="table-scroll"><table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #e2e8f0', background: '#f8fafc' }}>
                 {['Pengguna', 'Peranan', 'Status', 'Didaftar', 'Tindakan'].map(h => (
@@ -165,7 +165,7 @@ export default function Users() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         )}
       </Card>
 

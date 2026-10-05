@@ -4,6 +4,8 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { logAudit } from '../../lib/audit'
 import { Card, PageHeader, Btn, Badge, EmptyState, ConfirmDialog, Spinner } from '../../components/ui'
+import PageHeaderEditor from '../../components/PageHeaderEditor'
+import SettingsCard from '../../components/SettingsCard'
 import { Plus, Pencil, Trash2, Award, Eye, EyeOff } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -45,6 +47,21 @@ export default function Certificates() {
   return (
     <div>
       <PageHeader title="Sijil & Pelesenan" subtitle={`${certs.length} sijil dalam sistem`} action={<Link to="/admin/certificates/new"><Btn><Plus size={15} /> Tambah Sijil</Btn></Link>} />
+
+      <PageHeaderEditor titleKey="page_certs_title" descKey="page_certs_desc" cardTitle="Tajuk Header Laman Certificates" />
+
+      <SettingsCard
+        cardTitle="Teks Seksyen Laman Certificates — nombor dikira automatik"
+        logTag="certs_sections"
+        fields={[
+          { key: 'page_certs_tag', label: 'Tag kecil atas tajuk', placeholder: 'cth: Pelesenan & Pematuhan Undang-Undang' },
+          { key: 'certs_grid_tag', label: 'Tag grid sijil', placeholder: 'cth: AKREDITASI & PENGIKTIRAFAN' },
+          { key: 'certs_grid_title', label: 'Tajuk grid sijil', placeholder: 'cth: Lesen Operasi Berkanun' },
+          { key: 'certs_branch_tag', label: 'Tag direktori cawangan', placeholder: 'cth: LIPUTAN KEBANGSAAN' },
+          { key: 'certs_branch_title', label: 'Tajuk direktori (taip teks je, nombor auto)', placeholder: 'cth: Cawangan Seluruh Malaysia' },
+          { key: 'certs_branch_desc', label: 'Penerangan direktori', textarea: true, placeholder: 'cth: Setiap cawangan berdaftar...' },
+        ]}
+      />
 
       <Card>
         {loading ? (

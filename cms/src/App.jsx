@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
-import PreviewGate from './components/PreviewGate'
 import Layout from './components/Layout/Layout'
 import PublicLayout from './components/PublicLayout/PublicLayout'
 
@@ -20,6 +19,15 @@ import Products from './pages/Products/Products'
 import ProductForm from './pages/Products/ProductForm'
 import Categories from './pages/Categories/Categories'
 import HomeContent from './pages/HomeContent/HomeContent'
+import Services from './pages/Services/Services'
+import Branches from './pages/Branches/Branches'
+import AboutSettings from './pages/AboutSettings/AboutSettings'
+import ContactSettings from './pages/ContactSettings/ContactSettings'
+import FooterSettings from './pages/FooterSettings/FooterSettings'
+import Leadership from './pages/Leadership/Leadership'
+import Objectives from './pages/Objectives/Objectives'
+import Metrics from './pages/Metrics/Metrics'
+import Accreditations from './pages/Accreditations/Accreditations'
 import CertificatesAdmin from './pages/Certificates/Certificates'
 import CertificateForm from './pages/Certificates/CertificateForm'
 import ContactMessages from './pages/ContactMessages/ContactMessages'
@@ -32,43 +40,12 @@ export default function App() {
     <Routes>
       {/* ── Public Website Routes ── */}
       <Route element={<PublicLayout />}>
-        {/* Only Homepage is publicly accessible without login */}
         <Route path="/" element={<Home />} />
-
-        {/* Other pages show "under development or proceed with login" unless authenticated */}
-        <Route
-          path="/about"
-          element={
-            <PreviewGate pageName="Tentang Kami">
-              <About />
-            </PreviewGate>
-          }
-        />
-        <Route
-          path="/catalog"
-          element={
-            <PreviewGate pageName="Perkhidmatan & Katalog">
-              <Catalog />
-            </PreviewGate>
-          }
-        />
+        <Route path="/about" element={<About />} />
+        <Route path="/catalog" element={<Catalog />} />
         <Route path="/services" element={<Navigate to="/catalog" replace />} />
-        <Route
-          path="/certificates"
-          element={
-            <PreviewGate pageName="Sijil & Pelesenan">
-              <CertificatesPublic />
-            </PreviewGate>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <PreviewGate pageName="Hubungi Kami & Sebutharga">
-              <Contact />
-            </PreviewGate>
-          }
-        />
+        <Route path="/certificates" element={<CertificatesPublic />} />
+        <Route path="/contact" element={<Contact />} />
       </Route>
 
       {/* ── Login Route ── */}
@@ -88,6 +65,15 @@ export default function App() {
         <Route path="/products/:id/edit" element={<ProductForm />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/home-content" element={<HomeContent />} />
+        <Route path="/admin/services" element={<Services />} />
+        <Route path="/branches" element={<Branches />} />
+        <Route path="/about-settings" element={<AboutSettings />} />
+        <Route path="/contact-settings" element={<ContactSettings />} />
+        <Route path="/footer-settings" element={<FooterSettings />} />
+        <Route path="/leadership" element={<Leadership />} />
+        <Route path="/objectives" element={<Objectives />} />
+        <Route path="/metrics" element={<Metrics />} />
+        <Route path="/accreditations" element={<Accreditations />} />
         <Route path="/admin/certificates" element={<CertificatesAdmin />} />
         <Route path="/admin/certificates/new" element={<CertificateForm />} />
         <Route path="/admin/certificates/:id/edit" element={<CertificateForm />} />

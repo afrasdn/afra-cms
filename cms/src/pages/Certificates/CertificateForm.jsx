@@ -4,7 +4,7 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { logAudit } from '../../lib/audit'
 import { uploadToCloudinary } from '../../lib/cloudinary'
-import { Card, PageHeader, Btn, Input, Textarea, Toggle, Spinner } from '../../components/ui'
+import { Card, PageHeader, Btn, Input, Textarea, Toggle, Spinner, ENInput, ENTextarea } from '../../components/ui'
 import { Save, ArrowLeft, Upload, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -14,7 +14,7 @@ export default function CertificateForm() {
   const navigate = useNavigate()
   const { user, profile } = useAuth()
 
-  const [form, setForm] = useState({ title: '', issuing_body: '', description: '', document_url: '', is_active: true, sort_order: 0 })
+  const [form, setForm] = useState({ title: '', title_en: '', issuing_body: '', authority: '', license_no: '', badge_text: '', description: '', description_en: '', document_url: '', is_active: true, sort_order: 0 })
   const [imageFile, setImageFile] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
   const [existingImage, setExistingImage] = useState(null)
@@ -30,7 +30,7 @@ export default function CertificateForm() {
   async function loadCert() {
     const { data, error } = await supabase.from('certificates').select('*').eq('id', id).single()
     if (error || !data) { toast.error('Sijil tidak dijumpai.'); navigate('/admin/certificates'); return }
-    setForm({ title: data.title, issuing_body: data.issuing_body ?? '', description: data.description ?? '', document_url: data.document_url ?? '', is_active: data.is_active, sort_order: data.sort_order ?? 0 })
+    setForm({ title: data.title, title_en: data.en?.title ?? '', issuing_body: data.issuing_body ?? '', authority: data.authority ?? '', license_no: data.license_no ?? '', badge_text: data.badge_text ?? '', description: data.description ?? '', description_en: data.en?.description ?? '', document_url: data.document_url ?? '', is_active: data.is_active, sort_order: data.sort_order ?? 0 })
     setExistingImage(data.image_url)
     setExistingPublicId(data.cloudinary_public_id)
     setLoading(false)
@@ -61,7 +61,8 @@ export default function CertificateForm() {
         const up = await uploadToCloudinary(imageFile, 'afra/certificates')
         image_url = up.url; cloudinary_public_id = up.publicId
       }
-      const payload = { ...form, image_url, cloudinary_public_id }
+      const { title_en, description_en, ...rest } = form
+      const payload = { ...rest, image_url, cloudinary_public_id, en: { title: title_en.trim() || null, description: description_en.trim() || null } }
       if (isEdit) {
         const { error } = await supabase.from('certificates').update(payload).eq('id', id)
         if (error) throw error
@@ -86,9 +87,14 @@ export default function CertificateForm() {
       <PageHeader title={isEdit ? 'Edit Sijil' : 'Tambah Sijil Baru'} subtitle="Isi borang maklumat sijil atau lesen." action={<Btn variant="secondary" onClick={() => navigate('/admin/certificates')}><ArrowLeft size={15} /> Kembali</Btn>} />
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <Card style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <Input label="Tajuk Sijil *" id="cert-title" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} error={errors.title} placeholder="cth. ISO 9001:2015" />
+          <Input label="Tajuk Sijil (BM) *" id="cert-title" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} error={errors.title} placeholder="cth. ISO 9001:2015" />
+          <ENInput label="Tajuk Sijil" id="cert-title-en" value={form.title_en} onChange={e => setForm(f => ({ ...f, title_en: e.target.value }))} />
           <Input label="Badan Pengeluar" id="cert-body" value={form.issuing_body} onChange={e => setForm(f => ({ ...f, issuing_body: e.target.value }))} placeholder="cth. SIRIM Berhad" />
-          <Textarea label="Penerangan" id="cert-desc" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} />
+          <Input label="Pihak Berkuasa (paparan kad)" id="cert-authority" value={form.authority} onChange={e => setForm(f => ({ ...f, authority: e.target.value }))} placeholder="cth. KEMENTERIAN DALAM NEGERI (KDN)" />
+          <Input label="No. Rujukan / Lesen" id="cert-license" value={form.license_no} onChange={e => setForm(f => ({ ...f, license_no: e.target.value }))} placeholder="cth. KDN.S.205/642/1-4" />
+          <Input label="Teks Badge (cth: AKTIF & SAH)" id="cert-badge" value={form.badge_text} onChange={e => setForm(f => ({ ...f, badge_text: e.target.value }))} placeholder="cth. AKTIF & SAH" />
+          <Textarea label="Penerangan (BM)" id="cert-desc" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} />
+          <ENTextarea label="Penerangan" id="cert-desc-en" value={form.description_en} onChange={e => setForm(f => ({ ...f, description_en: e.target.value }))} rows={3} />
           <Input label="URL Dokumen PDF (pilihan)" id="cert-doc" value={form.document_url} onChange={e => setForm(f => ({ ...f, document_url: e.target.value }))} placeholder="https://..." />
           <Input label="Susunan Paparan" id="cert-sort" type="number" min="0" value={form.sort_order} onChange={e => setForm(f => ({ ...f, sort_order: parseInt(e.target.value) || 0 }))} />
           <Toggle checked={form.is_active} onChange={v => setForm(f => ({ ...f, is_active: v }))} label="Sijil Aktif (dipaparkan di laman awam)" />

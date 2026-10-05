@@ -1,22 +1,30 @@
 import { useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
-import { Bell } from 'lucide-react'
+import { Bell, Menu } from 'lucide-react'
 
 const routeTitles = {
   '/dashboard':        'Dashboard',
-  '/products':         'Pengurusan Produk',
+  '/products':         'Produk',
   '/products/new':     'Tambah Produk Baru',
-  '/categories':       'Pengurusan Kategori',
-  '/home-content':     'Kandungan Laman Utama',
-  '/certificates':       'Sijil & Pelesenan',
-  '/admin/certificates':     'Sijil & Pelesenan',
+  '/categories':       'Kategori',
+  '/home-content':     'Hero',
+  '/admin/services':   'Perkhidmatan',
+  '/branches':         'Cawangan',
+  '/metrics':          'Metrik',
+  '/accreditations':   'Akreditasi',
+  '/leadership':       'Kepimpinan',
+  '/objectives':       'Objektif',
+  '/about-settings':   'Info',
+  '/contact-settings': 'Hubungi',
+  '/footer-settings':  'Footer',
+  '/admin/certificates':     'Sijil',
   '/admin/certificates/new': 'Tambah Sijil',
-  '/contact-messages': 'Mesej Kenalan',
-  '/audit-log':        'Log Audit',
-  '/users':            'Pengurusan Pengguna',
+  '/contact-messages': 'Mesej',
+  '/audit-log':        'Audit',
+  '/users':            'Pengguna',
 }
 
-export default function TopBar() {
+export default function TopBar({ onMenu = () => {} }) {
   const { pathname } = useLocation()
   const { profile } = useAuth()
 
@@ -37,9 +45,24 @@ export default function TopBar() {
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       gap: '1rem',
     }}>
-      <div>
-        <h1 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.01em' }}>{title}</h1>
-        <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '0.1rem', fontWeight: 500 }}>{now}</p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0 }}>
+        <button
+          className="topbar-menu-btn"
+          onClick={onMenu}
+          aria-label="Buka menu navigasi"
+          style={{
+            width: '2.25rem', height: '2.25rem', flexShrink: 0,
+            background: '#f0f9ff', border: '1px solid #bae6fd',
+            borderRadius: '0.375rem', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: '#0369a1',
+          }}
+        >
+          <Menu size={16} />
+        </button>
+        <div style={{ minWidth: 0 }}>
+          <h1 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</h1>
+          <p style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '0.1rem', fontWeight: 500 }}>{now}</p>
+        </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>

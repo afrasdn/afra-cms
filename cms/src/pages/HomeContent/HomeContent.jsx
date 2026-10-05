@@ -4,14 +4,58 @@ import { useAuth } from '../../contexts/AuthContext'
 import { logAudit } from '../../lib/audit'
 import { uploadToCloudinary } from '../../lib/cloudinary'
 import { Card, PageHeader, Btn, Textarea, Input, Spinner } from '../../components/ui'
+import SettingsCard from '../../components/SettingsCard'
 import { Save, Upload, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 const SECTIONS = [
-  { key: 'hero',        label: 'Hero — Bahagian Utama',     desc: 'Tajuk besar, perihal syarikat, dan butang CTA di bahagian paling atas laman.' },
-  { key: 'about_intro', label: 'Tentang Kami — Pengenalan', desc: 'Tajuk dan teks perkenalan syarikat di bahagian About Us.' },
-  { key: 'cta_banner',  label: 'Banner CTA Bawah',           desc: 'Paparan CTA di bahagian bawah laman — ajak pengunjung hubungi.' },
+  { key: 'hero', label: 'Hero — Bahagian Utama Home', desc: 'Tajuk besar & perihal syarikat di bahagian paling atas laman Home.' },
 ]
+
+const inputStyle = { padding: '0.7rem 1rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem', background: '#f8fafc', fontFamily: 'inherit', fontSize: '0.9rem', color: '#0f172a', outline: 'none', width: '100%' }
+
+// Destinasi button — client pilih dari dropdown, tak perlu taip URL.
+// Pilihan "Link luar" akan buka ruangan teks untuk tampal https://...
+const CTA_URL_OPTIONS = [
+  { value: '/catalog', label: 'Services' },
+  { value: '/contact', label: 'Contact Us' },
+  { value: '/about', label: 'About Us' },
+  { value: '/certificates', label: 'Certificates' },
+  { value: '/', label: 'Home' },
+]
+
+function CtaUrlField({ id, label, value, onChange }) {
+  const known = CTA_URL_OPTIONS.some(o => o.value === (value ?? ''))
+  const sel = !value ? '' : known ? value : 'custom'
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+      <label htmlFor={id} style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0f172a' }}>{label}</label>
+      <select
+        id={id}
+        value={sel}
+        onChange={e => {
+          if (e.target.value === 'custom') onChange('https://')
+          else onChange(e.target.value)
+        }}
+        style={{ ...inputStyle, cursor: 'pointer' }}
+      >
+        <option value="">-- Pilih destinasi button --</option>
+        {CTA_URL_OPTIONS.map(o => (
+          <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
+        <option value="custom">Link luar / lain — tulis sendiri</option>
+      </select>
+      {sel === 'custom' && (
+        <input
+          value={value === 'custom' ? '' : (value ?? '')}
+          onChange={e => onChange(e.target.value)}
+          placeholder="cth: https://wa.me/60123456789"
+          style={inputStyle}
+        />
+      )}
+    </div>
+  )
+}
 
 function SectionEditor({ section, data, onSave }) {
   const { user, profile } = useAuth()
@@ -35,7 +79,7 @@ function SectionEditor({ section, data, onSave }) {
         cloudinary_public_id = up.publicId
       }
 
-      const payload = { ...form, image_url, cloudinary_public_id, section: section.key, updated_by: user?.id }
+      const payload = { ...form, image_url, cloudinary_public_id, en: form.en ?? {}, section: section.key, updated_by: user?.id }
       const { error } = await supabase.from('site_content').upsert(payload, { onConflict: 'section' })
       if (error) throw error
       await logAudit({ userId: user?.id, userEmail: profile?.email, action: 'UPDATE', tableName: 'site_content', newData: payload })
@@ -55,6 +99,34 @@ function SectionEditor({ section, data, onSave }) {
     setImageFile(file)
     setImagePreview(URL.createObjectURL(file))
   }
+
+  function setExtra(key, val) {
+    setForm(f => ({ ...f, extra_data: { ...((f.extra_data ?? {})), [key]: val } }))
+  }
+
+  function setEn(key, val) {
+    setForm(f => ({ ...f, en: { ...((f.en ?? {})), [key]: val } }))
+  }
+
+  const enField = (lbl, key, Component = 'input', rows) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+      <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0369a1' }}>{lbl} (EN)</label>
+      {Component === 'textarea' ? (
+        <textarea
+          value={form.en?.[key] ?? ''}
+          onChange={e => setEn(key, e.target.value)}
+          rows={rows ?? 3}
+          style={{ padding: '0.7rem 1rem', border: '1px solid #bae6fd', borderRadius: '0.375rem', background: '#f0f9ff', fontFamily: 'inherit', fontSize: '0.9rem', color: '#0f172a', outline: 'none', resize: 'vertical' }}
+        />
+      ) : (
+        <input
+          value={form.en?.[key] ?? ''}
+          onChange={e => setEn(key, e.target.value)}
+          style={{ padding: '0.7rem 1rem', border: '1px solid #bae6fd', borderRadius: '0.375rem', background: '#f0f9ff', fontFamily: 'inherit', fontSize: '0.9rem', color: '#0f172a', outline: 'none' }}
+        />
+      )}
+    </div>
+  )
 
   const field = (lbl, key, Component = 'input', rows) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
@@ -83,15 +155,52 @@ function SectionEditor({ section, data, onSave }) {
         <p style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.25rem' }}>{section.desc}</p>
       </div>
       <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {field('Tajuk', 'title')}
-        {field('Subjudul / Tag', 'subtitle')}
-        {field('Penerangan', 'description', 'textarea', 3)}
-        {section.key !== 'about_intro' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            {field('Teks Butang CTA', 'cta_text')}
-            {field('URL Butang CTA', 'cta_url')}
+        {field('Tajuk (BM)', 'title')}
+        {enField('Tajuk', 'title')}
+        {field('Subjudul / Tag (BM)', 'subtitle')}
+        {enField('Subjudul / Tag', 'subtitle')}
+        {field('Penerangan (BM)', 'description', 'textarea', 3)}
+        {enField('Penerangan', 'description', 'textarea', 3)}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          {field('Butang 1 — Teks (BM)', 'cta_text')}
+          {enField('Butang 1 — Teks', 'cta_text')}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <CtaUrlField id="hero-cta1-url" label="Butang 1 — Pergi Ke"
+            value={form.cta_url ?? ''}
+            onChange={v => setForm(f => ({ ...f, cta_url: v }))} />
+          <div style={{ display: 'flex', alignItems: 'flex-end', fontSize: '0.76rem', color: '#64748b' }}>
+            Destinasi sama untuk BM & EN.
           </div>
-        )}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+            <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0f172a' }}>Butang 2 — Teks BM (outline)</label>
+            <input
+              value={form.extra_data?.cta2_text ?? ''}
+              onChange={e => setExtra('cta2_text', e.target.value)}
+              placeholder="cth: MINTA SEBUTHARGA"
+              style={{ padding: '0.7rem 1rem', border: '1px solid #e2e8f0', borderRadius: '0.375rem', background: '#f8fafc', fontFamily: 'inherit', fontSize: '0.9rem', color: '#0f172a', outline: 'none' }}
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+            <label style={{ fontSize: '0.8rem', fontWeight: 700, color: '#0369a1' }}>Butang 2 — Teks (EN)</label>
+            <input
+              value={form.en?.cta2_text ?? ''}
+              onChange={e => setEn('cta2_text', e.target.value)}
+              placeholder="e.g. REQUEST QUOTATION"
+              style={{ padding: '0.7rem 1rem', border: '1px solid #bae6fd', borderRadius: '0.375rem', background: '#f0f9ff', fontFamily: 'inherit', fontSize: '0.9rem', color: '#0f172a', outline: 'none' }}
+            />
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <CtaUrlField id="hero-cta2-url" label="Butang 2 — Pergi Ke"
+            value={form.extra_data?.cta2_url ?? ''}
+            onChange={v => setExtra('cta2_url', v)} />
+          <div style={{ display: 'flex', alignItems: 'flex-end', fontSize: '0.76rem', color: '#64748b' }}>
+            Destinasi sama untuk BM & EN.
+          </div>
+        </div>
 
         {/* Image upload */}
         <div>
@@ -144,10 +253,25 @@ export default function HomeContent() {
 
   return (
     <div style={{ maxWidth: '52rem' }}>
-      <PageHeader title="Kandungan Laman Utama" subtitle="Edit teks dan gambar setiap bahagian laman awam." />
+      <PageHeader title="Hero Laman Utama (Home)" subtitle="Edit tajuk besar & perihal di bahagian atas laman Home." />
       {SECTIONS.map(s => (
         <SectionEditor key={s.key} section={s} data={contentMap[s.key]} onSave={load} />
       ))}
+
+      <SettingsCard
+        cardTitle="Badge Kecil Atas Tajuk Hero"
+        logTag="home_hero_badge"
+        fields={[{ key: 'hero_badge', label: 'Teks badge (cth: Lesen Keselamatan KDN ...)' }]}
+      />
+      <SettingsCard
+        cardTitle="Tajuk Seksyen di HOME (Our Comprehensive...)"
+        logTag="home_services_header"
+        fields={[
+          { key: 'home_svc_tagline', label: 'Tagline kecil atas', placeholder: 'cth: OUR COMPREHENSIVE' },
+          { key: 'home_svc_title', label: 'Tajuk besar', placeholder: 'cth: SERVICES & SOLUTIONS' },
+          { key: 'home_svc_desc', label: 'Penerangan', textarea: true, placeholder: 'cth: Kami merangkumi kitaran penuh operasi...' },
+        ]}
+      />
     </div>
   )
 }

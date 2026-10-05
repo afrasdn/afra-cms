@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { useLang } from '../lib/i18n'
 import { Shield, Lock, LogIn, ArrowLeft, Sparkles } from 'lucide-react'
 
-export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
+export default function PreviewGate({ children, pageKey = 'about' }) {
   const { user, loading } = useAuth()
+  const { t } = useLang()
+  const pageName = t.gatePages[pageKey] ?? pageKey
 
   if (loading) {
     return (
@@ -15,7 +18,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
           width: '2.5rem', height: '2.5rem', border: '3px solid #bae6fd',
           borderTopColor: '#0369a1', borderRadius: '50%', animation: 'spin 0.8s linear infinite'
         }} />
-        <p style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>Memeriksa status kebenaran...</p>
+        <p style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600 }}>{t.gateChecking}</p>
       </div>
     )
   }
@@ -62,7 +65,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
           marginBottom: '1.5rem',
         }}>
           <Sparkles size={14} />
-          <span>Page Under Development</span>
+          <span>{t.gateBadge}</span>
         </div>
 
         {/* Lock / Security Icon */}
@@ -90,7 +93,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
           marginBottom: '0.75rem',
           textTransform: 'uppercase',
         }}>
-          {pageName} Sedang Dibangunkan
+          {pageName} {t.gateInProgress}
         </h1>
 
         <p style={{
@@ -99,7 +102,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
           lineHeight: 1.7,
           marginBottom: '2.25rem',
         }}>
-          Bahagian ini dikhaskan untuk sesi semakan dalaman. Untuk melihat kandungan penuh dan konsol pengurusan, sila <strong>log masuk pentadbir</strong> atau kembali ke <strong>laman utama</strong>.
+          {t.gateDesc}
         </p>
 
         {/* Action Buttons */}
@@ -126,7 +129,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
             }}
           >
             <LogIn size={16} />
-            <span>PROCEED WITH LOGIN (PENTADBIR)</span>
+            <span>{t.gateLogin}</span>
           </Link>
 
           <Link
@@ -145,7 +148,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
             }}
           >
             <ArrowLeft size={16} />
-            <span>KEMBALI KE HOMEPAGE</span>
+            <span>{t.gateBack}</span>
           </Link>
         </div>
 
@@ -162,7 +165,7 @@ export default function PreviewGate({ children, pageName = 'Halaman Ini' }) {
           color: '#94a3b8',
         }}>
           <Shield size={13} color="#0369a1" />
-          <span>AFRA Services Sdn. Bhd. Sistem Keselamatan & Kawalan CMS</span>
+          <span>{t.gateNote}</span>
         </div>
       </div>
     </div>

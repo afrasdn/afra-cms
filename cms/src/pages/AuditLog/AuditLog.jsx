@@ -42,7 +42,7 @@ export default function AuditLog() {
         ) : (
           <>
             <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <div className="table-scroll"><table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid #e2e8f0', background: '#f8fafc' }}>
                     {['Tindakan', 'Jadual', 'Pengguna', 'Tarikh & Masa', 'ID Rekod'].map(h => (
@@ -65,7 +65,7 @@ export default function AuditLog() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table></div>
             </div>
 
             {totalPages > 1 && (

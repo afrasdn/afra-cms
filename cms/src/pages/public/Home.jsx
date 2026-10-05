@@ -1,26 +1,97 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { getServiceIcon, fetchSettings, cleanTitle } from '../../lib/content'
+import { useLang, L, S } from '../../lib/i18n'
 import {
-  ShieldCheck, Shield, ShieldAlert, FileText,
-  Crosshair, Truck, UserCheck, Activity, Video,
-  ArrowRight
+  ShieldCheck, Shield, ArrowRight
 } from 'lucide-react'
 
+// Fallback jika DB kosong / belum run migration 002
+// Setiap item ada `en` supaya toggle EN papar English penuh walaupun DB kosong.
+const FALLBACK_METRICS = [
+  { value: '13', suffix: '+', label: 'Cawangan Negeri', sub: 'Liputan Operasi Seluruh Malaysia Termasuk Sabah & Sarawak', en: { label: 'State Branches', sub: 'Nationwide Operations Coverage Including Sabah & Sarawak' } },
+  { value: 'RM5M', suffix: '', label: 'Modal Berbayar', sub: 'Kekuatan Kewangan Penuh Didaftarkan di Bawah SSM', en: { label: 'Paid-Up Capital', sub: 'Full Financial Strength Registered Under SSM' } },
+  { value: '2009', suffix: '', label: 'Ditubuhkan', sub: '15+ Tahun Reputasi Kawalan Berdisiplin & Dipercayai', en: { label: 'Established', sub: '15+ Years of Trusted & Disciplined Guarding Reputation' } },
+  { value: '100', suffix: '%', label: 'Berlesen & Patuh', sub: 'KDN, PDRM, Ahli PPKKM & Pengiktirafan Bersijil ISO', en: { label: 'Licensed & Compliant', sub: 'KDN, PDRM, PPKKM Member & ISO Certified Recognition' } },
+]
+
+const FALLBACK_SERVICES = [
+  { slug: 'static', code: null, icon: 'Shield', title: 'Kawalan Statik (Static Guard)', description: 'Kawalan keselamatan fizikal 24/7 di premis korporat, komersial, perindustrian, perbankan dan kediaman oleh anggota keselamatan berdisiplin serta terlatih.', en: { title: 'Static Guard', description: '24/7 physical security guarding for corporate, commercial, industrial, banking and residential premises by disciplined, trained personnel.' } },
+  { slug: 'armed', code: null, icon: 'Crosshair', title: 'Kawalan Bersenjata (Armed Guard)', description: 'Perlindungan bersenjata api (Pistol & Shotgun) berlesen untuk sektor berisiko tinggi, institusi perbankan, bilik kebal, dan pengiring taktikal.', en: { title: 'Armed Guard', description: 'Licensed firearm protection (Pistol & Shotgun) for high-risk sectors, banking institutions, vaults and tactical escorts.' } },
+  { slug: 'cit', code: null, icon: 'Truck', title: 'Cash-In-Transit (C.I.T)', description: 'Pengangkutan wang tunai dan barangan berharga menggunakan kenderaan perisai kalis peluru (Armoured Vehicle) dengan pengiring bersenjata serta penjejakan GPS.', en: { title: 'Cash-In-Transit (C.I.T)', description: 'Cash and valuables transport using bullet-proof armoured vehicles with armed escorts and GPS tracking.' } },
+  { slug: 'bodyguard', code: null, icon: 'UserCheck', title: 'Pengawal Peribadi (VIP Bodyguard)', description: 'Perlindungan eksekutif rapat (Close Protection) untuk orang kenamaan (VVIP/VIP), diplomat, ekspatriat dan tokoh korporat berprofil tinggi secara profesional.', en: { title: 'VIP Bodyguard (Close Protection)', description: 'Professional close protection for VVIPs/VIPs, diplomats, expatriates and high-profile corporate figures.' } },
+  { slug: 'cms', code: null, icon: 'Activity', title: 'Central Monitoring System (CMS)', description: 'Pusat kawalan penggera berpusat 24 jam dengan unit respon kecemasan pantas (Rapid Response Team) sekiranya berlaku sebarang penggera pencerobohan atau kecemasan.', en: { title: 'Central Monitoring System (CMS)', description: '24-hour centralised alarm monitoring centre with Rapid Response Team for intrusion or emergency alarms.' } },
+  { slug: 'cctv', code: null, icon: 'Video', title: 'CCTV & Automation System', description: 'Pemasangan dan penyenggaraan kamera litar tertutup (CCTV) berdefinisi tinggi, sistem kawalan akses biometrik, pagar automatik dan sistem keselamatan pintar bangunan.', en: { title: 'CCTV & Automation System', description: 'Installation and maintenance of high-definition CCTV, biometric access control, automated gates and smart building security systems.' } },
+]
+
+const FALLBACK_BRANCHES = [
+  { state: 'TERENGGANU', address: 'Lot PT 1914 Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.', contact: 'Tel: 09-6226678 / Faks: 09-6264788', is_hq: true },
+  { state: 'KUALA LUMPUR', address: 'No. 5-6-2 Jalan 3/50, Diamond Square, Off Jalan Gombak, 53000 Kuala Lumpur.', contact: '', is_hq: false },
+  { state: 'PAHANG', address: '1st Floor, B2 Lorong Permatang Badak Perdana 102, 25150 Kuantan, Pahang.', contact: '', is_hq: false },
+  { state: 'KELANTAN', address: 'PT 3072-T2 Kg Jalan Banggol Kerian Bandar Baru, 16800 Pasir Puteh, Kelantan.', contact: '', is_hq: false },
+  { state: 'JOHOR', address: 'No 7 Jalan Mida 5, Taman Mida, 85000 Segamat, Johor.', contact: '', is_hq: false },
+  { state: 'PULAU PINANG', address: '10-G, Bertam Walk, Jalan Dagangan 16, Pusat Bandar Bertam Perdana, 13200 Kepala Batas.', contact: '', is_hq: false },
+  { state: 'PERAK', address: 'No. 1A, Hala Taman Tambun Jaya 1, Taman Tambun Jaya, 31400 Tambun, Ipoh Perak.', contact: '', is_hq: false },
+  { state: 'NEGERI SEMBILAN', address: 'No. 23 Tingkat Atas, Jalan Dato’ Abdullah, Kuala Kelawang, 71600 Jelebu.', contact: '', is_hq: false },
+  { state: 'SABAH & SARAWAK', address: 'Kota Kinabalu (Central Shopping Plaza) & Miri (Jalan Bulatan-Piasau), Malaysia Timur.', contact: '', is_hq: false },
+]
+
+const FALLBACK_BRANDS = [
+  { code: 'KDN', name: 'Kementerian Dalam Negeri', en: { name: 'Ministry of Home Affairs' } },
+  { code: 'PDRM', name: 'Polis Diraja Malaysia', en: { name: 'Royal Malaysia Police' } },
+  { code: 'PPKKM', name: 'Persatuan Keselamatan', en: { name: 'Security Services Association' } },
+  { code: 'MOF', name: 'Kementerian Kewangan', en: { name: 'Ministry of Finance' } },
+  { code: 'ISO 9001', name: 'Quality Certified', en: { name: 'Quality Certified' } },
+  { code: 'LONPAC', name: 'Insurans Komprehensif', en: { name: 'Comprehensive Insurance' } },
+]
+
+// Normalisasi URL CTA dari dashboard:
+// - kosong -> fallback | http(s) -> link luar | lain -> route dalam (/xxx, tanpa .html)
+function normalizeUrl(u, fallback) {
+  if (!u || !u.trim()) return { external: false, to: fallback }
+  const t = u.trim()
+  if (/^https?:\/\//i.test(t)) return { external: true, to: t }
+  return { external: false, to: '/' + t.replace(/\.html?$/i, '').replace(/^\/+/, '') }
+}
+
+function CtaButton({ text, url, fallbackUrl, className, icon }) {
+  const target = normalizeUrl(url, fallbackUrl)
+  const inner = (<><span>{text}</span></>)
+  if (target.external) {
+    return <a className={className} href={target.to} target="_blank" rel="noopener noreferrer">{icon}{inner}</a>
+  }
+  return <Link className={className} to={target.to}>{icon}{inner}</Link>
+}
+
 export default function Home() {
+  const { lang, t } = useLang()
   const [siteContent, setSiteContent] = useState(null)
+  const [settings, setSettings] = useState({})
+  const [metrics, setMetrics] = useState(FALLBACK_METRICS)
+  const [services, setServices] = useState(FALLBACK_SERVICES)
+  const [branches, setBranches] = useState(FALLBACK_BRANCHES)
+  const [brands, setBrands] = useState(FALLBACK_BRANDS)
 
   useEffect(() => {
     async function loadContent() {
       try {
-        const { data } = await supabase
-          .from('site_content')
-          .select('*')
-          .eq('section', 'hero')
-          .maybeSingle()
-        if (data) setSiteContent(data)
+        const [heroRes, metricsRes, servicesRes, branchesRes, brandsRes, s] = await Promise.all([
+          supabase.from('site_content').select('*').eq('section', 'hero').maybeSingle(),
+          supabase.from('metrics').select('*').eq('is_active', true).order('sort_order'),
+          supabase.from('services').select('*').eq('is_active', true).order('sort_order').limit(6),
+          supabase.from('branches').select('*').eq('is_active', true).order('sort_order'),
+          supabase.from('accreditations').select('*').eq('is_active', true).order('sort_order'),
+          fetchSettings(supabase),
+        ])
+        if (heroRes.data) setSiteContent(heroRes.data)
+        if (metricsRes.data && metricsRes.data.length > 0) setMetrics(metricsRes.data)
+        if (servicesRes.data && servicesRes.data.length > 0) setServices(servicesRes.data)
+        if (branchesRes.data && branchesRes.data.length > 0) setBranches(branchesRes.data)
+        if (brandsRes.data && brandsRes.data.length > 0) setBrands(brandsRes.data)
+        setSettings(s)
       } catch (err) {
-        console.warn('Could not fetch site_content:', err)
+        console.warn('Could not fetch CMS content, using fallback:', err)
       }
     }
     loadContent()
@@ -31,7 +102,7 @@ export default function Home() {
       {/* ── HERO SECTION ── */}
       <section className="hero-section">
         <div className="hero-content max-w-7xl px-6 sm:px-8">
-          
+
           {/* Large AFRA Emblem */}
           <div className="hero-emblem-wrap">
             <img
@@ -44,12 +115,17 @@ export default function Home() {
 
           <div className="hero-badge-pill">
             <ShieldCheck size={16} />
-            <span>Lesen Keselamatan KDN &amp; PDRM Berdaftar (881616-V)</span>
+            <span>{S(settings, 'hero_badge', lang) || t.heroBadge}</span>
           </div>
 
           <h1 className="hero-title">
-            {siteContent?.title ? (
-              <span dangerouslySetInnerHTML={{ __html: siteContent.title.replace(/\n/g, '<br>') }} />
+            {L(siteContent, lang, 'title') ? (
+              <span dangerouslySetInnerHTML={{ __html: String(L(siteContent, lang, 'title')).replace(/\n/g, '<br>') }} />
+            ) : lang === 'en' ? (
+              <>
+                YOUR SAFETY,<br />
+                <span className="highlight-blue">OUR COMMITMENT.</span>
+              </>
             ) : (
               <>
                 KESELAMATAN ANDA,<br />
@@ -59,354 +135,153 @@ export default function Home() {
           </h1>
 
           <p className="hero-desc">
-            {siteContent?.description || (
+            {L(siteContent, lang, 'description') || (lang === 'en' ? (
+              <>
+                Licensed under the <strong>Ministry of Home Affairs</strong> since 2009, <strong>AFRA Services</strong> provides certified security guarding — from static to armed protection — across <strong>13 states throughout Malaysia</strong>.
+              </>
+            ) : (
               <>
                 Berlesen di bawah <strong>Kementerian Dalam Negeri</strong> sejak 2009, <strong>AFRA Services</strong> menyediakan perkhidmatan kawalan keselamatan bertauliah dari kawalan statik hingga bersenjata di <strong>13 negeri seluruh Malaysia</strong>.
               </>
-            )}
+            ))}
           </p>
 
           <div className="hero-actions">
-            <Link className="btn-solid-blue" to="/catalog">
-              <ShieldAlert size={16} />
-              <span>TEROKAI PERKHIDMATAN</span>
-            </Link>
-            <Link className="btn-outline-navy" to="/contact">
-              <FileText size={16} />
-              <span>MINTA SEBUTHARGA</span>
-            </Link>
+            <CtaButton
+              text={L(siteContent, lang, 'cta_text') || t.heroCta1}
+              url={siteContent?.cta_url}
+              fallbackUrl="/catalog"
+              className="btn-solid-blue"
+              icon={<Shield size={16} />}
+            />
+            <CtaButton
+              text={(lang === 'en' && siteContent?.en?.cta2_text?.trim() ? siteContent.en.cta2_text : siteContent?.extra_data?.cta2_text) || t.heroCta2}
+              url={siteContent?.extra_data?.cta2_url}
+              fallbackUrl="/contact"
+              className="btn-outline-navy"
+            />
           </div>
 
         </div>
       </section>
 
-      {/* ── KEY CORPORATE METRICS STRIP ── */}
+      {/* ── KEY CORPORATE METRICS STRIP (CMS: Metrics) ── */}
       <section className="metrics-strip">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="metrics-grid">
-            
-            <div className="metric-card">
-              <span className="metric-num">13<span>+</span></span>
-              <span className="metric-label">Cawangan Negeri</span>
-              <span className="metric-sub">Liputan Operasi Seluruh Malaysia Termasuk Sabah &amp; Sarawak</span>
-            </div>
-
-            <div className="metric-card">
-              <span className="metric-num">RM<span>5M</span></span>
-              <span className="metric-label">Modal Berbayar</span>
-              <span className="metric-sub">Kekuatan Kewangan Penuh Didaftarkan di Bawah SSM</span>
-            </div>
-
-            <div className="metric-card">
-              <span className="metric-num">2009</span>
-              <span className="metric-label">Ditubuhkan</span>
-              <span className="metric-sub">15+ Tahun Reputasi Kawalan Berdisiplin &amp; Dipercayai</span>
-            </div>
-
-            <div className="metric-card">
-              <span className="metric-num">100<span>%</span></span>
-              <span className="metric-label">Berlesen &amp; Patuh</span>
-              <span className="metric-sub">KDN, PDRM, Ahli PPKKM &amp; Pengiktirafan Bersijil ISO</span>
-            </div>
-
+            {metrics.map((m, idx) => (
+              <div className="metric-card" key={m.id ?? idx}>
+                <span className="metric-num">{m.value}{m.suffix && <span>{m.suffix}</span>}</span>
+                <span className="metric-label">{L(m, lang, 'label')}</span>
+                {L(m, lang, 'sub') && <span className="metric-sub">{L(m, lang, 'sub')}</span>}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── SERVICES & SOLUTIONS OVERVIEW ── */}
+      {/* ── SERVICES & SOLUTIONS OVERVIEW (CMS: Services) ── */}
       <section className="services-section">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          
+
           <div className="section-header-row">
             <div className="section-titles">
-              <span className="section-tagline">OUR COMPREHENSIVE</span>
-              <h2 className="section-main-title">SERVICES &amp; SOLUTIONS</h2>
+              <span className="section-tagline">{S(settings, 'home_svc_tagline', lang) || (lang === 'en' ? 'OUR COMPREHENSIVE' : 'PERKHIDMATAN MENYELURUH')}</span>
+              <h2 className="section-main-title">{S(settings, 'home_svc_title', lang) || (lang === 'en' ? 'SERVICES & SOLUTIONS' : 'PERKHIDMATAN & PENYELESAIAN')}</h2>
             </div>
             <p className="section-header-desc">
-              Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.
+              {S(settings, 'home_svc_desc', lang) || (lang === 'en' ? 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.' : 'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.')}
             </p>
           </div>
 
           <div className="services-grid">
-
-            {/* Card 1: Kawalan Statik */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <Shield size={22} />
+            {services.map((s, idx) => {
+              const Icon = getServiceIcon(s.icon)
+              return (
+                <div className="service-card" key={s.id ?? s.slug ?? idx}>
+                  <div className="service-card-inner">
+                    <div>
+                      <div className="card-top-meta">
+                        <div className="card-icon-wrap">
+                          <Icon size={22} />
+                        </div>
+                        <span className="card-number">{String(idx + 1).padStart(2, '0')}</span>
+                      </div>
+                      <div style={{ marginTop: '1.25rem' }}>
+                        <h3 className="service-card-title">{L(s, lang, 'title')}</h3>
+                        <p className="service-card-text">{L(s, lang, 'description')}</p>
+                      </div>
                     </div>
-                    <span className="card-number">01</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">Kawalan Statik (Static Guard)</h3>
-                    <p className="service-card-text">
-                      Kawalan keselamatan fizikal 24/7 di premis korporat, komersial, perindustrian, perbankan dan kediaman oleh anggota keselamatan berdisiplin serta terlatih.
-                    </p>
+                    <Link to={`/catalog#${s.slug ?? ''}`} className="card-bottom-action">
+                      <span>{t.moreInfo}</span>
+                      <ArrowRight size={14} />
+                    </Link>
                   </div>
                 </div>
-                <Link to="/catalog#static" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 2: Kawalan Bersenjata */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <Crosshair size={22} />
-                    </div>
-                    <span className="card-number">02</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">Kawalan Bersenjata (Armed Guard)</h3>
-                    <p className="service-card-text">
-                      Perlindungan bersenjata api (Pistol &amp; Shotgun) berlesen untuk sektor berisiko tinggi, institusi perbankan, bilik kebal, dan pengiring taktikal.
-                    </p>
-                  </div>
-                </div>
-                <Link to="/catalog#armed" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 3: Cash-In-Transit */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <Truck size={22} />
-                    </div>
-                    <span className="card-number">03</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">Cash-In-Transit (C.I.T)</h3>
-                    <p className="service-card-text">
-                      Pengangkutan wang tunai dan barangan berharga menggunakan kenderaan perisai kalis peluru (Armoured Vehicle) dengan pengiring bersenjata serta penjejakan GPS.
-                    </p>
-                  </div>
-                </div>
-                <Link to="/catalog#cit" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 4: Pengawal Peribadi */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <UserCheck size={22} />
-                    </div>
-                    <span className="card-number">04</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">Pengawal Peribadi (VIP Bodyguard)</h3>
-                    <p className="service-card-text">
-                      Perlindungan eksekutif rapat (Close Protection) untuk orang kenamaan (VVIP/VIP), diplomat, ekspatriat dan tokoh korporat berprofil tinggi secara profesional.
-                    </p>
-                  </div>
-                </div>
-                <Link to="/catalog#bodyguard" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 5: Central Monitoring System */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <Activity size={22} />
-                    </div>
-                    <span className="card-number">05</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">Central Monitoring System (CMS)</h3>
-                    <p className="service-card-text">
-                      Pusat kawalan penggera berpusat 24 jam dengan unit respon kecemasan pantas (Rapid Response Team) sekiranya berlaku sebarang penggera pencerobohan atau kecemasan.
-                    </p>
-                  </div>
-                </div>
-                <Link to="/catalog#cms" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 6: CCTV & Automation */}
-            <div className="service-card">
-              <div className="service-card-inner">
-                <div>
-                  <div className="card-top-meta">
-                    <div className="card-icon-wrap">
-                      <Video size={22} />
-                    </div>
-                    <span className="card-number">06</span>
-                  </div>
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <h3 className="service-card-title">CCTV &amp; Automation System</h3>
-                    <p className="service-card-text">
-                      Pemasangan dan penyenggaraan kamera litar tertutup (CCTV) berdefinisi tinggi, sistem kawalan akses biometrik, pagar automatik dan sistem keselamatan pintar bangunan.
-                    </p>
-                  </div>
-                </div>
-                <Link to="/catalog#cctv" className="card-bottom-action">
-                  <span>Maklumat Lanjut</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
+              )
+            })}
           </div>
 
         </div>
       </section>
 
-      {/* ── 13 CAWANGAN SELURUH MALAYSIA ── */}
+      {/* ── CAWANGAN SELURUH MALAYSIA (CMS: Branches) ── */}
       <section className="branches-section">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          
+
           <div className="section-header-row" style={{ marginBottom: '2rem' }}>
             <div className="section-titles">
-              <span className="section-tagline">RANGKAIAN OPERASI KEBANGSAAN</span>
-              <h2 className="section-main-title">13 CAWANGAN SELURUH MALAYSIA</h2>
+              <span className="section-tagline">{S(settings, 'home_branch_tagline', lang) || (lang === 'en' ? 'NATIONAL OPERATIONS NETWORK' : 'RANGKAIAN OPERASI KEBANGSAAN')}</span>
+              <h2 className="section-main-title">{branches.length} {cleanTitle(S(settings, 'home_branch_title', lang), lang === 'en' ? 'BRANCHES ACROSS MALAYSIA' : 'CAWANGAN SELURUH MALAYSIA')}</h2>
             </div>
             <p className="section-header-desc">
-              Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan 12 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.
+              {S(settings, 'home_branch_desc', lang) || (lang === 'en' ? 'Operating from our HQ in Kuala Terengganu with strategic branches across the Peninsula, Sabah and Sarawak for rapid readiness.' : 'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.')}
             </p>
           </div>
 
           <div className="branches-grid">
-            
-            <div className="branch-item" style={{ borderColor: 'var(--blue-primary)', background: '#ffffff' }}>
-              <div className="branch-header">
-                <span className="branch-state">1. TERENGGANU</span>
-                <span className="branch-tag-hq">IBU PEJABAT</span>
+            {branches.map((b, idx) => (
+              <div
+                key={b.id ?? idx}
+                className="branch-item"
+                style={b.is_hq ? { borderColor: 'var(--blue-primary)', background: '#ffffff' } : {}}
+              >
+                <div className="branch-header">
+                  <span className="branch-state">{idx + 1}. {b.state}</span>
+                  {b.is_hq && <span className="branch-tag-hq">{lang === 'en' ? 'HEADQUARTERS' : 'IBU PEJABAT'}</span>}
+                </div>
+                <p className="branch-address">
+                  {b.address}
+                  {b.contact && (
+                    <>
+                      <br />
+                      <span style={{ color: 'var(--blue-primary)', fontWeight: 700 }}>{b.contact}</span>
+                    </>
+                  )}
+                </p>
               </div>
-              <p className="branch-address">
-                Lot PT 1914 Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.<br />
-                <span style={{ color: 'var(--blue-primary)', fontWeight: 700 }}>Tel: 09-6226678 / Faks: 09-6264788</span>
-              </p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">2. KUALA LUMPUR</span>
-              </div>
-              <p className="branch-address">No. 5-6-2 Jalan 3/50, Diamond Square, Off Jalan Gombak, 53000 Kuala Lumpur.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">3. PAHANG</span>
-              </div>
-              <p className="branch-address">1st Floor, B2 Lorong Permatang Badak Perdana 102, 25150 Kuantan, Pahang.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">4. KELANTAN</span>
-              </div>
-              <p className="branch-address">PT 3072-T2 Kg Jalan Banggol Kerian Bandar Baru, 16800 Pasir Puteh, Kelantan.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">5. JOHOR</span>
-              </div>
-              <p className="branch-address">No 7 Jalan Mida 5, Taman Mida, 85000 Segamat, Johor.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">6. PULAU PINANG</span>
-              </div>
-              <p className="branch-address">10-G, Bertam Walk, Jalan Dagangan 16, Pusat Bandar Bertam Perdana, 13200 Kepala Batas.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">7. PERAK</span>
-              </div>
-              <p className="branch-address">No. 1A, Hala Taman Tambun Jaya 1, Taman Tambun Jaya, 31400 Tambun, Ipoh Perak.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">8. NEGERI SEMBILAN</span>
-              </div>
-              <p className="branch-address">No. 23 Tingkat Atas, Jalan Dato’ Abdullah, Kuala Kelawang, 71600 Jelebu.</p>
-            </div>
-
-            <div className="branch-item">
-              <div className="branch-header">
-                <span className="branch-state">9. SABAH &amp; SARAWAK</span>
-              </div>
-              <p className="branch-address">Kota Kinabalu (Central Shopping Plaza) &amp; Miri (Jalan Bulatan-Piasau), Malaysia Timur.</p>
-            </div>
-
+            ))}
           </div>
 
         </div>
       </section>
 
-      {/* ── ACCREDITATIONS & REGULATORY BRANDS ── */}
+      {/* ── ACCREDITATIONS (CMS: Accreditations) ── */}
       <section className="brands-section">
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          
+
           <div className="brands-header-box">
-            <span className="brands-tagline">Pengiktirafan Rasmi &amp; Badan Kawal Selia</span>
-            <span className="brands-sub-mono">Piawaian Pematuhan Pertahanan &amp; Keselamatan Malaysia</span>
+            <span className="brands-tagline">{S(settings, 'home_brands_tagline', lang) || (lang === 'en' ? 'Official Recognition & Regulatory Bodies' : 'Pengiktirafan Rasmi & Badan Kawal Selia')}</span>
+            <span className="brands-sub-mono">{S(settings, 'home_brands_sub', lang) || (lang === 'en' ? 'Malaysian Defence & Security Compliance Standards' : 'Piawaian Pematuhan Pertahanan & Keselamatan Malaysia')}</span>
           </div>
 
           <div className="brands-badges-row">
-            
-            <div className="brand-badge">
-              <span className="brand-badge-code">KDN</span>
-              <span className="brand-badge-name">Kementerian Dalam Negeri</span>
-            </div>
-
-            <div className="brand-badge">
-              <span className="brand-badge-code">PDRM</span>
-              <span className="brand-badge-name">Polis Diraja Malaysia</span>
-            </div>
-
-            <div className="brand-badge">
-              <span className="brand-badge-code">PPKKM</span>
-              <span className="brand-badge-name">Persatuan Keselamatan</span>
-            </div>
-
-            <div className="brand-badge">
-              <span className="brand-badge-code">MOF</span>
-              <span className="brand-badge-name">Kementerian Kewangan</span>
-            </div>
-
-            <div className="brand-badge">
-              <span className="brand-badge-code">ISO 9001</span>
-              <span className="brand-badge-name">Quality Certified</span>
-            </div>
-
-            <div className="brand-badge">
-              <span className="brand-badge-code">LONPAC</span>
-              <span className="brand-badge-name">Insurans Komprehensif</span>
-            </div>
-
+            {brands.map((b, idx) => (
+              <div className="brand-badge" key={b.id ?? idx}>
+                <span className="brand-badge-code">{b.code}</span>
+                <span className="brand-badge-name">{L(b, lang, 'name')}</span>
+              </div>
+            ))}
           </div>
 
         </div>

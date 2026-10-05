@@ -1,0 +1,35 @@
+[    8339ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:86
+[   14693ms] [ERROR] The request has been aborted. @ https://chatgpt.com/:0
+[   14694ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with AbortError: signal is aborted without reason @ https://accounts.google.com/gsi/client:87
+[   17999ms] Transition was aborted because of invalid state. ViewTransition opt-in disabled
+[   28480ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://chatgpt.com/backend-api/bazaar/obi/sync-token:0
+[   28503ms] [ERROR] RequestError: OBI synchronization is not available
+    at mEe (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:38227)
+    at async issueToken (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:45363)
+    at async s (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:44384) {feature: bazaar_browser_profile_cookie_sync} @ https://chatgpt.com/cdn/assets/2340486e-kfapbrw5efyhrjct.js:27
+[   51843ms] [ERROR] Executing inline script violates the following Content Security Policy directive 'script-src 'sha256-HMSBgVJCnOxczYs9o0ORJhoO4xfJLj8/WTP3qUzij78=' 'self' https://cdn.platform.openai.com/assets/dil/ 'unsafe-eval''. Either the 'unsafe-inline' keyword, a hash ('sha256-ubEk+VCdcZIK/3K9aegBTyun6cD45IUqMm7YGm5+6vo='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://cdn.platform.openai.com/deployments/dil/v13/runner.html#dil-diagnostics=1:365
+[10962790ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/ces/v1/telemetry/intake?ddforward=%2Fapi%2Fv2%2Flogs%3Fddsource%3Dbrowser%26dd-api-key%3Dpub1f79f8ac903a5872ae5f53026d20a77c%26dd-evp-origin-version%3D6.22.0%26dd-evp-origin%3Dbrowser%26dd-request-id%3Dd7b74a9d-c28f-42eb-aebd-6fb3d61df5ef:0
+[10963670ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/backend-api/bazaar/obi/sync-token:0
+[10963677ms] [ERROR] RequestError: Failed to fetch
+    at e.createWithErrorMessage (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:66:64382)
+    at mEe (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:37792)
+    at async issueToken (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:45363)
+    at async s (https://chatgpt.com/cdn/assets/4813494d-nsss7fxurseygool.js:424:44384) {feature: bazaar_browser_profile_cookie_sync} @ https://chatgpt.com/cdn/assets/2340486e-kfapbrw5efyhrjct.js:27
+[10963687ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/backend-api/sentinel/heartbeat:0
+[10963688ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/ces/statsc/flush:0
+[10963692ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/backend-api/celsius/ws/user:0
+[10963716ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://chatgpt.com/ces/v1/telemetry/intake?ddforward=%2Fapi%2Fv2%2Flogs%3Fddsource%3Dbrowser%26dd-api-key%3Dpub1f79f8ac903a5872ae5f53026d20a77c%26dd-evp-origin-version%3D6.22.0%26dd-evp-origin%3Dbrowser%26dd-request-id%3Deb300cc9-9ee0-462b-985e-036b9d35984a:0
+[82459116ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/statsc/flush:0
+[82459127ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/backend-api/sentinel/heartbeat:0
+[82459135ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/backend-api/sentinel/ping:0
+[82459136ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648087250&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1:0
+[82459145ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/telemetry/intake?ddforward=%2Fapi%2Fv2%2Flogs%3Fddsource%3Dbrowser%26dd-api-key%3Dpub1f79f8ac903a5872ae5f53026d20a77c%26dd-evp-origin-version%3D6.22.0%26dd-evp-origin%3Dbrowser%26dd-request-id%3Dd9270cbf-f388-47b9-8747-c088e1f9f349:0
+[82459154ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/backend-api/celsius/ws/user:0
+[82461354ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/telemetry/intake?ddforward=%2Fapi%2Fv2%2Flogs%3Fddsource%3Dbrowser%26dd-api-key%3Dpub1f79f8ac903a5872ae5f53026d20a77c%26dd-evp-origin-version%3D6.22.0%26dd-evp-origin%3Dbrowser%26dd-request-id%3D4abeb2d2-2f9a-451d-a953-eeecf69c8f01:0
+[82461358ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648087250&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1:0
+[82461818ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648097774&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1:0
+[82463117ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648097774&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1:0
+[82477033ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://chatgpt.com/backend-api/celsius/ws/user:0
+[82477041ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648101723&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1:0
+[82489668ms] [ERROR]  ERROR  [Statsig] A networking error occurred during POST request to https://chatgpt.com/ces/v1/rgstr?k=client-nb0qtYlZuy2tCMN5s5ncnuIBCJncjRViT0IzFm7GqST&st=javascript-client&sv=3.33.1&t=1790648116242&sid=2b3e398b-19dc-4196-919e-8c2f1a7b4447&ec=1&gz=1. Error: Timeout of 10000ms expired. Error: Timeout of 10000ms expired.
+    at https://chatgpt.com/cdn/assets/2340486e-kfapbrw5efyhrjct.js:29:132374 @ https://chatgpt.com/cdn/assets/2340486e-kfapbrw5efyhrjct.js:27

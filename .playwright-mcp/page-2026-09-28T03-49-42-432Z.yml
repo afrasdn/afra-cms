@@ -1,0 +1,204 @@
+- generic [ref=f9e3]:
+  - banner [ref=f9e4]:
+    - generic [ref=f9e5]:
+      - link "AFRA Services Logo AFRA SERVICES SDN. BHD." [ref=f9e6] [cursor=pointer]:
+        - /url: /
+        - img "AFRA Services Logo" [ref=f9e8]
+        - generic [ref=f9e9]:
+          - generic [ref=f9e10]: AFRA
+          - generic [ref=f9e11]: SERVICES SDN. BHD.
+      - generic [ref=f9e12]:
+        - generic [ref=f9e13]:
+          - button "Bahasa Melayu" [ref=f9e14] [cursor=pointer]: BM
+          - button "English" [ref=f9e15] [cursor=pointer]: EN
+        - link "LOGIN" [ref=f9e16] [cursor=pointer]:
+          - /url: /login
+        - button "Toggle navigation menu" [ref=f9e21] [cursor=pointer]
+  - main [ref=f9e23]:
+    - generic [ref=f9e25]:
+      - img "AFRA Official Emblem" [ref=f9e27]
+      - generic [ref=f9e28]: Lesen Keselamatan KDN & PDRM Berdaftar (881616-V)
+      - heading "KESELAMATAN ANDA, KOMITMEN KAMI." [level=1] [ref=f9e33]: KESELAMATAN ANDA,KOMITMEN KAMI.
+      - paragraph [ref=f9e34]:
+        - text: Berlesen di bawah
+        - strong [ref=f9e35]: Kementerian Dalam Negeri
+        - text: sejak 2009,
+        - strong [ref=f9e36]: AFRA Services
+        - text: menyediakan perkhidmatan kawalan keselamatan bertauliah dari kawalan statik hingga bersenjata di
+        - strong [ref=f9e37]: 13 negeri seluruh Malaysia
+        - text: .
+      - generic [ref=f9e38]:
+        - link "TEROKAI PERKHIDMATAN" [ref=f9e39] [cursor=pointer]:
+          - /url: /catalog
+        - link "MINTA SEBUTHARGA" [ref=f9e43] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=f9e47]:
+      - generic [ref=f9e48]:
+        - generic [ref=f9e49]: 13+
+        - generic [ref=f9e50]: Cawangan Negeri
+        - generic [ref=f9e51]: Liputan Operasi Seluruh Malaysia Termasuk Sabah & Sarawak
+      - generic [ref=f9e52]:
+        - generic [ref=f9e53]: RM5M
+        - generic [ref=f9e54]: Modal Berbayar
+        - generic [ref=f9e55]: Kekuatan Kewangan Penuh Didaftarkan di Bawah SSM
+      - generic [ref=f9e56]:
+        - generic [ref=f9e57]: "2009"
+        - generic [ref=f9e58]: Ditubuhkan
+        - generic [ref=f9e59]: 15+ Tahun Reputasi Kawalan Berdisiplin & Dipercayai
+      - generic [ref=f9e60]:
+        - generic [ref=f9e61]: 100%
+        - generic [ref=f9e62]: Berlesen & Patuh
+        - generic [ref=f9e63]: KDN, PDRM, Ahli PPKKM & Pengiktirafan Bersijil ISO
+    - generic [ref=f9e65]:
+      - generic [ref=f9e66]:
+        - generic [ref=f9e67]:
+          - generic [ref=f9e68]: OUR COMPREHENSIVE
+          - heading "SERVICES & SOLUTIONS" [level=2] [ref=f9e69]
+        - paragraph [ref=f9e70]: Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.
+      - generic [ref=f9e71]:
+        - generic [ref=f9e73]:
+          - generic [ref=f9e74]:
+            - generic [ref=f9e75]: "01"
+            - generic [ref=f9e80]:
+              - heading "Kawalan Statik (Static Guard)" [level=3] [ref=f9e81]
+              - paragraph [ref=f9e82]: Kawalan keselamatan fizikal 24/7 di premis korporat, komersial, perindustrian, perbankan dan kediaman oleh anggota keselamatan berdisiplin serta terlatih.
+          - link "Maklumat Lanjut" [ref=f9e83] [cursor=pointer]:
+            - /url: /catalog#static
+        - generic [ref=f9e88]:
+          - generic [ref=f9e89]:
+            - generic [ref=f9e90]: "02"
+            - generic [ref=f9e95]:
+              - heading "Kawalan Bersenjata (Armed Guard)" [level=3] [ref=f9e96]
+              - paragraph [ref=f9e97]: Perlindungan bersenjata api (Pistol & Shotgun) berlesen untuk sektor berisiko tinggi, institusi perbankan, bilik kebal, dan pengiring taktikal.
+          - link "Maklumat Lanjut" [ref=f9e98] [cursor=pointer]:
+            - /url: /catalog#armed
+        - generic [ref=f9e103]:
+          - generic [ref=f9e104]:
+            - generic [ref=f9e105]: "03"
+            - generic [ref=f9e113]:
+              - heading "Cash-In-Transit (C.I.T)" [level=3] [ref=f9e114]
+              - paragraph [ref=f9e115]: Pengangkutan wang tunai dan barangan berharga menggunakan kenderaan perisai kalis peluru (Armoured Vehicle) dengan pengiring bersenjata serta penjejakan GPS.
+          - link "Maklumat Lanjut" [ref=f9e116] [cursor=pointer]:
+            - /url: /catalog#cit
+        - generic [ref=f9e121]:
+          - generic [ref=f9e122]:
+            - generic [ref=f9e123]: "04"
+            - generic [ref=f9e130]:
+              - heading "Pengawal Peribadi (VIP Bodyguard)" [level=3] [ref=f9e131]
+              - paragraph [ref=f9e132]: Perlindungan eksekutif rapat (Close Protection) untuk orang kenamaan (VVIP/VIP), diplomat, ekspatriat dan tokoh korporat berprofil tinggi secara profesional.
+          - link "Maklumat Lanjut" [ref=f9e133] [cursor=pointer]:
+            - /url: /catalog#bodyguard
+        - generic [ref=f9e138]:
+          - generic [ref=f9e139]:
+            - generic [ref=f9e140]: "05"
+            - generic [ref=f9e145]:
+              - heading "Central Monitoring System (CMS)" [level=3] [ref=f9e146]
+              - paragraph [ref=f9e147]: Pusat kawalan penggera berpusat 24 jam dengan unit respon kecemasan pantas (Rapid Response Team) sekiranya berlaku sebarang penggera pencerobohan atau kecemasan.
+          - link "Maklumat Lanjut" [ref=f9e148] [cursor=pointer]:
+            - /url: /catalog#cms
+        - generic [ref=f9e153]:
+          - generic [ref=f9e154]:
+            - generic [ref=f9e155]: "06"
+            - generic [ref=f9e161]:
+              - heading "CCTV & Automation System" [level=3] [ref=f9e162]
+              - paragraph [ref=f9e163]: Pemasangan dan penyenggaraan kamera litar tertutup (CCTV) berdefinisi tinggi, sistem kawalan akses biometrik, pagar automatik dan sistem keselamatan pintar bangunan.
+          - link "Maklumat Lanjut" [ref=f9e164] [cursor=pointer]:
+            - /url: /catalog#cctv
+    - generic [ref=f9e169]:
+      - generic [ref=f9e170]:
+        - generic [ref=f9e171]:
+          - generic [ref=f9e172]: RANGKAIAN OPERASI KEBANGSAAN
+          - heading "9 CAWANGAN SELURUH MALAYSIA" [level=2] [ref=f9e173]
+        - paragraph [ref=f9e174]: Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.
+      - generic [ref=f9e175]:
+        - generic [ref=f9e176]:
+          - generic [ref=f9e177]:
+            - generic [ref=f9e178]: 1. TERENGGANU
+            - generic [ref=f9e179]: IBU PEJABAT
+          - paragraph [ref=f9e180]: "Lot PT 1914 Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.Tel: 09-6226678 / Faks: 09-6264788"
+        - generic [ref=f9e181]:
+          - generic [ref=f9e182]: 2. KUALA LUMPUR
+          - paragraph [ref=f9e184]: No. 5-6-2 Jalan 3/50, Diamond Square, Off Jalan Gombak, 53000 Kuala Lumpur.
+        - generic [ref=f9e185]:
+          - generic [ref=f9e186]: 3. PAHANG
+          - paragraph [ref=f9e188]: 1st Floor, B2 Lorong Permatang Badak Perdana 102, 25150 Kuantan, Pahang.
+        - generic [ref=f9e189]:
+          - generic [ref=f9e190]: 4. KELANTAN
+          - paragraph [ref=f9e192]: PT 3072-T2 Kg Jalan Banggol Kerian Bandar Baru, 16800 Pasir Puteh, Kelantan.
+        - generic [ref=f9e193]:
+          - generic [ref=f9e194]: 5. JOHOR
+          - paragraph [ref=f9e196]: No 7 Jalan Mida 5, Taman Mida, 85000 Segamat, Johor.
+        - generic [ref=f9e197]:
+          - generic [ref=f9e198]: 6. PULAU PINANG
+          - paragraph [ref=f9e200]: 10-G, Bertam Walk, Jalan Dagangan 16, Pusat Bandar Bertam Perdana, 13200 Kepala Batas.
+        - generic [ref=f9e201]:
+          - generic [ref=f9e202]: 7. PERAK
+          - paragraph [ref=f9e204]: No. 1A, Hala Taman Tambun Jaya 1, Taman Tambun Jaya, 31400 Tambun, Ipoh Perak.
+        - generic [ref=f9e205]:
+          - generic [ref=f9e206]: 8. NEGERI SEMBILAN
+          - paragraph [ref=f9e208]: No. 23 Tingkat Atas, Jalan Dato’ Abdullah, Kuala Kelawang, 71600 Jelebu.
+        - generic [ref=f9e209]:
+          - generic [ref=f9e210]: 9. SABAH & SARAWAK
+          - paragraph [ref=f9e212]: Kota Kinabalu (Central Shopping Plaza) & Miri (Jalan Bulatan-Piasau), Malaysia Timur.
+    - generic [ref=f9e214]:
+      - generic [ref=f9e215]:
+        - generic [ref=f9e216]: Pengiktirafan Rasmi & Badan Kawal Selia
+        - generic [ref=f9e217]: Piawaian Pematuhan Pertahanan & Keselamatan Malaysia
+      - generic [ref=f9e218]:
+        - generic [ref=f9e219]:
+          - generic [ref=f9e220]: KDN
+          - generic [ref=f9e221]: Kementerian Dalam Negeri
+        - generic [ref=f9e222]:
+          - generic [ref=f9e223]: PDRM
+          - generic [ref=f9e224]: Polis Diraja Malaysia
+        - generic [ref=f9e225]:
+          - generic [ref=f9e226]: PPKKM
+          - generic [ref=f9e227]: Persatuan Keselamatan
+        - generic [ref=f9e228]:
+          - generic [ref=f9e229]: MOF
+          - generic [ref=f9e230]: Kementerian Kewangan
+        - generic [ref=f9e231]:
+          - generic [ref=f9e232]: ISO 9001
+          - generic [ref=f9e233]: Quality Certified
+        - generic [ref=f9e234]:
+          - generic [ref=f9e235]: LONPAC
+          - generic [ref=f9e236]: Insurans Komprehensif
+  - contentinfo [ref=f9e237]:
+    - generic [ref=f9e238]:
+      - generic [ref=f9e239]:
+        - link "AFRA Services Logo AFRA SERVICES SDN. BHD." [ref=f9e240] [cursor=pointer]:
+          - /url: /
+          - img "AFRA Services Logo" [ref=f9e242]
+          - generic [ref=f9e243]:
+            - generic [ref=f9e244]: AFRA
+            - generic [ref=f9e245]: SERVICES SDN. BHD.
+        - paragraph [ref=f9e246]: "AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00."
+        - generic [ref=f9e247]:
+          - generic [ref=f9e248]: LOT PT 1914, Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu Darul Iman.
+          - generic [ref=f9e253]: 09-6226678 / 09-6264788 (Faks)
+          - link "afraservices@gmail.com" [ref=f9e261] [cursor=pointer]:
+            - /url: mailto:afraservices@gmail.com
+      - generic [ref=f9e262]:
+        - heading "Pautan Pantas" [level=3] [ref=f9e263]
+        - list [ref=f9e264]:
+          - listitem [ref=f9e265]:
+            - link "Laman Utama" [ref=f9e266] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f9e267]:
+            - link "Tentang Kami" [ref=f9e268] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f9e269]:
+            - link "Senarai Perkhidmatan" [ref=f9e270] [cursor=pointer]:
+              - /url: /catalog
+          - listitem [ref=f9e271]:
+            - link "Sijil & Pelesenan" [ref=f9e272] [cursor=pointer]:
+              - /url: /certificates
+          - listitem [ref=f9e273]:
+            - link "Hubungi Kami" [ref=f9e274] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=f9e275]:
+            - link "Staff Webmail" [ref=f9e276] [cursor=pointer]:
+              - /url: https://webmail.afraservices.com.my
+    - generic [ref=f9e278]:
+      - paragraph [ref=f9e279]: Hak Cipta Terpelihara 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V).
+      - paragraph [ref=f9e280]: Agensi Kawalan Keselamatan Berlesen KDN & PDRM

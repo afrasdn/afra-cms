@@ -1,0 +1,41 @@
+- generic [ref=f10e3]:
+  - generic [ref=f10e4]:
+    - generic [ref=f10e5]: PORTAL PENTADBIR KESELAMATAN
+    - heading "Sistem Kawalan & Pentadbiran HQ" [level=1] [ref=f10e9]: Sistem Kawalan &Pentadbiran HQ
+    - paragraph [ref=f10e10]: AFRA Services Sdn. Bhd. — gerbang kawalan operasi keselamatan berpusat. Akses khusus pentadbir sahaja.
+    - generic [ref=f10e11]:
+      - generic [ref=f10e12]: 🛡️
+      - generic [ref=f10e13]:
+        - generic [ref=f10e14]: Kawalan Operasi & CMS 24 Jam
+        - generic [ref=f10e15]: Urus produk, sijil, dan kandungan laman secara langsung.
+    - generic [ref=f10e16]:
+      - generic [ref=f10e17]: 📋
+      - generic [ref=f10e18]:
+        - generic [ref=f10e19]: Log Audit Lengkap
+        - generic [ref=f10e20]: Setiap perubahan direkod dengan penuh — siapa, apa, bila.
+    - generic [ref=f10e21]:
+      - generic [ref=f10e22]: 🔒
+      - generic [ref=f10e23]:
+        - generic [ref=f10e24]: Disulitkan SSL 256-bit
+        - generic [ref=f10e25]: Sesi dilindungi di bawah Akta Jenayah Komputer 1997.
+    - generic [ref=f10e26]:
+      - generic [ref=f10e27]: "Bantuan IT Helpdesk:"
+      - link "09-6226678" [ref=f10e28] [cursor=pointer]:
+        - /url: tel:096226678
+  - generic [ref=f10e30]:
+    - generic [ref=f10e31]:
+      - link "← Kembali ke Laman Utama AFRA" [ref=f10e32] [cursor=pointer]:
+        - /url: /
+      - heading "Log Masuk Pentadbir" [level=2] [ref=f10e33]
+      - paragraph [ref=f10e34]: Masukkan ID Pengguna Pentadbir dan kata laluan rasmi.
+    - generic [ref=f10e35]:
+      - generic [ref=f10e36]:
+        - generic [ref=f10e37]: ID Pengguna Pentadbir
+        - textbox "cth. admin.hq@afraservices.com.my" [ref=f10e38]
+      - generic [ref=f10e39]:
+        - generic [ref=f10e40]: Kata Laluan Pentadbir
+        - generic [ref=f10e42]:
+          - textbox "••••••••" [ref=f10e43]
+          - button [ref=f10e44] [cursor=pointer]
+      - button "Log Masuk Pentadbir HQ" [ref=f10e48] [cursor=pointer]
+    - generic [ref=f10e52]: Log masuk dilindungi dan dipantau di bawah peruntukan Akta Agensi Persendirian 1971 & Akta Jenayah Komputer 1997.

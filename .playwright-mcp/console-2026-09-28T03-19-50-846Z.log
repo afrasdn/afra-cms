@@ -1,0 +1,66 @@
+[    8561ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('https://www.google.com'). @ https://www.youtube.com/s/player/7460dd14/www-widgetapi.vflset/www-widgetapi.js:162
+[    9041ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[   12285ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: c3edaddb6d} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[   12976ms] [LOG] recaptchacompat disabled @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[   13873ms] [ERROR] Not signed in with the identity provider. @ https://claude.ai/login:0
+[   16048ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with AbortError: signal is aborted without reason @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[   16787ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[   16789ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[   43937ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[   43938ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[   45941ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[   45942ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  765667ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[  766687ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: c3edaddb6d} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  767740ms] [LOG] recaptchacompat disabled @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  769422ms] [ERROR] The request has been aborted. @ https://claude.ai/login:0
+[  769423ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with AbortError: signal is aborted without reason @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  770174ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  770175ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  777418ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  777419ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  817661ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[  817818ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: c3edaddb6d} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  818137ms] [LOG] recaptchacompat disabled @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  820000ms] [ERROR] The request has been aborted. @ https://claude.ai/login:0
+[  820001ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with AbortError: signal is aborted without reason @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  820751ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  820752ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  826860ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  826861ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  828880ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  828881ms] [ERROR] Cross-Origin-Opener-Policy policy would block the window.closed call. @ https://accounts.google.com/gsi/client:137
+[  837436ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://a.claude.ai') does not match the recipient window's origin ('https://claude.ai'). @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/shared-common-mcp-msg-6-By_OYEdi.js:23
+[  837455ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[  837702ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[  838812ms] [INFO] [O11Y] [DatadogRUM] Initialized {service: claude-ai, env: production, version: c3edaddb6d} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  843189ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[  848588ms] [WARNING] [BOOTSTRAP] Background chunk load failed; nobody is waiting on it, not reloading {decision: allow, url: /new, chunk_load_origin: background, chunk_load_tag: psl} @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  906670ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[  925738ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[ 2412097ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[ 2418541ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[11009451ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://claude.ai/edge-api/client-health/check?platform=web&bundle=1790464421&locale=en-US:0
+[11009473ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://claude.ai/api/organizations/78594fbe-0ce4-47e8-b0e2-66e15f92158d/reflections/time_spent:0
+[11009476ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://claude.ai/api/v2/rum?ddsource=browser&dd-api-key=pub71869dceb5b70dba6123af9ca357d1f9&dd-evp-origin-version=7.6.0&dd-evp-origin=browser&dd-request-id=c0b55ae7-88fc-4369-8b0e-408185b2ef8f&dd-evp-encoding=deflate&batch_time=1790576563132&_dd.api=fetch&build_ts=1790464421:0
+[11009495ms] [ERROR] Failed to load resource: net::ERR_TIMED_OUT @ https://claude.ai/api/v2/rum?ddsource=browser&dd-api-key=pub71869dceb5b70dba6123af9ca357d1f9&dd-evp-origin-version=7.6.0&dd-evp-origin=browser&dd-request-id=ca3acc40-1faa-4ad5-bb0e-4a8d1a1868f6&dd-evp-encoding=deflate&batch_time=1790576593113&_dd.api=fetch&build_ts=1790464421:0
+[11314853ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[11322131ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12208116ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12213014ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12257055ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12261781ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12287328ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12292419ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12351422ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12358171ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12423224ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[12433309ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15130101ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15140013ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15179414ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15186969ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15577399ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15582085ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15970020ms] [INFO] [COMPLETION] Starting completion request (attempt 1, mode=legacy) @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4
+[15977159ms] [INFO] [COMPLETION] Completion request succeeded on attempt 1 @ https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/vendor-datadog-BzMwoDjB.js:4

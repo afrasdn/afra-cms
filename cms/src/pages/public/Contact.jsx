@@ -1,13 +1,44 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { fetchSettings } from '../../lib/content'
+import { useLang, L, S } from '../../lib/i18n'
 import {
   Mail, Phone, MapPin, Clock, Send,
   User, Building2, Shield, MessageSquare,
   CheckCircle2, AlertCircle, Loader2
 } from 'lucide-react'
 
+const FALLBACK_SERVICES = [
+  'Khidmat Kawalan Statik (Static Guard)',
+  'Khidmat Kawalan Bersenjata (Armed Guard)',
+  'Cash-In-Transit (C.I.T)',
+  'Pengawal Peribadi (VIP Bodyguard)',
+  'Central Monitoring System (CMS 24 Jam)',
+  'CCTV & Automasi Keselamatan',
+  'Penyiasat Persendirian (Private Investigation)',
+  'Latihan & Konsultasi Keselamatan',
+]
+
+const FALLBACK_SERVICES_EN = [
+  'Static Guard Service',
+  'Armed Guard Service',
+  'Cash-In-Transit (C.I.T)',
+  'VIP Bodyguard (Close Protection)',
+  'Central Monitoring System (CMS 24/7)',
+  'CCTV & Security Automation',
+  'Private Investigation',
+  'Training & Security Consultation',
+]
+
+const FALLBACK_STATES = [
+  'Terengganu (HQ)', 'Kuala Lumpur / Selangor', 'Pahang', 'Kelantan',
+  'Johor', 'Melaka', 'Negeri Sembilan', 'Perak', 'Pulau Pinang',
+  'Kedah', 'Perlis', 'Sabah', 'Sarawak',
+]
+
 export default function Contact() {
+  const { lang, t } = useLang()
   const [searchParams] = useSearchParams()
   const initialService = searchParams.get('service') || ''
 
@@ -24,6 +55,27 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [settings, setSettings] = useState({})
+  const [serviceOptions, setServiceOptions] = useState(lang === 'en' ? FALLBACK_SERVICES_EN : FALLBACK_SERVICES)
+  const [stateOptions, setStateOptions] = useState(FALLBACK_STATES)
+
+  useEffect(() => {
+    async function loadCMS() {
+      try {
+        const [s, svcRes, brRes] = await Promise.all([
+          fetchSettings(supabase),
+          supabase.from('services').select('*').eq('is_active', true).order('sort_order'),
+          supabase.from('branches').select('state').eq('is_active', true).order('sort_order'),
+        ])
+        setSettings(s)
+        if (svcRes.data && svcRes.data.length > 0) setServiceOptions(svcRes.data)
+        if (brRes.data && brRes.data.length > 0) setStateOptions(brRes.data.map(r => r.state))
+      } catch (err) {
+        console.warn('Could not fetch contact CMS data:', err)
+      }
+    }
+    loadCMS()
+  }, [])
 
   useEffect(() => {
     const s = searchParams.get('service')
@@ -65,7 +117,7 @@ export default function Contact() {
       })
     } catch (err) {
       console.error('Submission error:', err)
-      setErrorMsg(err.message || 'Gagal menghantar permohonan. Sila semak sambungan internet anda.')
+      setErrorMsg(err.message || t.formErrorFail)
     } finally {
       setSubmitting(false)
     }
@@ -78,11 +130,11 @@ export default function Contact() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <Mail size={14} />
-            <span>Pusat Khidmat & Sebutharga</span>
+            <span>{S(settings, 'page_contact_tag', lang) || (lang === 'en' ? 'Service Centre & Quotations' : 'Pusat Khidmat & Sebutharga')}</span>
           </div>
-          <h1 className="page-header-title">HUBUNGI KAMI &amp; SEBUTHARGA</h1>
+          <h1 className="page-header-title">{S(settings, 'page_contact_title', lang) || (lang === 'en' ? 'CONTACT US & QUOTATIONS' : 'HUBUNGI KAMI & SEBUTHARGA')}</h1>
           <p className="page-header-desc">
-            Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.
+            {S(settings, 'page_contact_desc', lang) || (lang === 'en' ? 'Please complete the form below for an official quotation for guarding services at your premises, or contact our operations room.' : 'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.')}
           </p>
         </div>
       </div>
@@ -95,16 +147,16 @@ export default function Contact() {
           <div className="contact-info-panel">
             
             <div className="contact-card-solid">
-              <h3 className="contact-card-title">Ibu Pejabat (HQ)</h3>
+              <h3 className="contact-card-title">{S(settings, 'contact_hq_title', lang) || (lang === 'en' ? 'Headquarters (HQ)' : 'Ibu Pejabat (HQ)')}</h3>
               <div className="contact-items-col">
                 <div className="contact-item-box">
                   <div className="contact-item-icon">
                     <MapPin size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">Alamat Rasmi</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_addr_label', lang) || (lang === 'en' ? 'Official Address' : 'Alamat Rasmi')}</span>
                     <span className="contact-item-val">
-                      LOT PT 1914, Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.
+                      {S(settings, 'hq_address', lang) || 'LOT PT 1914, Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.'}
                     </span>
                   </div>
                 </div>
@@ -114,9 +166,9 @@ export default function Contact() {
                     <Phone size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">Telefon &amp; Faks</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_phone_label', lang) || (lang === 'en' ? 'Phone & Fax' : 'Telefon & Faks')}</span>
                     <span className="contact-item-val">
-                      <a href="tel:096226678">09-6226678</a> / 09-6264788 (Faks)
+                      <a href={`tel:${(S(settings, 'hq_phone', lang) || '09-6226678').replace(/[^0-9]/g, '')}`}>{S(settings, 'hq_phone', lang) || '09-6226678'}</a>{S(settings, 'hq_fax', lang) ? ` / ${S(settings, 'hq_fax', lang)} (${lang === 'en' ? 'Fax' : 'Faks'})` : (lang === 'en' ? ' / 09-6264788 (Fax)' : ' / 09-6264788 (Faks)')}
                     </span>
                   </div>
                 </div>
@@ -126,9 +178,9 @@ export default function Contact() {
                     <Mail size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">E-mel Pentadbiran</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_email_label', lang) || (lang === 'en' ? 'Administration Email' : 'E-mel Pentadbiran')}</span>
                     <span className="contact-item-val">
-                      <a href="mailto:afraservices@gmail.com">afraservices@gmail.com</a>
+                      <a href={`mailto:${S(settings, 'admin_email', lang) || 'afraservices@gmail.com'}`}>{S(settings, 'admin_email', lang) || 'afraservices@gmail.com'}</a>
                     </span>
                   </div>
                 </div>
@@ -136,17 +188,18 @@ export default function Contact() {
             </div>
 
             <div className="contact-card-solid">
-              <h3 className="contact-card-title">Waktu Operasi HQ</h3>
+              <h3 className="contact-card-title">{S(settings, 'contact_hours_title', lang) || (lang === 'en' ? 'HQ Operating Hours' : 'Waktu Operasi HQ')}</h3>
               <div className="contact-items-col">
                 <div className="contact-item-box">
                   <div className="contact-item-icon">
                     <Clock size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">Pejabat Pengurusan</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_office_label', lang) || (lang === 'en' ? 'Management Office' : 'Pejabat Pengurusan')}</span>
                     <span className="contact-item-val">
-                      Ahad – Khamis: 8:30 Pagi – 5:00 Petang<br />
-                      Jumaat &amp; Sabtu: Tutup
+                      {(S(settings, 'contact_office_hours', lang) || (lang === 'en' ? 'Sunday – Thursday: 8:30 AM – 5:00 PM\nFriday & Saturday: Closed' : 'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup')).split('\n').map((line, i, arr) => (
+                        <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                      ))}
                     </span>
                   </div>
                 </div>
@@ -156,9 +209,9 @@ export default function Contact() {
                     <Shield size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">Bilik Gerakan &amp; CMS</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_cms_label', lang) || (lang === 'en' ? 'Operations Room & CMS' : 'Bilik Gerakan & CMS')}</span>
                     <span className="contact-item-val" style={{ color: '#16a34a', fontWeight: 800 }}>
-                      24 Jam Setiap Hari (365 Hari Setahun)
+                      {S(settings, 'contact_cms_hours', lang) || (lang === 'en' ? '24 Hours Daily (365 Days a Year)' : '24 Jam Setiap Hari (365 Hari Setahun)')}
                     </span>
                   </div>
                 </div>
@@ -170,9 +223,9 @@ export default function Contact() {
           {/* Right Column: Interactive Form */}
           <div className="form-panel-card">
             <div className="form-panel-header">
-              <h2 className="form-panel-title">Borang Permintaan Sebutharga</h2>
+              <h2 className="form-panel-title">{S(settings, 'contact_form_title', lang) || (lang === 'en' ? 'Quotation Request Form' : 'Borang Permintaan Sebutharga')}</h2>
               <p className="form-panel-desc">
-                Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.
+                {S(settings, 'contact_form_desc', lang) || (lang === 'en' ? 'Please fill in the required security assignment details. Our operations officer will contact you within 24 hours.' : 'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.')}
               </p>
             </div>
 
@@ -191,10 +244,10 @@ export default function Contact() {
                 <CheckCircle2 size={22} style={{ color: '#16a34a', flexShrink: 0, marginTop: '0.1rem' }} />
                 <div>
                   <div style={{ fontWeight: 800, fontSize: '0.95rem', marginBottom: '0.2rem' }}>
-                    Permintaan Sebutharga Berjaya Dihantar!
+                    {t.formSuccessTitle}
                   </div>
                   <div style={{ fontSize: '0.85rem', lineHeight: 1.5 }}>
-                    Terima kasih. Permintaan anda telah direkodkan dalam sistem pentadbiran AFRA Services. Pegawai kami akan menghubungi nombor telefon anda secepat mungkin.
+                    {t.formSuccessDesc}
                   </div>
                 </div>
               </div>
@@ -214,7 +267,7 @@ export default function Contact() {
               }}>
                 <AlertCircle size={22} style={{ color: '#dc2626', flexShrink: 0, marginTop: '0.1rem' }} />
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>Ralat Menghantar</div>
+                  <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{t.formErrorTitle}</div>
                   <div style={{ fontSize: '0.85rem' }}>{errorMsg}</div>
                 </div>
               </div>
@@ -227,13 +280,13 @@ export default function Contact() {
                   <div className="form-group">
                     <label className="form-label" htmlFor="name">
                       <User size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Nama Penuh</span>
+                      <span>{t.formName}</span>
                     </label>
                     <input
                       className="form-input"
                       id="name"
                       type="text"
-                      placeholder="cth. Ahmad Faiz"
+                      placeholder={t.formNamePh}
                       value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })}
                       required
@@ -243,13 +296,13 @@ export default function Contact() {
                   <div className="form-group">
                     <label className="form-label" htmlFor="company">
                       <Building2 size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Nama Syarikat / Organisasi</span>
+                      <span>{t.formCompany}</span>
                     </label>
                     <input
                       className="form-input"
                       id="company"
                       type="text"
-                      placeholder="cth. Syarikat Maju Sdn Bhd"
+                      placeholder={t.formCompanyPh}
                       value={form.company}
                       onChange={e => setForm({ ...form, company: e.target.value })}
                     />
@@ -260,13 +313,13 @@ export default function Contact() {
                   <div className="form-group">
                     <label className="form-label" htmlFor="phone">
                       <Phone size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Nombor Telefon</span>
+                      <span>{t.formPhone}</span>
                     </label>
                     <input
                       className="form-input"
                       id="phone"
                       type="tel"
-                      placeholder="cth. 012-3456789"
+                      placeholder={t.formPhonePh}
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       required
@@ -276,13 +329,13 @@ export default function Contact() {
                   <div className="form-group">
                     <label className="form-label" htmlFor="email">
                       <Mail size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Emel</span>
+                      <span>{t.formEmail}</span>
                     </label>
                     <input
                       className="form-input"
                       id="email"
                       type="email"
-                      placeholder="cth. ahmad@syarikat.com"
+                      placeholder={t.formEmailPh}
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       required
@@ -294,7 +347,7 @@ export default function Contact() {
                   <div className="form-group">
                     <label className="form-label" htmlFor="service">
                       <Shield size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Jenis Perkhidmatan Diperlukan</span>
+                      <span>{t.formService}</span>
                     </label>
                     <select
                       className="form-select"
@@ -303,22 +356,18 @@ export default function Contact() {
                       onChange={e => setForm({ ...form, service_type: e.target.value })}
                       required
                     >
-                      <option value="">-- Sila Pilih Perkhidmatan --</option>
-                      <option value="Khidmat Kawalan Statik (Static Guard)">Khidmat Kawalan Statik (Static Guard)</option>
-                      <option value="Khidmat Kawalan Bersenjata (Armed Guard)">Khidmat Kawalan Bersenjata (Armed Guard)</option>
-                      <option value="Cash-In-Transit (C.I.T)">Cash-In-Transit (C.I.T)</option>
-                      <option value="Pengawal Peribadi (VIP Bodyguard)">Pengawal Peribadi (VIP Bodyguard)</option>
-                      <option value="Central Monitoring System (CMS 24 Jam)">Central Monitoring System (CMS 24 Jam)</option>
-                      <option value="CCTV & Automasi Keselamatan">CCTV &amp; Automasi Keselamatan</option>
-                      <option value="Penyiasat Persendirian (Private Investigation)">Penyiasat Persendirian (Private Investigation)</option>
-                      <option value="Latihan & Konsultasi Keselamatan">Latihan &amp; Konsultasi Keselamatan</option>
+                      <option value="">{t.formSelectService}</option>
+                      {(serviceOptions.every(s => typeof s === 'string') && lang === 'en' ? FALLBACK_SERVICES_EN : serviceOptions).map((s, idx) => {
+                        const label = typeof s === 'string' ? s : (L(s, lang, 'title') ?? '')
+                        return <option key={label + idx} value={label}>{label}</option>
+                      })}
                     </select>
                   </div>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="state">
                       <MapPin size={14} style={{ color: 'var(--blue-primary)' }} />
-                      <span>Lokasi Negeri Premis</span>
+                      <span>{t.formState}</span>
                     </label>
                     <select
                       className="form-select"
@@ -327,20 +376,10 @@ export default function Contact() {
                       onChange={e => setForm({ ...form, state: e.target.value })}
                       required
                     >
-                      <option value="">-- Sila Pilih Negeri --</option>
-                      <option value="Terengganu (HQ)">Terengganu (HQ)</option>
-                      <option value="Kuala Lumpur / Selangor">Kuala Lumpur / Selangor</option>
-                      <option value="Pahang">Pahang</option>
-                      <option value="Kelantan">Kelantan</option>
-                      <option value="Johor">Johor</option>
-                      <option value="Melaka">Melaka</option>
-                      <option value="Negeri Sembilan">Negeri Sembilan</option>
-                      <option value="Perak">Perak</option>
-                      <option value="Pulau Pinang">Pulau Pinang</option>
-                      <option value="Kedah">Kedah</option>
-                      <option value="Perlis">Perlis</option>
-                      <option value="Sabah">Sabah</option>
-                      <option value="Sarawak">Sarawak</option>
+                      <option value="">{t.formSelectState}</option>
+                      {stateOptions.map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -348,12 +387,12 @@ export default function Contact() {
                 <div className="form-group">
                   <label className="form-label" htmlFor="message">
                     <MessageSquare size={14} style={{ color: 'var(--blue-primary)' }} />
-                    <span>Butiran Keperluan Keselamatan / Premis</span>
-                  </label>
-                  <textarea
-                    className="form-textarea"
-                    id="message"
-                    placeholder="Nyatakan jumlah anggota pengawal, masa syif, jenis premis atau sebarang spesifikasi khusus..."
+                      <span>{t.formNeeds}</span>
+                    </label>
+                    <textarea
+                      className="form-textarea"
+                      id="message"
+                      placeholder={t.formNeedsPh}
                     value={form.message}
                     onChange={e => setForm({ ...form, message: e.target.value })}
                     required
@@ -364,12 +403,12 @@ export default function Contact() {
                   {submitting ? (
                     <>
                       <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
-                      <span>MENGHANTAR PERMOHONAN...</span>
+                      <span>{t.formSubmitting}</span>
                     </>
                   ) : (
                     <>
                       <Send size={16} />
-                      <span>HANTAR PERMINTAAN SEBUTHARGA</span>
+                      <span>{S(settings, 'contact_submit_text', lang) || (lang === 'en' ? 'SUBMIT QUOTATION REQUEST' : 'HANTAR PERMINTAAN SEBUTHARGA')}</span>
                     </>
                   )}
                 </button>

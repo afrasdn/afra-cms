@@ -1,0 +1,41 @@
+- generic [ref=f4e3]:
+  - generic [ref=f4e4]:
+    - generic [ref=f4e5]: PORTAL PENTADBIR KESELAMATAN
+    - heading "Sistem Kawalan & Pentadbiran HQ" [level=1] [ref=f4e9]: Sistem Kawalan &Pentadbiran HQ
+    - paragraph [ref=f4e10]: AFRA Services Sdn. Bhd. — gerbang kawalan operasi keselamatan berpusat. Akses khusus pentadbir sahaja.
+    - generic [ref=f4e11]:
+      - generic [ref=f4e12]: 🛡️
+      - generic [ref=f4e13]:
+        - generic [ref=f4e14]: Kawalan Operasi & CMS 24 Jam
+        - generic [ref=f4e15]: Urus produk, sijil, dan kandungan laman secara langsung.
+    - generic [ref=f4e16]:
+      - generic [ref=f4e17]: 📋
+      - generic [ref=f4e18]:
+        - generic [ref=f4e19]: Log Audit Lengkap
+        - generic [ref=f4e20]: Setiap perubahan direkod dengan penuh — siapa, apa, bila.
+    - generic [ref=f4e21]:
+      - generic [ref=f4e22]: 🔒
+      - generic [ref=f4e23]:
+        - generic [ref=f4e24]: Disulitkan SSL 256-bit
+        - generic [ref=f4e25]: Sesi dilindungi di bawah Akta Jenayah Komputer 1997.
+    - generic [ref=f4e26]:
+      - generic [ref=f4e27]: "Bantuan IT Helpdesk:"
+      - link "09-6226678" [ref=f4e28] [cursor=pointer]:
+        - /url: tel:096226678
+  - generic [ref=f4e30]:
+    - generic [ref=f4e31]:
+      - link "← Kembali ke Laman Utama AFRA" [ref=f4e32] [cursor=pointer]:
+        - /url: /
+      - heading "Log Masuk Pentadbir" [level=2] [ref=f4e33]
+      - paragraph [ref=f4e34]: Masukkan ID Pengguna Pentadbir dan kata laluan rasmi.
+    - generic [ref=f4e35]:
+      - generic [ref=f4e36]:
+        - generic [ref=f4e37]: ID Pengguna Pentadbir
+        - textbox "cth. admin.hq@afraservices.com.my" [ref=f4e38]
+      - generic [ref=f4e39]:
+        - generic [ref=f4e40]: Kata Laluan Pentadbir
+        - generic [ref=f4e42]:
+          - textbox "••••••••" [ref=f4e43]
+          - button [ref=f4e44] [cursor=pointer]
+      - button "Log Masuk Pentadbir HQ" [ref=f4e48] [cursor=pointer]
+    - generic [ref=f4e52]: Log masuk dilindungi dan dipantau di bawah peruntukan Akta Agensi Persendirian 1971 & Akta Jenayah Komputer 1997.

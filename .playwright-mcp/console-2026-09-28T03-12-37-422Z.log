@@ -1,0 +1,59 @@
+[     385ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:15804
+[  282196ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/main.jsx?t=1790565438862:0
+[  293557ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/main.jsx?t=1790565450840:0
+[  351091ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:15804
+[  351859ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  352064ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  352289ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  352413ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  372180ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  372363ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  372485ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  372602ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  389646ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  389849ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  389964ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  390108ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  455488ms] ReferenceError: cleanTitle is not defined
+    at Home (http://localhost:5173/src/pages/public/Home.jsx?t=1790565607695:610:18)
+    at Object.react_stack_bottom_frame (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:14142:12)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:4400:19)
+    at updateFunctionComponent (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:5775:16)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:6391:20)
+    at runWithFiberInDEV (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:944:66)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:9148:92)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:9044:37)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:9028:6)
+    at performWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:8715:27)
+[  453937ms] [WARNING] %s
+
+%s
+ An error occurred in the <Home> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3cd811cd:5450
+[  486239ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  486258ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  487385ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  487920ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  488606ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  488972ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://dttqpjeuxzdgflsxjlje.supabase.co/rest/v1/site_settings?select=key%2Cvalue%2Cvalue_en:0
+[  694767ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/public/About.jsx?t=1790565852077:0
+[  694801ms] [ERROR] [vite] Failed to reload /src/pages/public/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[  736302ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/public/About.jsx?t=1790565893704:0
+[  736304ms] [ERROR] [vite] Failed to reload /src/pages/public/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[  786084ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/public/About.jsx?t=1790565943481:0
+[  786085ms] [ERROR] [vite] Failed to reload /src/pages/public/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[  786144ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/public/About.jsx?t=1790565943542:0
+[  786148ms] [ERROR] [vite] Failed to reload /src/pages/public/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[  786286ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/public/About.jsx?t=1790565943680:0
+[  786287ms] [ERROR] [vite] Failed to reload /src/pages/public/About.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1034638ms] [ERROR] [vite] Failed to reload /src/App.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1101146ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/ui.jsx?t=1790566258544:0
+[ 1101152ms] [ERROR] [vite] Failed to reload /src/components/ui.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1490491ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/pages/HomeContent/HomeContent.jsx?t=1790566647834:0
+[ 1490497ms] [ERROR] [vite] Failed to reload /src/pages/HomeContent/HomeContent.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1914001ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/Layout/Sidebar.jsx?t=1790567071215:0
+[ 1914008ms] [ERROR] [vite] Failed to reload /src/components/Layout/Sidebar.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1914515ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/Layout/Sidebar.jsx?t=1790567071390:0
+[ 1914563ms] [ERROR] [vite] Failed to reload /src/components/Layout/Sidebar.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962
+[ 1959734ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/components/Layout/Sidebar.jsx?t=1790567116672:0
+[ 1959830ms] [ERROR] [vite] Failed to reload /src/components/Layout/Sidebar.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:962

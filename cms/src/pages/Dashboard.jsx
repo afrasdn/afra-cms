@@ -68,19 +68,19 @@ export default function Dashboard() {
     <div>
       {/* Welcome banner */}
       <div style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
         borderRadius: '0.75rem', padding: '1.75rem 2rem', marginBottom: '1.75rem',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        border: '1px solid #1e293b',
+        border: '1px solid #bae6fd',
       }}>
         <div>
-          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#38bdf8', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>PORTAL PENTADBIRAN AFRA SERVICES</div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: '#ffffff', letterSpacing: '-0.01em' }}>Selamat Kembali, Pentadbir 👋</h2>
-          <p style={{ fontSize: '0.86rem', color: '#94a3b8', marginTop: '0.35rem' }}>Semua sistem beroperasi normal. Pantau status laman dan urus kandungan di sini.</p>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0369a1', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>PORTAL PENTADBIRAN AFRA SERVICES</div>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.01em' }}>Selamat Kembali, Pentadbir 👋</h2>
+          <p style={{ fontSize: '0.86rem', color: '#475569', marginTop: '0.35rem' }}>Semua sistem beroperasi normal. Pantau status laman dan urus kandungan di sini.</p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(56,189,248,0.1)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: '0.5rem', padding: '0.6rem 1rem' }}>
-          <TrendingUp size={14} color="#38bdf8" />
-          <span style={{ fontSize: '0.78rem', color: '#38bdf8', fontWeight: 700 }}>AFRA CMS v1.0</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#ffffff', border: '1px solid #bae6fd', borderRadius: '0.5rem', padding: '0.6rem 1rem' }}>
+          <TrendingUp size={14} color="#0369a1" />
+          <span style={{ fontSize: '0.78rem', color: '#0369a1', fontWeight: 700 }}>AFRA CMS v1.0</span>
         </div>
       </div>
 

@@ -232,7 +232,7 @@ CREATE POLICY "admin_read_audit" ON public.audit_logs
 -- SEED: Initial site_content sections
 -- ============================================================
 INSERT INTO public.site_content (section, title, subtitle, description, cta_text, cta_url) VALUES
-  ('hero', 'KESELAMATAN ANDA, KOMITMEN KAMI.', NULL, 'AFRA Services Sdn. Bhd. — Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.', 'DAPATKAN SEBUTHARGA', 'contact.html'),
+  ('hero', 'KESELAMATAN ANDA, KOMITMEN KAMI.', NULL, 'AFRA Services Sdn. Bhd. — Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.', 'TEROKAI PERKHIDMATAN', '/catalog'),
   ('about_intro', 'Tentang AFRA Services', 'Berlesen Penuh KDN & PDRM', 'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009.', NULL, NULL),
   ('cta_banner', 'Perlukan Penyelesaian Keselamatan?', NULL, 'Hubungi pasukan perunding keselamatan kami hari ini untuk penilaian premis percuma dan sebutharga rasmi.', 'HUBUNGI KAMI', 'contact.html')
 ON CONFLICT (section) DO NOTHING;

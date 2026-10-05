@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { logAudit } from '../../lib/audit'
-import { Card, PageHeader, Btn, Badge, Input, EmptyState, ConfirmDialog, Spinner } from '../../components/ui'
+import { Card, PageHeader, Btn, Badge, Input, EmptyState, ConfirmDialog, Spinner, ENInput } from '../../components/ui'
 import { Plus, Pencil, Trash2, Tag, Check, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -32,7 +32,7 @@ function CategoryRow({ cat, onEdit, onDelete, onToggle }) {
   )
 }
 
-const EMPTY_FORM = { name: '', slug: '', description: '', sort_order: 0 }
+const EMPTY_FORM = { name: '', name_en: '', slug: '', description: '', description_en: '', sort_order: 0 }
 
 function slugify(str) {
   return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-')
@@ -61,7 +61,7 @@ export default function Categories() {
 
   function openNew() { setForm(EMPTY_FORM); setEditId(null); setErrors({}); setShowForm(true) }
   function openEdit(cat) {
-    setForm({ name: cat.name, slug: cat.slug, description: cat.description ?? '', sort_order: cat.sort_order ?? 0 })
+    setForm({ name: cat.name, name_en: cat.en?.name ?? '', slug: cat.slug, description: cat.description ?? '', description_en: cat.en?.description ?? '', sort_order: cat.sort_order ?? 0 })
     setEditId(cat.id); setErrors({}); setShowForm(true)
   }
   function closeForm() { setShowForm(false); setEditId(null); setForm(EMPTY_FORM) }
@@ -79,13 +79,16 @@ export default function Categories() {
     if (!validate()) return
     setSaving(true)
     try {
+      const base = { ...form, en: { name: form.name_en.trim() || null, description: form.description_en.trim() || null } }
+      delete base.name_en
+      delete base.description_en
       if (editId) {
-        const { error } = await supabase.from('categories').update(form).eq('id', editId)
+        const { error } = await supabase.from('categories').update(base).eq('id', editId)
         if (error) throw error
         await logAudit({ userId: user?.id, userEmail: profile?.email, action: 'UPDATE', tableName: 'categories', recordId: editId, newData: form })
         toast.success('Kategori dikemaskini.')
       } else {
-        const { data, error } = await supabase.from('categories').insert({ ...form, is_active: true }).select().single()
+        const { data, error } = await supabase.from('categories').insert({ ...base, is_active: true }).select().single()
         if (error) throw error
         await logAudit({ userId: user?.id, userEmail: profile?.email, action: 'CREATE', tableName: 'categories', recordId: data.id, newData: form })
         toast.success('Kategori ditambah.')
@@ -126,13 +129,19 @@ export default function Categories() {
         <Card style={{ padding: '1.5rem', marginBottom: '1.25rem' }}>
           <h3 style={{ fontSize: '0.9rem', fontWeight: 800, marginBottom: '1rem', color: '#0f172a' }}>{editId ? 'Edit Kategori' : 'Kategori Baru'}</h3>
           <form onSubmit={handleSave} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <Input label="Nama Kategori *" id="cat-name" value={form.name} error={errors.name}
+            <Input label="Nama Kategori (BM) *" id="cat-name" value={form.name} error={errors.name}
               onChange={e => setForm(f => ({ ...f, name: e.target.value, slug: slugify(e.target.value) }))} />
+            <ENInput label="Nama Kategori" id="cat-name-en" value={form.name_en}
+              onChange={e => setForm(f => ({ ...f, name_en: e.target.value }))} />
             <Input label="Slug *" id="cat-slug" value={form.slug} error={errors.slug}
               onChange={e => setForm(f => ({ ...f, slug: slugify(e.target.value) }))} />
             <div style={{ gridColumn: '1 / -1' }}>
-              <Input label="Penerangan (pilihan)" id="cat-desc" value={form.description}
+              <Input label="Penerangan (BM) (pilihan)" id="cat-desc" value={form.description}
                 onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
+            </div>
+            <div style={{ gridColumn: '1 / -1' }}>
+              <ENInput label="Penerangan" id="cat-desc-en" value={form.description_en}
+                onChange={e => setForm(f => ({ ...f, description_en: e.target.value }))} />
             </div>
             <Input label="Susunan" id="cat-sort" type="number" min="0" value={form.sort_order}
               onChange={e => setForm(f => ({ ...f, sort_order: parseInt(e.target.value) || 0 }))} />
@@ -150,7 +159,7 @@ export default function Categories() {
         ) : categories.length === 0 ? (
           <EmptyState icon={Tag} title="Tiada kategori" description="Tambah kategori pertama untuk mula mengatur produk." action={<Btn onClick={openNew}>Tambah Kategori</Btn>} />
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className="table-scroll"><table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
                 {['Nama', 'Penerangan', 'Status', 'Tindakan'].map(h => (
@@ -163,7 +172,7 @@ export default function Categories() {
                 <CategoryRow key={c.id} cat={c} onEdit={openEdit} onDelete={setDeleteTarget} onToggle={handleToggle} />
               ))}
             </tbody>
-          </table>
+          </table></div>
         )}
       </Card>
 

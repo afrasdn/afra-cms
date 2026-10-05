@@ -32,28 +32,30 @@ export default function Login() {
     <div style={{
       minHeight: '100vh', display: 'flex', background: '#f8fafc',
       fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-    }}>
-      {/* Left dark trust pane */}
+    }} className="login-wrap">
+      {/* Left light trust pane */}
       <div style={{
-        width: '40%', minWidth: '320px', background: '#0f172a',
+        width: '40%', minWidth: '320px',
+        background: 'linear-gradient(160deg, #f0f9ff 0%, #e0f2fe 100%)',
+        borderRight: '1px solid #bae6fd',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         padding: '3rem 2.5rem',
       }} className="login-left">
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-          padding: '0.4rem 0.85rem', background: 'rgba(56,189,248,0.12)',
-          border: '1px solid rgba(56,189,248,0.3)', borderRadius: '0.375rem',
-          color: '#38bdf8', fontSize: '0.76rem', fontWeight: 700,
+          padding: '0.4rem 0.85rem', background: '#ffffff',
+          border: '1px solid #bae6fd', borderRadius: '0.375rem',
+          color: '#0369a1', fontSize: '0.76rem', fontWeight: 700,
           width: 'fit-content', marginBottom: '2rem',
         }}>
           <Shield size={13} />
           <span>PORTAL PENTADBIR KESELAMATAN</span>
         </div>
 
-        <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#ffffff', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+        <h1 style={{ fontSize: '2rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
           Sistem Kawalan &<br />Pentadbiran HQ
         </h1>
-        <p style={{ fontSize: '0.92rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '2.5rem' }}>
+        <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.7, marginBottom: '2.5rem' }}>
           AFRA Services Sdn. Bhd. — gerbang kawalan operasi keselamatan berpusat. Akses khusus pentadbir sahaja.
         </p>
 
@@ -65,20 +67,20 @@ export default function Login() {
           <div key={f.title} style={{ display: 'flex', gap: '0.85rem', marginBottom: '1.25rem' }}>
             <div style={{
               width: '2.25rem', height: '2.25rem', borderRadius: '0.375rem',
-              background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)',
+              background: '#ffffff', border: '1px solid #bae6fd',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: '1rem', flexShrink: 0,
             }}>{f.icon}</div>
             <div>
-              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>{f.title}</div>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.2rem' }}>{f.title}</div>
               <div style={{ fontSize: '0.78rem', color: '#64748b', lineHeight: 1.5 }}>{f.desc}</div>
             </div>
           </div>
         ))}
 
-        <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid #bae6fd', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: '0.76rem', color: '#64748b' }}>Bantuan IT Helpdesk:</div>
-          <a href="tel:096226678" style={{ fontSize: '0.84rem', color: '#38bdf8', fontWeight: 700 }}>09-6226678</a>
+          <a href="tel:096226678" style={{ fontSize: '0.84rem', color: '#0369a1', fontWeight: 700 }}>09-6226678</a>
         </div>
       </div>
 

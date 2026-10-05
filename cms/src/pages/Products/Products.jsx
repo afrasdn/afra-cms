@@ -111,7 +111,7 @@ export default function Products() {
           <EmptyState icon={Package} title="Tiada produk dijumpai" description="Tambah produk pertama atau ubah penapis carian." action={<Link to="/products/new"><Btn>Tambah Produk</Btn></Link>} />
         ) : (
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <div className="table-scroll"><table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
                   {['Produk', 'Kategori', 'Status', 'Tindakan'].map(h => (
@@ -161,7 +161,7 @@ export default function Products() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table></div>
           </div>
         )}
       </Card>

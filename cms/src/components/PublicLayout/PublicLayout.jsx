@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, Link, Outlet } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { supabase } from '../../lib/supabase'
+import { fetchSettings } from '../../lib/content'
+import { useLang, S, LangToggle } from '../../lib/i18n'
 import {
   Shield, User, Menu, X, LayoutDashboard,
   MapPin, Phone, Mail
@@ -9,14 +12,31 @@ import '../../styles/public.css'
 
 export default function PublicLayout() {
   const { user } = useAuth()
+  const { lang, t } = useLang()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [settings, setSettings] = useState({})
+
+  useEffect(() => {
+    async function loadFooter() {
+      const s = await fetchSettings(supabase)
+      setSettings(s)
+    }
+    loadFooter()
+  }, [])
 
   const navLinks = [
-    { to: '/', label: 'HOME' },
-    { to: '/about', label: 'ABOUT US' },
-    { to: '/catalog', label: 'SERVICES' },
-    { to: '/certificates', label: 'CERTIFICATES' },
-    { to: '/contact', label: 'CONTACT US' },
+    { to: '/', label: t.navHome },
+    { to: '/about', label: t.navAbout },
+    { to: '/catalog', label: t.navServices },
+    { to: '/certificates', label: t.navCertificates },
+    { to: '/contact', label: t.navContact },
+  ]
+  const footLinks = [
+    { to: '/', label: t.footHome },
+    { to: '/about', label: t.footAbout },
+    { to: '/catalog', label: t.footServices },
+    { to: '/certificates', label: t.footCerts },
+    { to: '/contact', label: t.footContact },
   ]
 
   return (
@@ -58,21 +78,22 @@ export default function PublicLayout() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              STAFF EMAIL
+              {t.navStaffEmail}
             </a>
           </nav>
 
-          {/* Right Action: Login / Dashboard Button & Mobile Menu Toggle */}
+          {/* Right Action: Language toggle + Login / Dashboard Button & Mobile Menu Toggle */}
           <div className="header-right-actions">
+            <LangToggle />
             {user ? (
               <Link className="nav-btn-login" to="/dashboard" style={{ background: '#0284c7' }}>
                 <LayoutDashboard size={14} />
-                <span>KONSOL CMS</span>
+                <span>{t.navKonsol}</span>
               </Link>
             ) : (
               <Link className="nav-btn-login" to="/login">
                 <User size={14} />
-                <span>LOGIN</span>
+                <span>{t.navLogin}</span>
               </Link>
             )}
 
@@ -107,15 +128,18 @@ export default function PublicLayout() {
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
             >
-              STAFF EMAIL
+              {t.navStaffEmail}
             </a>
+            <div style={{ padding: '0.5rem 0' }}>
+              <LangToggle />
+            </div>
             {user ? (
               <Link
                 to="/dashboard"
                 style={{ color: '#0369a1', fontWeight: 800 }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                KONSOL PENTADBIR CMS →
+                {t.navAdminDash}
               </Link>
             ) : (
               <Link
@@ -123,7 +147,7 @@ export default function PublicLayout() {
                 style={{ color: '#0369a1', fontWeight: 800 }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                LOG MASUK PENTADBIR →
+                {t.navAdminLogin}
               </Link>
             )}
           </div>
@@ -155,34 +179,47 @@ export default function PublicLayout() {
             </Link>
 
             <p className="footer-about-text">
-              AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.
+              {S(settings, 'footer_about', lang) || (lang === 'en' ? 'AFRA Services Sdn. Bhd. (Reg. No.: 881616-V) is an officially licensed security guarding company in Malaysia, incorporated since 7 December 2009 with authorised and paid-up capital of RM 5,000,000.00.' : 'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.')}
             </p>
+
+            {(settings.social_facebook || settings.social_instagram || settings.social_tiktok) && (
+              <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1.25rem' }}>
+                {[
+                  { url: settings.social_facebook, short: 'FB', label: 'Facebook' },
+                  { url: settings.social_instagram, short: 'IG', label: 'Instagram' },
+                  { url: settings.social_tiktok, short: 'TT', label: 'TikTok' },
+                ].filter(s => s.url).map(s => (
+                  <a key={s.short} href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '2.25rem', height: '2.25rem', padding: '0 0.6rem', borderRadius: '9999px', background: '#ffffff', border: '1px solid var(--blue-border)', color: 'var(--blue-primary)', fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.06em', textDecoration: 'none' }}>
+                    {s.short}
+                  </a>
+                ))}
+              </div>
+            )}
 
             <div className="footer-contacts-list">
               <div className="footer-contact-item">
                 <MapPin size={18} />
-                <span>LOT PT 1914, Tingkat 1A, Bukit Besar,<br />21100 Kuala Terengganu, Terengganu Darul Iman.</span>
+                <span>{settings.hq_address || 'LOT PT 1914, Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu Darul Iman.'}</span>
               </div>
               <div className="footer-contact-item">
                 <Phone size={18} />
-                <span>09-6226678 / 09-6264788 (Faks)</span>
+                <span>{settings.hq_phone || '09-6226678'}{settings.hq_fax ? ` / ${settings.hq_fax} (${lang === 'en' ? 'Fax' : 'Faks'})` : (lang === 'en' ? ' / 09-6264788 (Fax)' : ' / 09-6264788 (Faks)')}</span>
               </div>
               <div className="footer-contact-item">
                 <Mail size={18} />
-                <a href="mailto:afraservices@gmail.com">afraservices@gmail.com</a>
+                <a href={`mailto:${settings.admin_email || 'afraservices@gmail.com'}`}>{settings.admin_email || 'afraservices@gmail.com'}</a>
               </div>
             </div>
           </div>
 
           <div className="footer-col-nav">
-            <h3 className="footer-nav-title">Pautan Pantas</h3>
+            <h3 className="footer-nav-title">{S(settings, 'footer_nav_title', lang) || t.footerLinksTitle}</h3>
             <ul className="footer-nav-links">
-              <li><Link to="/">Laman Utama</Link></li>
-              <li><Link to="/about">Tentang Kami</Link></li>
-              <li><Link to="/catalog">Senarai Perkhidmatan</Link></li>
-              <li><Link to="/certificates">Sijil &amp; Pelesenan</Link></li>
-              <li><Link to="/contact">Hubungi Kami</Link></li>
-              <li><a href="https://webmail.afraservices.com.my" target="_blank" rel="noopener noreferrer">Staff Webmail</a></li>
+              {footLinks.map(l => (
+                <li key={l.to}><Link to={l.to}>{l.label}</Link></li>
+              ))}
+              <li><a href="https://webmail.afraservices.com.my" target="_blank" rel="noopener noreferrer">{t.footWebmail}</a></li>
             </ul>
           </div>
 
@@ -190,8 +227,8 @@ export default function PublicLayout() {
 
         <div className="footer-bottom-bar">
           <div className="mx-auto max-w-7xl px-6 footer-bottom-inner">
-            <p>Hak Cipta Terpelihara 2009 - 2026 © <strong>AFRA Services Sdn. Bhd.</strong> (881616-V).</p>
-            <p style={{ fontSize: '11px', color: '#38bdf8' }}>Agensi Kawalan Keselamatan Berlesen KDN &amp; PDRM</p>
+            <p>{S(settings, 'footer_copyright', lang) || (lang === 'en' ? 'Copyright 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V). All Rights Reserved.' : 'Hak Cipta Terpelihara 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V).')}</p>
+            <p style={{ fontSize: '11px', color: 'var(--blue-primary)' }}>{S(settings, 'footer_tagline', lang) || (lang === 'en' ? 'KDN & PDRM Licensed Security Agency' : 'Agensi Kawalan Keselamatan Berlesen KDN & PDRM')}</p>
           </div>
         </div>
       </footer>

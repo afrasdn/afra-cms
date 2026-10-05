@@ -4,7 +4,7 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { logAudit } from '../../lib/audit'
 import { uploadToCloudinary } from '../../lib/cloudinary'
-import { Card, PageHeader, Btn, Input, Textarea, Select, Toggle, Spinner } from '../../components/ui'
+import { Card, PageHeader, Btn, Input, Textarea, Select, Toggle, Spinner, ENInput, ENTextarea } from '../../components/ui'
 import { Save, ArrowLeft, Upload, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -14,7 +14,7 @@ export default function ProductForm() {
   const navigate = useNavigate()
   const { user, profile } = useAuth()
 
-  const [form, setForm] = useState({ name: '', description: '', category_id: '', is_active: true, sort_order: 0 })
+  const [form, setForm] = useState({ name: '', name_en: '', description: '', description_en: '', category_id: '', is_active: true, sort_order: 0 })
   const [categories, setCategories] = useState([])
   const [imageFile, setImageFile] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
@@ -37,7 +37,7 @@ export default function ProductForm() {
   async function loadProduct() {
     const { data, error } = await supabase.from('products').select('*').eq('id', id).single()
     if (error || !data) { toast.error('Produk tidak dijumpai.'); navigate('/products'); return }
-    setForm({ name: data.name, description: data.description ?? '', category_id: data.category_id ?? '', is_active: data.is_active, sort_order: data.sort_order ?? 0 })
+    setForm({ name: data.name, name_en: data.en?.name ?? '', description: data.description ?? '', description_en: data.en?.description ?? '', category_id: data.category_id ?? '', is_active: data.is_active, sort_order: data.sort_order ?? 0 })
     setExistingImage(data.image_url)
     setExistingPublicId(data.cloudinary_public_id)
     setLoading(false)
@@ -73,7 +73,8 @@ export default function ProductForm() {
         cloudinary_public_id = upload.publicId
       }
 
-      const payload = { ...form, image_url, cloudinary_public_id }
+      const { name_en, description_en, ...rest } = form
+      const payload = { ...rest, image_url, cloudinary_public_id, en: { name: name_en.trim() || null, description: description_en.trim() || null } }
 
       if (isEdit) {
         const { error } = await supabase.from('products').update(payload).eq('id', id)
@@ -107,8 +108,10 @@ export default function ProductForm() {
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <Card style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <h3 style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.75rem' }}>Maklumat Produk</h3>
-          <Input label="Nama Produk *" id="name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="cth. Perkhidmatan Pengawal Statik" error={errors.name} />
-          <Textarea label="Penerangan" id="description" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Huraian ringkas perkhidmatan atau produk ini..." rows={4} />
+          <Input label="Nama Produk (BM) *" id="name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="cth. Perkhidmatan Pengawal Statik" error={errors.name} />
+          <ENInput label="Nama Produk" id="name-en" value={form.name_en} onChange={e => setForm(f => ({ ...f, name_en: e.target.value }))} placeholder="e.g. Static Guard Service" />
+          <Textarea label="Penerangan (BM)" id="description" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Huraian ringkas perkhidmatan atau produk ini..." rows={4} />
+          <ENTextarea label="Penerangan" id="description-en" value={form.description_en} onChange={e => setForm(f => ({ ...f, description_en: e.target.value }))} rows={4} />
           <Select label="Kategori *" id="category_id" value={form.category_id} onChange={e => setForm(f => ({ ...f, category_id: e.target.value }))} error={errors.category_id}>
             <option value="">-- Pilih Kategori --</option>
             {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
