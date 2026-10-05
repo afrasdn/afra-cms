@@ -78,7 +78,7 @@ const FALLBACK_SERVICES = [
     en: {
       title: 'Cash-In-Transit (C.I.T)',
       description: 'Secure armored vehicle transport for cash, gold bullion, and high-value commodities equipped with dual-key electronic locking and live GPS satellite tracking.',
-      features: ['Certified ballistic armored vehicles', 'Live satellite GPS and centralized radio comms', 'Comprehensive Lonpac insurance coverage'],
+      features: ['Certified ballistic armored vehicles', 'Live satellite GPS and centralized radio comms', 'Backed by Lonpac insurance'],
     }
   },
   {
@@ -103,7 +103,7 @@ const FALLBACK_SERVICES = [
     features: ['Pemantauan 24/7 bilik kawalan pintar', 'Unit Respon Pantas (Rapid Response Team) ke lokasi', 'Notifikasi serta-merta ke pemilik & balai polis terdekat'],
     en: {
       title: 'Central Monitoring System (CMS 24/7)',
-      description: 'State-of-the-art 24/7 centralized alarm monitoring center responding instantly to intrusion, panic triggers, and fire alarms with rapid field response.',
+      description: 'A 24/7 control centre that answers intrusion, panic and fire alarms fast, with teams sent to the site.',
       features: ['24/7 intelligent command center operations', 'Rapid Response Team field deployment', 'Direct alarm dispatch to client and nearest police'],
     }
   },
@@ -130,7 +130,7 @@ const FALLBACK_SERVICES = [
     en: {
       title: 'Private Investigation',
       description: 'Discreet corporate intelligence, employee due diligence, integrity audit, asset leakage investigation, and confidential surveillance adhering to legal frameworks.',
-      features: ['Comprehensive fact-based investigative reporting', 'Strict 100% client data confidentiality', 'Seasoned investigators from specialized intelligence units'],
+      features: ['Clear written reports with proof', 'Strict 100% client data confidentiality', 'Experienced investigators from intelligence units'],
     }
   },
   {
@@ -376,11 +376,11 @@ export default function Catalog() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <ShieldCheck size={14} />
-            <span>{S(settings, 'page_services_tag', lang, 'Security Guarding Service Portfolio', 'Portfolio Perkhidmatan Kawalan')}</span>
+            <span>{S(settings, 'page_services_tag', lang, 'Security Services We Offer', 'Portfolio Perkhidmatan Kawalan')}</span>
           </div>
           <h1 className="page-header-title">{S(settings, 'page_services_title', lang, 'SERVICES & CATALOGUE', 'PERKHIDMATAN & KATALOG')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_services_desc', lang, 'AFRA Services Sdn. Bhd. provides comprehensive security specialisations in strict compliance with Ministry of Home Affairs (KDN) and Royal Malaysia Police (PDRM) guidelines.', 'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).')}
+            {S(settings, 'page_services_desc', lang, 'AFRA Services Sdn. Bhd. provides security services that follow the rules set by the Ministry of Home Affairs (KDN) and the Royal Malaysia Police (PDRM).', 'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).')}
           </p>
         </div>
       </div>
@@ -392,7 +392,7 @@ export default function Catalog() {
           <div style={{ marginBottom: '2.5rem' }}>
             <span className="section-tagline">{services.length} {cleanTitle(S(settings, 'catalog_core_tag', lang, 'CORE SPECIALISATIONS', 'PENGKHUSUSAN UTAMA'), '')}</span>
             <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', fontWeight: 900, color: 'var(--text-heading)', textTransform: 'uppercase', marginTop: '0.25rem' }}>
-              {S(settings, 'catalog_core_title', lang, 'Licensed Operations Services', 'Perkhidmatan Operasi Berlesen')}
+              {S(settings, 'catalog_core_title', lang, 'Licensed Security Services', 'Perkhidmatan Operasi Berlesen')}
             </h2>
           </div>
 
@@ -595,10 +595,10 @@ export default function Catalog() {
                 {S(settings, 'catalog_cta_tag', lang, 'FREE CONSULTATION & QUOTATION', 'KONSULTASI & SEBUTHARGA PERCUMA')}
               </span>
               <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)', fontWeight: 900, color: '#ffffff', marginTop: '0.5rem', lineHeight: 1.25 }}>
-                {S(settings, 'catalog_cta_heading', lang, 'Need a Tailored Security Solution for Your Premise?', 'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?')}
+                {S(settings, 'catalog_cta_heading', lang, 'Need Security for Your Premises?', 'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?')}
               </h2>
               <p style={{ fontSize: '0.92rem', color: '#cbd5e1', lineHeight: 1.65, marginTop: '0.75rem', maxWidth: '42rem' }}>
-                {S(settings, 'catalog_cta_sub', lang, 'AFRA Services operations team is ready to structure physical guarding, armed patrols, CIT transit, or 24/7 CMS system integration anywhere across Malaysia.', 'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.')}
+                {S(settings, 'catalog_cta_sub', lang, 'Our team can plan physical guarding, armed patrols, CIT cash runs, or 24/7 CMS alarm links anywhere in Malaysia.', 'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.')}
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>

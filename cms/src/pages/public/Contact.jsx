@@ -134,7 +134,7 @@ export default function Contact() {
           </div>
           <h1 className="page-header-title">{S(settings, 'page_contact_title', lang, 'CONTACT US & QUOTATIONS', 'HUBUNGI KAMI & SEBUTHARGA')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_contact_desc', lang, 'Please complete the form below for an official quotation for guarding services at your premises, or contact our operations room.', 'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.')}
+            {S(settings, 'page_contact_desc', lang, 'Fill in the form below for a quotation, or call our operations room.', 'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.')}
           </p>
         </div>
       </div>
@@ -197,7 +197,7 @@ export default function Contact() {
                   <div className="contact-item-content">
                     <span className="contact-item-lbl">{S(settings, 'contact_office_label', lang, 'Management Office', 'Pejabat Pengurusan')}</span>
                     <span className="contact-item-val">
-                      {(S(settings, 'contact_office_hours', lang, 'Sunday – Thursday: 8:30 AM – 5:00 PM\nFriday & Saturday: Closed', 'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup')).split('\n').map((line, i, arr) => (
+                      {(S(settings, 'contact_office_hours', lang, 'Sunday to Thursday: 8:30 AM to 5:00 PM\nFriday & Saturday: Closed', 'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup')).split('\n').map((line, i, arr) => (
                         <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                       ))}
                     </span>
@@ -225,7 +225,7 @@ export default function Contact() {
             <div className="form-panel-header">
               <h2 className="form-panel-title">{S(settings, 'contact_form_title', lang, 'Quotation Request Form', 'Borang Permintaan Sebutharga')}</h2>
               <p className="form-panel-desc">
-                {S(settings, 'contact_form_desc', lang, 'Please fill in the required security assignment details. Our operations officer will contact you within 24 hours.', 'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.')}
+                {S(settings, 'contact_form_desc', lang, 'Fill in what you need. Our officer will call you within 24 hours.', 'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.')}
               </p>
             </div>
 

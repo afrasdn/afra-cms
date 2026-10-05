@@ -43,7 +43,7 @@ const FALLBACK_BRANDS = [
   { code: 'PPKKM', name: 'Persatuan Keselamatan', en: { name: 'Security Services Association' } },
   { code: 'MOF', name: 'Kementerian Kewangan', en: { name: 'Ministry of Finance' } },
   { code: 'ISO 9001', name: 'Quality Certified', en: { name: 'Quality Certified' } },
-  { code: 'LONPAC', name: 'Insurans Komprehensif', en: { name: 'Comprehensive Insurance' } },
+  { code: 'LONPAC', name: 'Insurans Komprehensif', en: { name: 'Fully Insured' } },
 ]
 
 // Normalisasi URL CTA dari dashboard:
@@ -142,7 +142,7 @@ export default function Home() {
 
           <p className="hero-desc">
             {lang === 'en' ? (
-              pickEN(siteContent?.description, siteContent?.en?.description, 'Licensed under the Ministry of Home Affairs since 2009, AFRA Services provides certified security guarding — from static to armed protection — across 13 states throughout Malaysia.')
+              pickEN(siteContent?.description, siteContent?.en?.description, 'Licensed by the Ministry of Home Affairs since 2009. AFRA Services provides guards for offices, banks and homes, from static guarding to armed protection, in 13 states across Malaysia.')
             ) : (
               siteContent?.description || (
                 <>
@@ -192,11 +192,11 @@ export default function Home() {
 
           <div className="section-header-row">
             <div className="section-titles">
-              <span className="section-tagline">{S(settings, 'home_svc_tagline', lang, 'OUR COMPREHENSIVE', 'PERKHIDMATAN MENYELURUH')}</span>
+              <span className="section-tagline">{S(settings, 'home_svc_tagline', lang, 'WHAT WE DO', 'PERKHIDMATAN MENYELURUH')}</span>
               <h2 className="section-main-title">{S(settings, 'home_svc_title', lang, 'SERVICES & SOLUTIONS', 'PERKHIDMATAN & PENYELESAIAN')}</h2>
             </div>
             <p className="section-header-desc">
-              {S(settings, 'home_svc_desc', lang, 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.', 'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.')}
+              {S(settings, 'home_svc_desc', lang, 'We do the full range of security work, from guarding large sites to armed escorts.', 'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.')}
             </p>
           </div>
 
@@ -241,7 +241,7 @@ export default function Home() {
               <h2 className="section-main-title">{branches.length} {cleanTitle(S(settings, 'home_branch_title', lang, 'BRANCHES ACROSS MALAYSIA', 'CAWANGAN SELURUH MALAYSIA'), '')}</h2>
             </div>
             <p className="section-header-desc">
-              {S(settings, 'home_branch_desc', lang, 'Operating from our HQ in Kuala Terengganu with strategic branches across the Peninsula, Sabah and Sarawak for rapid readiness.', 'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.')}
+              {S(settings, 'home_branch_desc', lang, 'We run from our HQ in Kuala Terengganu, with branches across the Peninsula, Sabah and Sarawak so our teams can respond fast.', 'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.')}
             </p>
           </div>
 

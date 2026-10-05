@@ -14,7 +14,7 @@ const FALLBACK_CERTS = [
   { authority: 'PERSATUAN INDUSTRI KESELAMATAN (PPKKM)', license_no: 'No. Keahlian: PPKKM/09/0412', title: 'Keahlian Rasmi Persatuan Kawalan Keselamatan', description: 'Ahli berdaftar Persatuan Perkhidmatan Kawalan Keselamatan Malaysia yang mematuhi standard piawaian etika, kebajikan pengawal dan kadar gaji minimum.', badge_text: 'AHLI SAH', en: { title: 'Official Security Association Membership', description: 'Registered member of the Malaysian Security Services Association, complying with ethics, guard welfare and minimum wage standards.', badge_text: 'VALID MEMBER' } },
   { authority: 'KEMENTERIAN KEWANGAN MALAYSIA (MOF)', license_no: 'No. Rujukan: 357-02154823', title: 'Sijil Akuan Pendaftaran Syarikat Bumiputera', description: 'Pendaftaran sah taraf Bumiputera untuk menyertai perolehan kerajaan persekutuan, jabatan kementerian, badan berkanun, dan institusi pengajian tinggi awam.', badge_text: 'BUMIPUTERA', en: { title: 'Bumiputera Company Registration Certificate', description: 'Valid Bumiputera status registration for federal government procurement, ministries, statutory bodies and public universities.', badge_text: 'BUMIPUTERA' } },
   { authority: 'ISO 9001:2015 QUALITY MANAGEMENT', license_no: 'Sijil Piawaian Kualiti Antarabangsa', title: 'Sistem Pengurusan Kualiti Kawalan Keselamatan', description: 'Pensijilan kualiti antarabangsa bagi pengurusan operasi kawalan keselamatan, rondaan, pemantauan pusat kawalan CMS, dan pengurusan sumber manusia berdisiplin.', badge_text: 'ISO CERTIFIED', en: { title: 'Security Guarding Quality Management System', description: 'International quality certification for security guarding operations, patrols, CMS control-centre monitoring and disciplined HR management.', license_no: 'International Quality Standard Certificate', badge_text: 'ISO CERTIFIED' } },
-  { authority: 'LONPAC INSURANCE BERHAD', license_no: 'Polisi Perlindungan Komprehensif', title: 'Insurans Liabiliti Awam & Wang Dalam Perjalanan', description: 'Perlindungan insurans liabiliti awam (Public Liability), Cash-In-Transit, dan Fideliti (Fidelity Guarantee) sehingga jutaan ringgit bagi melindungi aset pelanggan.', badge_text: 'DILINDUNGI', en: { title: 'Public Liability & Cash-In-Transit Insurance', description: 'Public liability, Cash-In-Transit and Fidelity Guarantee insurance protection worth millions of ringgit safeguarding client assets.', license_no: 'Comprehensive Protection Policy', badge_text: 'PROTECTED' } },
+  { authority: 'LONPAC INSURANCE BERHAD', license_no: 'Polisi Perlindungan Komprehensif', title: 'Insurans Liabiliti Awam & Wang Dalam Perjalanan', description: 'Perlindungan insurans liabiliti awam (Public Liability), Cash-In-Transit, dan Fideliti (Fidelity Guarantee) sehingga jutaan ringgit bagi melindungi aset pelanggan.', badge_text: 'DILINDUNGI', en: { title: 'Public Liability & Cash-In-Transit Insurance', description: 'Public liability, Cash-In-Transit and Fidelity Guarantee insurance worth millions of ringgit to protect client assets.', license_no: 'Full Cover Policy', badge_text: 'PROTECTED' } },
 ]
 
 const FALLBACK_BRANCHES = [
@@ -80,7 +80,7 @@ export default function Certificates() {
           <div style={{ marginBottom: '2.5rem' }}>
             <span className="section-tagline">{S(settings, 'certs_grid_tag', lang, 'ACCREDITATION & RECOGNITION', 'AKREDITASI & PENGIKTIRAFAN')}</span>
             <h2 style={{ fontSize: '1.85rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-              {S(settings, 'certs_grid_title', lang, 'Statutory Operating Licences', 'Lesen Operasi Berkanun')}
+              {S(settings, 'certs_grid_title', lang, 'Our Operating Licences', 'Lesen Operasi Berkanun')}
             </h2>
           </div>
 
@@ -145,7 +145,7 @@ export default function Certificates() {
               {lang === 'en' ? `Directory of ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang, 'Branches Across Malaysia', 'Cawangan Seluruh Malaysia'), '').replace(/^directory\s+of\s+/i, '')}` : `Direktori ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang, 'Branches Across Malaysia', 'Cawangan Seluruh Malaysia'), '').replace(/^direktori\s+/i, '')}`}
             </h2>
             <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-              {S(settings, 'certs_branch_desc', lang, 'Each branch is registered with its own permit to ensure responsive local operations control in compliance with local IPD directives.', 'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.')}
+              {S(settings, 'certs_branch_desc', lang, 'Each branch holds its own permit and follows the orders of the local IPD.', 'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.')}
             </p>
           </div>
 

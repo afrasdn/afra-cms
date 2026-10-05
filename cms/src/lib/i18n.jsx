@@ -89,7 +89,7 @@ const STRINGS = {
     navKonsol: 'DASHBOARD',
     navAdminLogin: 'ADMIN LOGIN →',
     navAdminDash: 'ADMIN DASHBOARD →',
-    heroBadge: 'Licensed Security Agency — KDN & PDRM Registered (881616-V)',
+    heroBadge: 'Licensed by KDN & PDRM (881616-V)',
     heroCta1: 'EXPLORE SERVICES',
     heroCta2: 'REQUEST QUOTATION',
     moreInfo: 'Learn More',
@@ -185,21 +185,20 @@ export function useLang() {
 // akan kekal dipaparkan seadanya — isi kolum EN di dashboard untuknya.
 const BM_EN = {
   ' / 09-6264788 (Faks)': ' / 09-6264788 (Fax)',
-  'AFRA Services Sdn. Bhd. Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.': 'AFRA Services Sdn. Bhd. — a fully KDN & PDRM-licensed security agency since 2009. Protecting corporate, industrial and public premises across Malaysia.',
   'CCTV & Automasi': 'CCTV & Automation',
   '15+ Tahun Reputasi Kawalan Berdisiplin & Dipercayai': '15+ Years of Trusted & Disciplined Guarding Reputation',
   '24 Jam Setiap Hari (365 Hari Setahun)': '24 Hours Daily (365 Days a Year)',
   '7 Disember 2009': '7 December 2009',
   'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.': 'AFRA Services Sdn. Bhd. (Reg. No.: 881616-V) is an officially licensed security guarding company in Malaysia, incorporated since 7 December 2009 with authorised and paid-up capital of RM 5,000,000.00.',
-  'AFRA Services Sdn. Bhd. Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.': 'AFRA Services Sdn. Bhd. — a fully KDN & PDRM-licensed security agency since 2009. Protecting corporate, industrial and public premises across Malaysia.',
+  'AFRA Services Sdn. Bhd. Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.': 'AFRA Services Sdn. Bhd. is licensed by KDN and PDRM since 2009. We guard corporate, industrial and public premises across Malaysia.',
   'AFRA Services Sdn. Bhd. beroperasi dengan kelulusan penuh Kementerian Dalam Negeri (KDN), Polis Diraja Malaysia (PDRM), Kementerian Kewangan (MOF) dan pematuhan pensijilan ISO.': 'AFRA Services Sdn. Bhd. operates with full approval from the Ministry of Home Affairs (KDN), Royal Malaysia Police (PDRM), Ministry of Finance (MOF) and ISO certification compliance.',
-  'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.': 'AFRA Services Sdn. Bhd. was established to provide high-calibre security guarding to the private sector, banking, industry and government agencies across Malaysia.',
-  'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).': 'AFRA Services Sdn. Bhd. provides comprehensive security specialisations in strict compliance with Ministry of Home Affairs (KDN) and Royal Malaysia Police (PDRM) guidelines.',
+  'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.': 'AFRA Services Sdn. Bhd. provides security guards for private companies, banks, factories and government agencies across Malaysia.',
+  'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).': 'AFRA Services Sdn. Bhd. provides security services that follow the rules set by the Ministry of Home Affairs (KDN) and the Royal Malaysia Police (PDRM).',
   'AHLI SAH': 'VALID MEMBER',
   'AKREDITASI & PENGIKTIRAFAN': 'ACCREDITATION & RECOGNITION',
   'AKTIF & SAH': 'ACTIVE & VALID',
   'Agensi Kawalan Keselamatan Berlesen KDN & PDRM': 'KDN & PDRM Licensed Security Agency',
-  'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup': 'Sunday – Thursday: 8:30 AM – 5:00 PM\nFriday & Saturday: Closed',
+  'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup': 'Sunday to Thursday: 8:30 AM to 5:00 PM\nFriday & Saturday: Closed',
   'Ahli berdaftar Persatuan Perkhidmatan Kawalan Keselamatan Malaysia yang mematuhi standard piawaian etika, kebajikan pengawal dan kadar gaji minimum.': 'Registered member of the Malaysian Security Services Association, complying with ethics, guard welfare and minimum wage standards.',
   'Akses & Biometrik': 'Access & Biometrics',
   'Alamat Rasmi': 'Official Address',
@@ -210,7 +209,7 @@ const BM_EN = {
   'Bacaan cip RFID & QR Code pantas': 'Instant RFID & QR chip decoding',
   'Bateri Li-ion 3800mAh tahan lasak': '3800mAh high endurance Li-ion battery',
   'Berlesen & Patuh': 'Licensed & Compliant',
-  'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.': 'Operating from our HQ in Kuala Terengganu with strategic branches across the Peninsula, Sabah and Sarawak for rapid readiness.',
+  'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.': 'We run from our HQ in Kuala Terengganu, with branches across the Peninsula, Sabah and Sarawak so our teams can respond fast.',
   'Bilik Gerakan & CMS': 'Operations Room & CMS',
   'Borang Permintaan Sebutharga': 'Quotation Request Form',
   'CAWANGAN SELURUH MALAYSIA': 'BRANCHES ACROSS MALAYSIA',
@@ -222,9 +221,9 @@ const BM_EN = {
   'DILINDUNGI': 'PROTECTED',
   'DAPATKAN SEBUTHARGA': 'GET A QUOTATION',
   'Dilesenkan secara sah di bawah Akta Agensi Persendirian 1971 bagi menjalankan urusan perniagaan kawalan keselamatan dan siasatan persendirian di seluruh Malaysia.': 'Legally licensed under the Private Agencies Act 1971 to conduct security guarding and private investigation business across Malaysia.',
-  'Dilindungi perlindungan insurans komprehensif Lonpac': 'Comprehensive Lonpac insurance coverage',
+  'Dilindungi perlindungan insurans komprehensif Lonpac': 'Backed by Lonpac insurance',
   'Ditubuhkan': 'Established',
-  'Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.': 'Established on 7 December 2009, AFRA Services Sdn. Bhd. (881616-V) has grown into a reputable security guarding organisation with 13 strategic branches across the Peninsula, Sabah and Sarawak.',
+  'Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.': 'AFRA Services Sdn. Bhd. (881616-V) started on 7 December 2009 and now runs 13 branches across the Peninsula, Sabah and Sarawak.',
   'E-mel Pentadbiran': 'Administration Email',
   'Fabrik Aramid / Kevlar gred balistik': 'Aramid / Kevlar ballistic fiber',
   'Faks': 'Fax',
@@ -236,7 +235,7 @@ const BM_EN = {
   'IBU PEJABAT': 'HEADQUARTERS',
   'Ibu Pejabat (HQ)': 'Headquarters (HQ)',
   'Infrared Night Vision & ColorVu': 'Smart IR Night Vision & ColorVu',
-  'Insurans Komprehensif': 'Comprehensive Insurance',
+  'Insurans Komprehensif': 'Fully Insured',
   'Insurans Liabiliti Awam & Wang Dalam Perjalanan': 'Public Liability & Cash-In-Transit Insurance',
   'Integrasi sistem CMS & penggajian': 'Direct CMS & payroll integration',
   'Julat isyarat sehingga 15km': 'Up to 15km signal range',
@@ -253,7 +252,7 @@ const BM_EN = {
   'Kamera badan (body-worn camera) taktikal 4K dengan penstriman GPS langsung ke Pusat Kawalan 24 Jam CMS AFRA dan pengecaman pintar AI.': 'Ultra-high-definition 4K body-worn camera with live GPS streaming to AFRA 24/7 CMS Command Center and on-device AI facial recognition.',
   'Kamera badan beresolusi tinggi dengan penanda masa GPS & audio terenkripsi untuk bukti dokumentasi insiden keselamatan.': 'Law-enforcement grade body-worn camera with encrypted audio-video logs and embedded GPS watermark for evidence capture.',
   'Kamera litar tertutup resolusi 4K dengan sensor pengecaman wajah AI pintar dan penglihatan malam infra-merah 50 meter.': 'Ultra HD 4K dome camera with AI face detection, vehicle classification, and 50-meter smart infrared night vision.',
-  'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.': 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.',
+  'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.': 'We do the full range of security work, from guarding large sites to armed escorts.',
   'Kawalan Bersenjata (Armed Guard)': 'Armed Guard',
   'Kawalan Keselamatan Bersenjata': 'Armed Security Guarding',
   'Kawalan Keselamatan Statik': 'Static Security Guarding',
@@ -277,14 +276,14 @@ const BM_EN = {
   'Khidmat penyiasatan korporat dan persendirian secara diskret dan profesional. Menjalankan penyiasatan latar belakang, ketirisan maklumat dalaman syarikat, pemalsuan, dan pengawasan taktikal berlandaskan undang-undang.': 'Discreet corporate intelligence, employee due diligence, integrity audit, asset leakage investigation, and confidential surveillance adhering to legal frameworks.',
   'Komunikasi & Rondaan': 'Comms & Patrol',
   'LIPUTAN KEBANGSAAN': 'NATIONWIDE COVERAGE',
-  'Laporan penyiasatan berkomputer & bukti sahih': 'Comprehensive fact-based investigative reporting',
+  'Laporan penyiasatan berkomputer & bukti sahih': 'Clear written reports with proof',
   'Latihan & Audit Taktikal': 'Tactical Training & Audit',
   'Latihan & Kesedaran Keselamatan': 'Training & Security Awareness',
   'Latihan & Konsultasi Keselamatan': 'Training & Security Consultation',
   'Latihan Taktikal & Keselamatan': 'Tactical Training & Security Consultation',
   'Lesen Agensi Persendirian (Seksyen 2(a) & 2(b))': 'Private Agency Licence (Section 2(a) & 2(b))',
-  'Lesen Keselamatan KDN & PDRM Berdaftar (881616-V)': 'Licensed Security Agency — KDN & PDRM Registered (881616-V)',
-  'Lesen Operasi Berkanun': 'Statutory Operating Licences',
+  'Lesen Keselamatan KDN & PDRM Berdaftar (881616-V)': 'Licensed by KDN & PDRM (881616-V)',
+  'Lesen Operasi Berkanun': 'Our Operating Licences',
   'Lesen Senjata IPD PDRM': 'PDRM Firearm Licensed',
   'Liputan Operasi Seluruh Malaysia Termasuk Sabah & Sarawak': 'Nationwide Operations Coverage Including Sabah & Sarawak',
   'MAKLUMAT RASMI SYARIKAT': 'OFFICIAL COMPANY INFORMATION',
@@ -292,13 +291,13 @@ const BM_EN = {
   'MINTA SEBUTHARGA SEGERA': 'Request Quote Now',
   'MUAT TURUN PROFIL LENGKAP (PDF)': 'DOWNLOAD FULL PROFILE (PDF)',
   'Maklumat Lanjut': 'Learn More',
-  'Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.': 'Training, continuous education and instilling a dynamic security-awareness culture.',
+  'Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.': 'We train our guards and keep their safety knowledge up to date.',
   'Membantu Pihak Berkuasa & Polis': 'Supporting Authorities & Police',
-  'Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.': 'Assisting the Royal Malaysia Police (PDRM) in reducing property crime through effective preventive guarding.',
-  'Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.': 'Prioritising jobs for former national security forces personnel in professional security.',
-  'Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.': 'Providing optimum security protection for property, business premises and every individual life.',
-  'Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.': 'Integrating smart security automation and computerised patrol control for the digital era.',
-  'Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.': 'To be one of the strongest and most competitive Security Guarding companies in Malaysia, where trust and humanity are our priority.',
+  'Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.': 'We help the Royal Malaysia Police (PDRM) bring down property crime with guards on the ground.',
+  'Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.': 'We give priority to former security forces staff for guard jobs.',
+  'Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.': 'We protect buildings, business premises and lives.',
+  'Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.': 'We use smart security systems and computerised patrols.',
+  'Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.': 'To be a strong security company in Malaysia that clients trust.',
   'Mewujudkan Peluang Pekerjaan': 'Creating Employment Opportunities',
   'Minta Sebutharga': 'Request Quote',
   'Minta Sebutharga Perkhidmatan Ini': 'Request Quote for this Service',
@@ -308,14 +307,14 @@ const BM_EN = {
   'Modal Berbayar': 'Paid-Up Capital',
   'Modul diiktiraf Kementerian Dalam Negeri (KDN)': 'KDN-accredited security training modules',
   'Notifikasi serta-merta ke pemilik & balai polis terdekat': 'Direct alarm dispatch to client and nearest police',
-  'Objektif Penubuhan': 'Establishment Objectives',
+  'Objektif Penubuhan': 'Our Goals',
   'PENGKHUSUSAN UTAMA': 'CORE SPECIALISATIONS',
   'PERKHIDMATAN & KATALOG': 'SERVICES & CATALOGUE',
   'PERKHIDMATAN & PENYELESAIAN': 'SERVICES & SOLUTIONS',
-  'PERKHIDMATAN MENYELURUH': 'OUR COMPREHENSIVE',
+  'PERKHIDMATAN MENYELURUH': 'WHAT WE DO',
   'PRODUK & PERALATAN KESELAMATAN BERGRED TINGGI': 'High-Grade Security Products & Assets',
-  'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.': 'AFRA Services operations team is ready to structure physical guarding, armed patrols, CIT transit, or 24/7 CMS system integration anywhere across Malaysia.',
-  'Pegawai penyiasat berpengalaman bekas unit risikan': 'Seasoned investigators from specialized intelligence units',
+  'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.': 'Our team can plan physical guarding, armed patrols, CIT cash runs, or 24/7 CMS alarm links anywhere in Malaysia.',
+  'Pegawai penyiasat berpengalaman bekas unit risikan': 'Experienced investigators from intelligence units',
   'Pejabat Pengurusan': 'Management Office',
   'Pelesenan & Pematuhan Undang-Undang': 'Licensing & Legal Compliance',
   'Pemanduan defensif & perancangan laluan selamat': 'Defensive driving and strategic transit routing',
@@ -351,28 +350,28 @@ const BM_EN = {
   'Peralatan berstandard KDN & PDRM': 'KDN & PDRM standard equipment',
   'Peralatan komunikasi taktikal, sistem pengawasan pintar 4K AI, alat kawalan akses biometrik, dan kelengkapan perlindungan anggota yang diuji untuk ketahanan operasi keselamatan.': 'Tactical communication gear, intelligent 4K AI surveillance, biometric access control, and tested security protective assets.',
   'Peranti log rondaan keselamatan kalis air dengan pengesahan koordinat GPS dan pemindahan data masa nyata.': 'Waterproof electronic guard tour patrol checkpoint reader with GPS timestamp authentication and cloud sync.',
-  'Perkhidmatan Operasi Berlesen': 'Licensed Operations Services',
+  'Perkhidmatan Operasi Berlesen': 'Licensed Security Services',
   'Perkhidmatan kawalan keselamatan fizikal 24/7 di premis perniagaan, kompleks membeli-belah, hospital, tapak pembinaan, perumahan dan premis kerajaan. Dilengkapi dengan rondaan berkala dan buku log digital.': '24/7 physical security guarding for commercial properties, shopping malls, hospitals, construction sites, residential areas, and government premises.',
-  'Perlindungan Menyeluruh': 'Comprehensive Protection',
+  'Perlindungan Menyeluruh': 'Full Protection',
   'Perlindungan Taktikal': 'Tactical Gear',
   'Perlindungan berisiko tinggi (High-Risk Deterrence)': 'High-risk deterrent protection capability',
   'Perlindungan bersenjata api (Pistol & Shotgun) berlesen untuk sektor berisiko tinggi, institusi perbankan, bilik kebal, dan pengiring taktikal.': 'Licensed firearm protection (Pistol & Shotgun) for high-risk sectors, banking institutions, vaults and tactical escorts.',
   'Perlindungan bersenjata api (Pistol dan Shotgun) berlesen rasmi oleh IPD PDRM. Dikhaskan bagi institusi kewangan, kedai emas, kilang bernilai tinggi, dan premis yang memerlukan pencegahan taktikal.': 'Licensed armed security protection with firearms authorized by PDRM for banking institutions, jewelry outlets, high-value facilities, and critical infrastructures.',
   'Perlindungan eksekutif rapat (Close Protection) untuk orang kenamaan (VVIP/VIP), diplomat, ekspatriat dan tokoh korporat berprofil tinggi secara profesional.': 'Professional close protection for VVIPs/VIPs, diplomats, expatriates and high-profile corporate figures.',
   'Perlindungan eksekutif rapat (Close Protection) untuk orang kenamaan (VVIP/VIP), diplomat, ekspatriat, dan eksekutif korporat. Terlatih dalam pertahanan tanpa senjata, pemanduan defensif, dan penilaian ancaman awal.': 'Close executive protection for dignitaries, diplomats, corporate executives, and VIPs trained in defensive driving, unarmed combat, and risk mitigation.',
-  'Perlindungan insurans liabiliti awam (Public Liability), Cash-In-Transit, dan Fideliti (Fidelity Guarantee) sehingga jutaan ringgit bagi melindungi aset pelanggan.': 'Public liability, Cash-In-Transit and Fidelity Guarantee insurance protection worth millions of ringgit safeguarding client assets.',
-  'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?': 'Need a Tailored Security Solution for Your Premise?',
+  'Perlindungan insurans liabiliti awam (Public Liability), Cash-In-Transit, dan Fideliti (Fidelity Guarantee) sehingga jutaan ringgit bagi melindungi aset pelanggan.': 'Public liability, Cash-In-Transit and Fidelity Guarantee insurance worth millions of ringgit to protect client assets.',
+  'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?': 'Need Security for Your Premises?',
   'Permit & Kuasa Membawa Senjata Api': 'Firearm Carry Permit & Authority',
   'Persatuan Keselamatan': 'Security Services Association',
   'Personel berpengalaman & penampilan profesional': 'Experienced personnel with professional demeanor',
   'Piawaian Pematuhan Pertahanan & Keselamatan Malaysia': 'Malaysian Defence & Security Compliance Standards',
   'Polis Diraja Malaysia': 'Royal Malaysia Police',
-  'Polisi Perlindungan Komprehensif': 'Comprehensive Protection Policy',
-  'Portfolio Perkhidmatan Kawalan': 'Security Guarding Service Portfolio',
+  'Polisi Perlindungan Komprehensif': 'Full Cover Policy',
+  'Portfolio Perkhidmatan Kawalan': 'Security Services We Offer',
   'Profil Korporat Syarikat': 'Corporate Company Profile',
   'Program latihan intensif Certified Security Guard (CSG), pencegahan kebakaran, pertolongan cemas (First Aid / CPR), latihan pengendalian krisis kecemasan dan taklimat kesedaran keselamatan premis.': 'Premise risk assessment audits, certified security guard (CSG) training, emergency fire evacuation drills, and firearm handling courses for organizations.',
   'Pusat Khidmat & Sebutharga': 'Service Centre & Quotations',
-  'Pusat kawalan keselamatan berpusat beroperasi 24 jam sehari, 7 hari seminggu. Menerima isyarat penggera automatik pencerobohan, kebakaran, atau kecemasan perubatan, disusuli tindakan pantas Unit Respon Kecemasan.': 'State-of-the-art 24/7 centralized alarm monitoring center responding instantly to intrusion, panic triggers, and fire alarms with rapid field response.',
+  'Pusat kawalan keselamatan berpusat beroperasi 24 jam sehari, 7 hari seminggu. Menerima isyarat penggera automatik pencerobohan, kebakaran, atau kecemasan perubatan, disusuli tindakan pantas Unit Respon Kecemasan.': 'A 24/7 control centre that answers intrusion, panic and fire alarms fast, with teams sent to the site.',
   'Pusat kawalan penggera berpusat 24 jam dengan unit respon kecemasan pantas (Rapid Response Team) sekiranya berlaku sebarang penggera pencerobohan atau kecemasan.': '24-hour centralised alarm monitoring centre with Rapid Response Team for intrusion or emergency alarms.',
   'Pusat kawalan penggera pencerobohan tanpa wayar yang disambung terus ke Bilik Kawalan 24 Jam AFRA CMS.': 'Wireless smart security intrusion hub connected 24/7 directly to the AFRA Central Monitoring System command station.',
   'RANGKAIAN OPERASI KEBANGSAAN': 'NATIONAL OPERATIONS NETWORK',
@@ -386,13 +385,13 @@ const BM_EN = {
   'Sambungan dwi-jalur 4G LTE & Wi-Fi': 'Dual-band 4G LTE & Wi-Fi uplink',
   'Sensitiviti boleh dilaraskan': 'Adjustable sensitivity threshold',
   'Sensor magnetik pintu & tingkap': 'Magnetic door & window sensors',
-  'Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.': 'To continuously deliver and improve service quality, ensuring client property and lives remain safe and protected at all times.',
-  'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.': 'Each branch is registered with its own permit to ensure responsive local operations control in compliance with local IPD directives.',
+  'Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.': 'To keep improving our service so client property and lives stay safe.',
+  'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.': 'Each branch holds its own permit and follows the orders of the local IPD.',
   'Siapa Kami': 'Who We Are',
   'Sijil Akuan Pendaftaran Syarikat Bumiputera': 'Bumiputera Company Registration Certificate',
   'Sijil Piawaian Kualiti Antarabangsa': 'International Quality Standard Certificate',
-  'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.': 'Please fill in the required security assignment details. Our operations officer will contact you within 24 hours.',
-  'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.': 'Please complete the form below for an official quotation for guarding services at your premises, or contact our operations room.',
+  'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.': 'Fill in what you need. Our officer will call you within 24 hours.',
+  'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.': 'Fill in the form below for a quotation, or call our operations room.',
   'Sinkronisasi awan CMS automatik': 'Real-time CMS cloud synchronization',
   'Sistem Pengurusan Kualiti Kawalan Keselamatan': 'Security Guarding Quality Management System',
   'Sistem kawalan pintu berpagar automasi pintar': 'Integrated automated barrier & door access control',
@@ -418,9 +417,18 @@ const BM_EN = {
   'Waranti sokongan teknikal penuh': 'Full technical support warranty',
 }
 
+let BM_EN_NORM = null
 function dictEN(value) {
   if (typeof value !== 'string') return value
-  const hit = BM_EN[value.trim()]
+  const t = value.trim()
+  let hit = BM_EN[t]
+  if (typeof hit === 'string' && hit !== '') return hit
+  // Cuba semula dengan whitespace dinormalkan (ruang/enter berganda, dsb.)
+  if (!BM_EN_NORM) {
+    BM_EN_NORM = {}
+    for (const k in BM_EN) BM_EN_NORM[k.replace(/\s+/g, ' ').trim()] = BM_EN[k]
+  }
+  hit = BM_EN_NORM[t.replace(/\s+/g, ' ')]
   return typeof hit === 'string' && hit !== '' ? hit : value
 }
 
@@ -474,8 +482,8 @@ export function S(map, key, lang, enFallback, msFallback) {
     if (typeof enFallback === 'string' && enFallback !== '') return enFallback
     if (hasBm) {
       const s = String(bm)
-      const hit = BM_EN[s.trim()]
-      return typeof hit === 'string' && hit !== '' ? hit : bm
+      const tr = dictEN(s)
+      return tr !== s ? tr : bm
     }
     if (typeof enFallback !== 'undefined') return enFallback
     if (typeof msFallback !== 'undefined') return msFallback

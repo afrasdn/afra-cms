@@ -10,11 +10,11 @@ const FALLBACK_LEADERS = [
 ]
 
 const FALLBACK_OBJECTIVES = [
-  { title: 'Mewujudkan Peluang Pekerjaan', description: 'Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.', en: { title: 'Creating Employment Opportunities', description: 'Prioritising jobs for former national security forces personnel in professional security.' } },
-  { title: 'Membantu Pihak Berkuasa & Polis', description: 'Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.', en: { title: 'Supporting Authorities & Police', description: 'Assisting the Royal Malaysia Police (PDRM) in reducing property crime through effective preventive guarding.' } },
-  { title: 'Perlindungan Menyeluruh', description: 'Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.', en: { title: 'Comprehensive Protection', description: 'Providing optimum security protection for property, business premises and every individual life.' } },
-  { title: 'Latihan & Kesedaran Keselamatan', description: 'Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.', en: { title: 'Training & Security Awareness', description: 'Training, continuous education and instilling a dynamic security-awareness culture.' } },
-  { title: 'Teknologi & Piawaian Terkini', description: 'Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.', en: { title: 'Latest Technology & Standards', description: 'Integrating smart security automation and computerised patrol control for the digital era.' } },
+  { title: 'Mewujudkan Peluang Pekerjaan', description: 'Memberi keutamaan pekerjaan kepada bekas-bekas anggota Pasukan Keselamatan negara dalam bidang keselamatan profesional.', en: { title: 'Creating Employment Opportunities', description: 'We give priority to former security forces staff for guard jobs.' } },
+  { title: 'Membantu Pihak Berkuasa & Polis', description: 'Membantu pihak Polis Diraja Malaysia (PDRM) dalam mengurangkan kadar jenayah harta benda melalui kawalan pencegahan berkesan.', en: { title: 'Supporting Authorities & Police', description: 'We help the Royal Malaysia Police (PDRM) bring down property crime with guards on the ground.' } },
+  { title: 'Perlindungan Menyeluruh', description: 'Memberi perlindungan keselamatan optimum terhadap harta benda, premis perniagaan, dan nyawa setiap individu.', en: { title: 'Full Protection', description: 'We protect buildings, business premises and lives.' } },
+  { title: 'Latihan & Kesedaran Keselamatan', description: 'Melatih, memberi pengetahuan berterusan serta menanam semangat kesedaran keselamatan yang dinamik.', en: { title: 'Training & Security Awareness', description: 'We train our guards and keep their safety knowledge up to date.' } },
+  { title: 'Teknologi & Piawaian Terkini', description: 'Mengintegrasikan sistem automasi keselamatan pintar dan kawalan rondaan berkomputer selari dengan keperluan era digital.', en: { title: 'Latest Technology & Standards', description: 'We use smart security systems and computerised patrols.' } },
 ]
 
 export default function About() {
@@ -64,7 +64,7 @@ export default function About() {
           </div>
           <h1 className="page-header-title">{S(settings, 'page_about_title', lang, 'ABOUT AFRA SERVICES', 'TENTANG AFRA SERVICES')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_about_desc', lang, 'Established on 7 December 2009, AFRA Services Sdn. Bhd. (881616-V) has grown into a reputable security guarding organisation with 13 strategic branches across the Peninsula, Sabah and Sarawak.', 'Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.')}
+            {S(settings, 'page_about_desc', lang, 'AFRA Services Sdn. Bhd. (881616-V) started on 7 December 2009 and now runs 13 branches across the Peninsula, Sabah and Sarawak.', 'Ditubuhkan pada 7 Disember 2009, AFRA Services Sdn. Bhd. (881616-V) telah berkembang menjadi sebuah organisasi kawalan keselamatan berwibawa dengan 13 cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak.')}
           </p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function About() {
           {/* Right Column: Narrative, Vision, Mission & Objectives */}
           <div className="narrative-box">
             <h2>{S(settings, 'about_narrative_heading', lang, 'Who We Are', 'Siapa Kami')}</h2>
-            <p>{S(settings, 'about_narrative_1', lang, 'AFRA Services Sdn. Bhd. was established to provide high-calibre security guarding to the private sector, banking, industry and government agencies across Malaysia.', 'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.')}</p>
+            <p>{S(settings, 'about_narrative_1', lang, 'AFRA Services Sdn. Bhd. provides security guards for private companies, banks, factories and government agencies across Malaysia.', 'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.')}</p>
             <p>{S(settings, 'about_narrative_2', lang, 'Our workforce consists largely of former national security personnel (Police & Armed Forces) who bring military discipline, operational precision and high integrity to every assignment.', 'Tenaga kerja dan anggota kami sebahagian besarnya terdiri daripada bekas anggota Pasukan Keselamatan negara (Polis & Angkatan Tentera) yang menerapkan disiplin ketenteraan, ketelitian operasi, dan integriti yang tinggi dalam setiap penugasan.')}</p>
 
             <div className="vision-mission-box">
@@ -127,7 +127,7 @@ export default function About() {
                   <Eye size={18} style={{ color: 'var(--blue-primary)' }} />
                   <span>{S(settings, 'about_vision_label', lang, 'Company Vision', 'Visi Syarikat')}</span>
                 </h3>
-                <p>{S(settings, 'vision', lang, 'To be one of the strongest and most competitive Security Guarding companies in Malaysia, where trust and humanity are our priority.', 'Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.')}</p>
+                <p>{S(settings, 'vision', lang, 'To be a strong security company in Malaysia that clients trust.', 'Menjadi salah satu Syarikat Perkhidmatan Kawalan Keselamatan yang kukuh dan berdaya saing di Malaysia di mana kepercayaan dan keperimanusiaan menjadi keutamaan kami.')}</p>
               </div>
 
               <div className="vm-card">
@@ -135,11 +135,11 @@ export default function About() {
                   <Target size={18} style={{ color: 'var(--blue-primary)' }} />
                   <span>{S(settings, 'about_mission_label', lang, 'Company Mission', 'Misi Syarikat')}</span>
                 </h3>
-                <p>{S(settings, 'mission', lang, 'To continuously deliver and improve service quality, ensuring client property and lives remain safe and protected at all times.', 'Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.')}</p>
+                <p>{S(settings, 'mission', lang, 'To keep improving our service so client property and lives stay safe.', 'Sentiasa memberi dan menambah mutu perkhidmatan bagi memastikan harta benda dan nyawa pelanggan sentiasa berada dalam keadaan selamat dan terpelihara.')}</p>
               </div>
             </div>
 
-            <h2 style={{ marginTop: '2.5rem' }}>{S(settings, 'about_objectives_heading', lang, 'Establishment Objectives', 'Objektif Penubuhan')}</h2>
+            <h2 style={{ marginTop: '2.5rem' }}>{S(settings, 'about_objectives_heading', lang, 'Our Goals', 'Objektif Penubuhan')}</h2>
             <div style={{ marginTop: '1.25rem' }}>
               {objectives.map((o, idx) => (
                 <div className="obj-item" key={o.id ?? idx}>
