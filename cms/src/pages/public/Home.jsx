@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { getServiceIcon, fetchSettings, cleanTitle } from '../../lib/content'
-import { useLang, L, S } from '../../lib/i18n'
+import { useLang, L, S, pickEN } from '../../lib/i18n'
 import {
   ShieldCheck, Shield, ArrowRight
 } from 'lucide-react'
@@ -119,36 +119,42 @@ export default function Home() {
           </div>
 
           <h1 className="hero-title">
-            {L(siteContent, lang, 'title') ? (
-              <span dangerouslySetInnerHTML={{ __html: String(L(siteContent, lang, 'title')).replace(/\n/g, '<br>') }} />
-            ) : lang === 'en' ? (
-              <>
-                YOUR SAFETY,<br />
-                <span className="highlight-blue">OUR COMMITMENT.</span>
-              </>
+            {lang === 'en' ? (
+              siteContent?.title || siteContent?.en?.title ? (
+                <span dangerouslySetInnerHTML={{ __html: String(pickEN(siteContent?.title, siteContent?.en?.title, 'YOUR SAFETY,\nOUR COMMITMENT.')).replace(/\n/g, '<br>') }} />
+              ) : (
+                <>
+                  YOUR SAFETY,<br />
+                  <span className="highlight-blue">OUR COMMITMENT.</span>
+                </>
+              )
             ) : (
-              <>
-                KESELAMATAN ANDA,<br />
-                <span className="highlight-blue">KOMITMEN KAMI.</span>
-              </>
+              siteContent?.title ? (
+                <span dangerouslySetInnerHTML={{ __html: String(siteContent.title).replace(/\n/g, '<br>') }} />
+              ) : (
+                <>
+                  KESELAMATAN ANDA,<br />
+                  <span className="highlight-blue">KOMITMEN KAMI.</span>
+                </>
+              )
             )}
           </h1>
 
           <p className="hero-desc">
-            {L(siteContent, lang, 'description') || (lang === 'en' ? (
-              <>
-                Licensed under the <strong>Ministry of Home Affairs</strong> since 2009, <strong>AFRA Services</strong> provides certified security guarding — from static to armed protection — across <strong>13 states throughout Malaysia</strong>.
-              </>
+            {lang === 'en' ? (
+              pickEN(siteContent?.description, siteContent?.en?.description, 'Licensed under the Ministry of Home Affairs since 2009, AFRA Services provides certified security guarding — from static to armed protection — across 13 states throughout Malaysia.')
             ) : (
-              <>
-                Berlesen di bawah <strong>Kementerian Dalam Negeri</strong> sejak 2009, <strong>AFRA Services</strong> menyediakan perkhidmatan kawalan keselamatan bertauliah dari kawalan statik hingga bersenjata di <strong>13 negeri seluruh Malaysia</strong>.
-              </>
-            ))}
+              siteContent?.description || (
+                <>
+                  Berlesen di bawah <strong>Kementerian Dalam Negeri</strong> sejak 2009, <strong>AFRA Services</strong> menyediakan perkhidmatan kawalan keselamatan bertauliah dari kawalan statik hingga bersenjata di <strong>13 negeri seluruh Malaysia</strong>.
+                </>
+              )
+            )}
           </p>
 
           <div className="hero-actions">
             <CtaButton
-              text={L(siteContent, lang, 'cta_text') || t.heroCta1}
+              text={lang === 'en' ? pickEN(siteContent?.cta_text, siteContent?.en?.cta_text, t.heroCta1) : (siteContent?.cta_text || t.heroCta1)}
               url={siteContent?.cta_url}
               fallbackUrl="/catalog"
               className="btn-solid-blue"

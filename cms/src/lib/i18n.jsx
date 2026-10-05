@@ -185,10 +185,13 @@ export function useLang() {
 // akan kekal dipaparkan seadanya — isi kolum EN di dashboard untuknya.
 const BM_EN = {
   ' / 09-6264788 (Faks)': ' / 09-6264788 (Fax)',
+  'AFRA Services Sdn. Bhd. Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.': 'AFRA Services Sdn. Bhd. — a fully KDN & PDRM-licensed security agency since 2009. Protecting corporate, industrial and public premises across Malaysia.',
+  'CCTV & Automasi': 'CCTV & Automation',
   '15+ Tahun Reputasi Kawalan Berdisiplin & Dipercayai': '15+ Years of Trusted & Disciplined Guarding Reputation',
   '24 Jam Setiap Hari (365 Hari Setahun)': '24 Hours Daily (365 Days a Year)',
   '7 Disember 2009': '7 December 2009',
   'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.': 'AFRA Services Sdn. Bhd. (Reg. No.: 881616-V) is an officially licensed security guarding company in Malaysia, incorporated since 7 December 2009 with authorised and paid-up capital of RM 5,000,000.00.',
+  'AFRA Services Sdn. Bhd. Agensi kawalan keselamatan berlesen penuh KDN & PDRM sejak 2009. Melindungi premis korporat, industri, dan institusi awam seluruh Malaysia.': 'AFRA Services Sdn. Bhd. — a fully KDN & PDRM-licensed security agency since 2009. Protecting corporate, industrial and public premises across Malaysia.',
   'AFRA Services Sdn. Bhd. beroperasi dengan kelulusan penuh Kementerian Dalam Negeri (KDN), Polis Diraja Malaysia (PDRM), Kementerian Kewangan (MOF) dan pematuhan pensijilan ISO.': 'AFRA Services Sdn. Bhd. operates with full approval from the Ministry of Home Affairs (KDN), Royal Malaysia Police (PDRM), Ministry of Finance (MOF) and ISO certification compliance.',
   'AFRA Services Sdn. Bhd. ditubuhkan dengan matlamat utama untuk menyediakan perkhidmatan kawalan keselamatan bertaraf tinggi kepada sektor swasta, perbankan, perindustrian, dan agensi kerajaan di seluruh Malaysia.': 'AFRA Services Sdn. Bhd. was established to provide high-calibre security guarding to the private sector, banking, industry and government agencies across Malaysia.',
   'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).': 'AFRA Services Sdn. Bhd. provides comprehensive security specialisations in strict compliance with Ministry of Home Affairs (KDN) and Royal Malaysia Police (PDRM) guidelines.',
@@ -217,6 +220,7 @@ const BM_EN = {
   'Central Monitoring System (CMS)': 'Central Monitoring System (CMS 24/7)',
   'Close Protection VIP': 'VIP Close Protection',
   'DILINDUNGI': 'PROTECTED',
+  'DAPATKAN SEBUTHARGA': 'GET A QUOTATION',
   'Dilesenkan secara sah di bawah Akta Agensi Persendirian 1971 bagi menjalankan urusan perniagaan kawalan keselamatan dan siasatan persendirian di seluruh Malaysia.': 'Legally licensed under the Private Agencies Act 1971 to conduct security guarding and private investigation business across Malaysia.',
   'Dilindungi perlindungan insurans komprehensif Lonpac': 'Comprehensive Lonpac insurance coverage',
   'Ditubuhkan': 'Established',
@@ -251,11 +255,14 @@ const BM_EN = {
   'Kamera litar tertutup resolusi 4K dengan sensor pengecaman wajah AI pintar dan penglihatan malam infra-merah 50 meter.': 'Ultra HD 4K dome camera with AI face detection, vehicle classification, and 50-meter smart infrared night vision.',
   'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.': 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.',
   'Kawalan Bersenjata (Armed Guard)': 'Armed Guard',
+  'Kawalan Keselamatan Bersenjata': 'Armed Security Guarding',
+  'Kawalan Keselamatan Statik': 'Static Security Guarding',
   'Kawalan Statik (Static Guard)': 'Static Guard',
   'Kawalan keselamatan fizikal 24/7 di premis korporat, komersial, perindustrian, perbankan dan kediaman oleh anggota keselamatan berdisiplin serta terlatih.': '24/7 physical security guarding for corporate, commercial, industrial, banking and residential premises by disciplined, trained personnel.',
   'Keahlian Rasmi Persatuan Kawalan Keselamatan': 'Official Security Association Membership',
   'Kebenaran rasmi pemilikan dan penggunaan senjata api (Pistol dan Shotgun) untuk kawalan statik bersenjata, van kalis peluru CIT, dan perlindungan orang kenamaan.': 'Official authorisation to possess and use firearms (Pistol and Shotgun) for armed static guarding, CIT armoured vans and VIP protection.',
   'Kekuatan Kewangan Penuh Didaftarkan di Bawah SSM': 'Full Financial Strength Registered Under SSM',
+  'KESELAMATAN ANDA, KOMITMEN KAMI.': 'YOUR SAFETY, OUR COMMITMENT.',
   'Kementerian Dalam Negeri': 'Ministry of Home Affairs',
   'Kementerian Kewangan': 'Ministry of Finance',
   'Kenderaan perisai kalis peluru berpiawaian tinggi': 'Certified ballistic armored vehicles',
@@ -415,6 +422,20 @@ function dictEN(value) {
   if (typeof value !== 'string') return value
   const hit = BM_EN[value.trim()]
   return typeof hit === 'string' && hit !== '' ? hit : value
+}
+
+// Keutamaan EN untuk satu nilai mentah: kolum EN -> kamus BM→EN -> fallback English.
+// Digunakan untuk kandungan site_content/hero yang tiada lajur `en` dalam DB.
+// Tidak sesekali pulangkan BM yang tidak dikenali bila fallback diberi.
+export function pickEN(bmVal, enVal, fallback) {
+  if (typeof enVal === 'string' && enVal.trim() !== '') return enVal
+  if (Array.isArray(enVal) && enVal.length > 0) return enVal
+  if (typeof bmVal === 'string' && bmVal.trim() !== '') {
+    const hit = BM_EN[bmVal.trim()]
+    if (typeof hit === 'string' && hit !== '') return hit
+  }
+  if (typeof fallback !== 'undefined') return fallback
+  return bmVal
 }
 
 // Pilih field EN dari baris jadual bila lang==='en'.
