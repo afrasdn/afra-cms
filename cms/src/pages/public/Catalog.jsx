@@ -376,11 +376,11 @@ export default function Catalog() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <ShieldCheck size={14} />
-            <span>{S(settings, 'page_services_tag', lang) || (lang === 'en' ? 'Security Guarding Service Portfolio' : 'Portfolio Perkhidmatan Kawalan')}</span>
+            <span>{S(settings, 'page_services_tag', lang, 'Security Guarding Service Portfolio', 'Portfolio Perkhidmatan Kawalan')}</span>
           </div>
-          <h1 className="page-header-title">{S(settings, 'page_services_title', lang) || (lang === 'en' ? 'SERVICES & CATALOGUE' : 'PERKHIDMATAN & KATALOG')}</h1>
+          <h1 className="page-header-title">{S(settings, 'page_services_title', lang, 'SERVICES & CATALOGUE', 'PERKHIDMATAN & KATALOG')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_services_desc', lang) || (lang === 'en' ? 'AFRA Services Sdn. Bhd. provides comprehensive security specialisations in strict compliance with Ministry of Home Affairs (KDN) and Royal Malaysia Police (PDRM) guidelines.' : 'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).')}
+            {S(settings, 'page_services_desc', lang, 'AFRA Services Sdn. Bhd. provides comprehensive security specialisations in strict compliance with Ministry of Home Affairs (KDN) and Royal Malaysia Police (PDRM) guidelines.', 'AFRA Services Sdn. Bhd. menyediakan pengkhususan perkhidmatan keselamatan menyeluruh yang mematuhi garis panduan ketat Kementerian Dalam Negeri (KDN) dan Polis Diraja Malaysia (PDRM).')}
           </p>
         </div>
       </div>
@@ -390,9 +390,9 @@ export default function Catalog() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           
           <div style={{ marginBottom: '2.5rem' }}>
-            <span className="section-tagline">{services.length} {cleanTitle(S(settings, 'catalog_core_tag', lang), lang === 'en' ? 'CORE SPECIALISATIONS' : 'PENGKHUSUSAN UTAMA')}</span>
+            <span className="section-tagline">{services.length} {cleanTitle(S(settings, 'catalog_core_tag', lang, 'CORE SPECIALISATIONS', 'PENGKHUSUSAN UTAMA'), '')}</span>
             <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', fontWeight: 900, color: 'var(--text-heading)', textTransform: 'uppercase', marginTop: '0.25rem' }}>
-              {S(settings, 'catalog_core_title', lang) || (lang === 'en' ? 'Licensed Operations Services' : 'Perkhidmatan Operasi Berlesen')}
+              {S(settings, 'catalog_core_title', lang, 'Licensed Operations Services', 'Perkhidmatan Operasi Berlesen')}
             </h2>
           </div>
 
@@ -442,7 +442,7 @@ export default function Catalog() {
                       to={`/contact?service=${encodeURIComponent(svcTitle ?? '')}`}
                       className="service-card-action"
                     >
-                      <span>{S(settings, 'catalog_cta_detail', lang) || (lang === 'en' ? 'Request Quote for this Service' : 'Minta Sebutharga Perkhidmatan Ini')}</span>
+                      <span>{S(settings, 'catalog_cta_detail', lang, 'Request Quote for this Service', 'Minta Sebutharga Perkhidmatan Ini')}</span>
                       <ArrowRight size={15} />
                     </Link>
                   </div>
@@ -592,13 +592,13 @@ export default function Catalog() {
           <div className="hero-cta-box">
             <div>
               <span className="section-tagline" style={{ color: '#38bdf8' }}>
-                {S(settings, 'catalog_cta_tag', lang) || (lang === 'en' ? 'FREE CONSULTATION & QUOTATION' : 'KONSULTASI & SEBUTHARGA PERCUMA')}
+                {S(settings, 'catalog_cta_tag', lang, 'FREE CONSULTATION & QUOTATION', 'KONSULTASI & SEBUTHARGA PERCUMA')}
               </span>
               <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)', fontWeight: 900, color: '#ffffff', marginTop: '0.5rem', lineHeight: 1.25 }}>
-                {S(settings, 'catalog_cta_heading', lang) || (lang === 'en' ? 'Need a Tailored Security Solution for Your Premise?' : 'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?')}
+                {S(settings, 'catalog_cta_heading', lang, 'Need a Tailored Security Solution for Your Premise?', 'Perlukan Penyelesaian Keselamatan Tersuai untuk Premis Anda?')}
               </h2>
               <p style={{ fontSize: '0.92rem', color: '#cbd5e1', lineHeight: 1.65, marginTop: '0.75rem', maxWidth: '42rem' }}>
-                {S(settings, 'catalog_cta_sub', lang) || (lang === 'en' ? 'AFRA Services operations team is ready to structure physical guarding, armed patrols, CIT transit, or 24/7 CMS system integration anywhere across Malaysia.' : 'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.')}
+                {S(settings, 'catalog_cta_sub', lang, 'AFRA Services operations team is ready to structure physical guarding, armed patrols, CIT transit, or 24/7 CMS system integration anywhere across Malaysia.', 'Pasukan operasi keselamatan AFRA Services sedia membantu merangka pelan penugasan kawalan fizikal, rondaan bersenjata, pengiring CIT, atau integrasi sistem CMS 24/7 di seluruh Malaysia.')}
               </p>
             </div>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>

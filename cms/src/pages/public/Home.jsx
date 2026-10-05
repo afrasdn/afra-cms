@@ -186,11 +186,11 @@ export default function Home() {
 
           <div className="section-header-row">
             <div className="section-titles">
-              <span className="section-tagline">{S(settings, 'home_svc_tagline', lang) || (lang === 'en' ? 'OUR COMPREHENSIVE' : 'PERKHIDMATAN MENYELURUH')}</span>
-              <h2 className="section-main-title">{S(settings, 'home_svc_title', lang) || (lang === 'en' ? 'SERVICES & SOLUTIONS' : 'PERKHIDMATAN & PENYELESAIAN')}</h2>
+              <span className="section-tagline">{S(settings, 'home_svc_tagline', lang, 'OUR COMPREHENSIVE', 'PERKHIDMATAN MENYELURUH')}</span>
+              <h2 className="section-main-title">{S(settings, 'home_svc_title', lang, 'SERVICES & SOLUTIONS', 'PERKHIDMATAN & PENYELESAIAN')}</h2>
             </div>
             <p className="section-header-desc">
-              {S(settings, 'home_svc_desc', lang) || (lang === 'en' ? 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.' : 'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.')}
+              {S(settings, 'home_svc_desc', lang, 'We cover the full cycle of security operations and tactical defence — from large-scale physical guarding to armed escorts.', 'Kami merangkumi kitaran penuh operasi keselamatan dan pertahanan taktikal, daripada kawalan fizikal berskala besar sehingga pengiring bersenjata.')}
             </p>
           </div>
 
@@ -231,11 +231,11 @@ export default function Home() {
 
           <div className="section-header-row" style={{ marginBottom: '2rem' }}>
             <div className="section-titles">
-              <span className="section-tagline">{S(settings, 'home_branch_tagline', lang) || (lang === 'en' ? 'NATIONAL OPERATIONS NETWORK' : 'RANGKAIAN OPERASI KEBANGSAAN')}</span>
-              <h2 className="section-main-title">{branches.length} {cleanTitle(S(settings, 'home_branch_title', lang), lang === 'en' ? 'BRANCHES ACROSS MALAYSIA' : 'CAWANGAN SELURUH MALAYSIA')}</h2>
+              <span className="section-tagline">{S(settings, 'home_branch_tagline', lang, 'NATIONAL OPERATIONS NETWORK', 'RANGKAIAN OPERASI KEBANGSAAN')}</span>
+              <h2 className="section-main-title">{branches.length} {cleanTitle(S(settings, 'home_branch_title', lang, 'BRANCHES ACROSS MALAYSIA', 'CAWANGAN SELURUH MALAYSIA'), '')}</h2>
             </div>
             <p className="section-header-desc">
-              {S(settings, 'home_branch_desc', lang) || (lang === 'en' ? 'Operating from our HQ in Kuala Terengganu with strategic branches across the Peninsula, Sabah and Sarawak for rapid readiness.' : 'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.')}
+              {S(settings, 'home_branch_desc', lang, 'Operating from our HQ in Kuala Terengganu with strategic branches across the Peninsula, Sabah and Sarawak for rapid readiness.', 'Beroperasi dengan Ibu Pejabat di Kuala Terengganu dan cawangan strategik di seluruh Semenanjung, Sabah, dan Sarawak untuk memastikan kesiapsiagaan pantas.')}
             </p>
           </div>
 
@@ -271,8 +271,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
 
           <div className="brands-header-box">
-            <span className="brands-tagline">{S(settings, 'home_brands_tagline', lang) || (lang === 'en' ? 'Official Recognition & Regulatory Bodies' : 'Pengiktirafan Rasmi & Badan Kawal Selia')}</span>
-            <span className="brands-sub-mono">{S(settings, 'home_brands_sub', lang) || (lang === 'en' ? 'Malaysian Defence & Security Compliance Standards' : 'Piawaian Pematuhan Pertahanan & Keselamatan Malaysia')}</span>
+            <span className="brands-tagline">{S(settings, 'home_brands_tagline', lang, 'Official Recognition & Regulatory Bodies', 'Pengiktirafan Rasmi & Badan Kawal Selia')}</span>
+            <span className="brands-sub-mono">{S(settings, 'home_brands_sub', lang, 'Malaysian Defence & Security Compliance Standards', 'Piawaian Pematuhan Pertahanan & Keselamatan Malaysia')}</span>
           </div>
 
           <div className="brands-badges-row">

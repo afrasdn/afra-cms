@@ -64,11 +64,11 @@ export default function Certificates() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <Award size={14} />
-            <span>{S(settings, 'page_certs_tag', lang) || (lang === 'en' ? 'Licensing & Legal Compliance' : 'Pelesenan & Pematuhan Undang-Undang')}</span>
+            <span>{S(settings, 'page_certs_tag', lang, 'Licensing & Legal Compliance', 'Pelesenan & Pematuhan Undang-Undang')}</span>
           </div>
-          <h1 className="page-header-title">{S(settings, 'page_certs_title', lang) || (lang === 'en' ? 'OFFICIAL CERTIFICATES & LICENSING' : 'SIJIL & PELESENAN RASMI')}</h1>
+          <h1 className="page-header-title">{S(settings, 'page_certs_title', lang, 'OFFICIAL CERTIFICATES & LICENSING', 'SIJIL & PELESENAN RASMI')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_certs_desc', lang) || (lang === 'en' ? 'AFRA Services Sdn. Bhd. operates with full approval from the Ministry of Home Affairs (KDN), Royal Malaysia Police (PDRM), Ministry of Finance (MOF) and ISO certification compliance.' : 'AFRA Services Sdn. Bhd. beroperasi dengan kelulusan penuh Kementerian Dalam Negeri (KDN), Polis Diraja Malaysia (PDRM), Kementerian Kewangan (MOF) dan pematuhan pensijilan ISO.')}
+            {S(settings, 'page_certs_desc', lang, 'AFRA Services Sdn. Bhd. operates with full approval from the Ministry of Home Affairs (KDN), Royal Malaysia Police (PDRM), Ministry of Finance (MOF) and ISO certification compliance.', 'AFRA Services Sdn. Bhd. beroperasi dengan kelulusan penuh Kementerian Dalam Negeri (KDN), Polis Diraja Malaysia (PDRM), Kementerian Kewangan (MOF) dan pematuhan pensijilan ISO.')}
           </p>
         </div>
       </div>
@@ -78,9 +78,9 @@ export default function Certificates() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
 
           <div style={{ marginBottom: '2.5rem' }}>
-            <span className="section-tagline">{S(settings, 'certs_grid_tag', lang) || (lang === 'en' ? 'ACCREDITATION & RECOGNITION' : 'AKREDITASI & PENGIKTIRAFAN')}</span>
+            <span className="section-tagline">{S(settings, 'certs_grid_tag', lang, 'ACCREDITATION & RECOGNITION', 'AKREDITASI & PENGIKTIRAFAN')}</span>
             <h2 style={{ fontSize: '1.85rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-              {S(settings, 'certs_grid_title', lang) || (lang === 'en' ? 'Statutory Operating Licences' : 'Lesen Operasi Berkanun')}
+              {S(settings, 'certs_grid_title', lang, 'Statutory Operating Licences', 'Lesen Operasi Berkanun')}
             </h2>
           </div>
 
@@ -140,12 +140,12 @@ export default function Certificates() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
 
           <div style={{ marginBottom: '2.5rem' }}>
-            <span className="section-tagline">{S(settings, 'certs_branch_tag', lang) || (lang === 'en' ? 'NATIONWIDE COVERAGE' : 'LIPUTAN KEBANGSAAN')}</span>
+            <span className="section-tagline">{S(settings, 'certs_branch_tag', lang, 'NATIONWIDE COVERAGE', 'LIPUTAN KEBANGSAAN')}</span>
             <h2 style={{ fontSize: '1.85rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-              {lang === 'en' ? `Directory of ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang), 'Branches Across Malaysia').replace(/^directory\s+of\s+/i, '')}` : `Direktori ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang), 'Cawangan Seluruh Malaysia').replace(/^direktori\s+/i, '')}`}
+              {lang === 'en' ? `Directory of ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang, 'Branches Across Malaysia', 'Cawangan Seluruh Malaysia'), '').replace(/^directory\s+of\s+/i, '')}` : `Direktori ${branches.length} ${cleanTitle(S(settings, 'certs_branch_title', lang, 'Branches Across Malaysia', 'Cawangan Seluruh Malaysia'), '').replace(/^direktori\s+/i, '')}`}
             </h2>
             <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-              {S(settings, 'certs_branch_desc', lang) || (lang === 'en' ? 'Each branch is registered with its own permit to ensure responsive local operations control in compliance with local IPD directives.' : 'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.')}
+              {S(settings, 'certs_branch_desc', lang, 'Each branch is registered with its own permit to ensure responsive local operations control in compliance with local IPD directives.', 'Setiap cawangan berdaftar dengan permit berasingan bagi memastikan kawalan operasi tempatan yang responsif dan mematuhi arahan IPD setempat.')}
             </p>
           </div>
 

@@ -179,7 +179,7 @@ export default function PublicLayout() {
             </Link>
 
             <p className="footer-about-text">
-              {S(settings, 'footer_about', lang) || (lang === 'en' ? 'AFRA Services Sdn. Bhd. (Reg. No.: 881616-V) is an officially licensed security guarding company in Malaysia, incorporated since 7 December 2009 with authorised and paid-up capital of RM 5,000,000.00.' : 'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.')}
+              {S(settings, 'footer_about', lang, 'AFRA Services Sdn. Bhd. (Reg. No.: 881616-V) is an officially licensed security guarding company in Malaysia, incorporated since 7 December 2009 with authorised and paid-up capital of RM 5,000,000.00.', 'AFRA Services Sdn. Bhd. (No. Pendaftaran: 881616-V) merupakan syarikat kawalan keselamatan berlesen rasmi di Malaysia yang diperbadankan sejak 7 Disember 2009 dengan modal dibenarkan dan berbayar sebanyak RM 5,000,000.00.')}
             </p>
 
             {(settings.social_facebook || settings.social_instagram || settings.social_tiktok) && (
@@ -227,8 +227,8 @@ export default function PublicLayout() {
 
         <div className="footer-bottom-bar">
           <div className="mx-auto max-w-7xl px-6 footer-bottom-inner">
-            <p>{S(settings, 'footer_copyright', lang) || (lang === 'en' ? 'Copyright 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V). All Rights Reserved.' : 'Hak Cipta Terpelihara 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V).')}</p>
-            <p style={{ fontSize: '11px', color: 'var(--blue-primary)' }}>{S(settings, 'footer_tagline', lang) || (lang === 'en' ? 'KDN & PDRM Licensed Security Agency' : 'Agensi Kawalan Keselamatan Berlesen KDN & PDRM')}</p>
+            <p>{S(settings, 'footer_copyright', lang, 'Copyright 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V). All Rights Reserved.', 'Hak Cipta Terpelihara 2009 - 2026 © AFRA Services Sdn. Bhd. (881616-V).')}</p>
+            <p style={{ fontSize: '11px', color: 'var(--blue-primary)' }}>{S(settings, 'footer_tagline', lang, 'KDN & PDRM Licensed Security Agency', 'Agensi Kawalan Keselamatan Berlesen KDN & PDRM')}</p>
           </div>
         </div>
       </footer>

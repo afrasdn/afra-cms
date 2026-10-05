@@ -130,11 +130,11 @@ export default function Contact() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8">
           <div className="page-header-tag">
             <Mail size={14} />
-            <span>{S(settings, 'page_contact_tag', lang) || (lang === 'en' ? 'Service Centre & Quotations' : 'Pusat Khidmat & Sebutharga')}</span>
+            <span>{S(settings, 'page_contact_tag', lang, 'Service Centre & Quotations', 'Pusat Khidmat & Sebutharga')}</span>
           </div>
-          <h1 className="page-header-title">{S(settings, 'page_contact_title', lang) || (lang === 'en' ? 'CONTACT US & QUOTATIONS' : 'HUBUNGI KAMI & SEBUTHARGA')}</h1>
+          <h1 className="page-header-title">{S(settings, 'page_contact_title', lang, 'CONTACT US & QUOTATIONS', 'HUBUNGI KAMI & SEBUTHARGA')}</h1>
           <p className="page-header-desc">
-            {S(settings, 'page_contact_desc', lang) || (lang === 'en' ? 'Please complete the form below for an official quotation for guarding services at your premises, or contact our operations room.' : 'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.')}
+            {S(settings, 'page_contact_desc', lang, 'Please complete the form below for an official quotation for guarding services at your premises, or contact our operations room.', 'Sila lengkapkan borang di bawah untuk mendapatkan sebutharga rasmi bagi perkhidmatan kawalan keselamatan di premis anda, atau hubungi bilik gerakan kami.')}
           </p>
         </div>
       </div>
@@ -147,14 +147,14 @@ export default function Contact() {
           <div className="contact-info-panel">
             
             <div className="contact-card-solid">
-              <h3 className="contact-card-title">{S(settings, 'contact_hq_title', lang) || (lang === 'en' ? 'Headquarters (HQ)' : 'Ibu Pejabat (HQ)')}</h3>
+              <h3 className="contact-card-title">{S(settings, 'contact_hq_title', lang, 'Headquarters (HQ)', 'Ibu Pejabat (HQ)')}</h3>
               <div className="contact-items-col">
                 <div className="contact-item-box">
                   <div className="contact-item-icon">
                     <MapPin size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">{S(settings, 'contact_addr_label', lang) || (lang === 'en' ? 'Official Address' : 'Alamat Rasmi')}</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_addr_label', lang, 'Official Address', 'Alamat Rasmi')}</span>
                     <span className="contact-item-val">
                       {S(settings, 'hq_address', lang) || 'LOT PT 1914, Tingkat 1A, Bukit Besar, 21100 Kuala Terengganu, Terengganu.'}
                     </span>
@@ -166,7 +166,7 @@ export default function Contact() {
                     <Phone size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">{S(settings, 'contact_phone_label', lang) || (lang === 'en' ? 'Phone & Fax' : 'Telefon & Faks')}</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_phone_label', lang, 'Phone & Fax', 'Telefon & Faks')}</span>
                     <span className="contact-item-val">
                       <a href={`tel:${(S(settings, 'hq_phone', lang) || '09-6226678').replace(/[^0-9]/g, '')}`}>{S(settings, 'hq_phone', lang) || '09-6226678'}</a>{S(settings, 'hq_fax', lang) ? ` / ${S(settings, 'hq_fax', lang)} (${lang === 'en' ? 'Fax' : 'Faks'})` : (lang === 'en' ? ' / 09-6264788 (Fax)' : ' / 09-6264788 (Faks)')}
                     </span>
@@ -178,7 +178,7 @@ export default function Contact() {
                     <Mail size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">{S(settings, 'contact_email_label', lang) || (lang === 'en' ? 'Administration Email' : 'E-mel Pentadbiran')}</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_email_label', lang, 'Administration Email', 'E-mel Pentadbiran')}</span>
                     <span className="contact-item-val">
                       <a href={`mailto:${S(settings, 'admin_email', lang) || 'afraservices@gmail.com'}`}>{S(settings, 'admin_email', lang) || 'afraservices@gmail.com'}</a>
                     </span>
@@ -188,16 +188,16 @@ export default function Contact() {
             </div>
 
             <div className="contact-card-solid">
-              <h3 className="contact-card-title">{S(settings, 'contact_hours_title', lang) || (lang === 'en' ? 'HQ Operating Hours' : 'Waktu Operasi HQ')}</h3>
+              <h3 className="contact-card-title">{S(settings, 'contact_hours_title', lang, 'HQ Operating Hours', 'Waktu Operasi HQ')}</h3>
               <div className="contact-items-col">
                 <div className="contact-item-box">
                   <div className="contact-item-icon">
                     <Clock size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">{S(settings, 'contact_office_label', lang) || (lang === 'en' ? 'Management Office' : 'Pejabat Pengurusan')}</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_office_label', lang, 'Management Office', 'Pejabat Pengurusan')}</span>
                     <span className="contact-item-val">
-                      {(S(settings, 'contact_office_hours', lang) || (lang === 'en' ? 'Sunday – Thursday: 8:30 AM – 5:00 PM\nFriday & Saturday: Closed' : 'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup')).split('\n').map((line, i, arr) => (
+                      {(S(settings, 'contact_office_hours', lang, 'Sunday – Thursday: 8:30 AM – 5:00 PM\nFriday & Saturday: Closed', 'Ahad – Khamis: 8:30 Pagi – 5:00 Petang\nJumaat & Sabtu: Tutup')).split('\n').map((line, i, arr) => (
                         <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
                       ))}
                     </span>
@@ -209,9 +209,9 @@ export default function Contact() {
                     <Shield size={16} />
                   </div>
                   <div className="contact-item-content">
-                    <span className="contact-item-lbl">{S(settings, 'contact_cms_label', lang) || (lang === 'en' ? 'Operations Room & CMS' : 'Bilik Gerakan & CMS')}</span>
+                    <span className="contact-item-lbl">{S(settings, 'contact_cms_label', lang, 'Operations Room & CMS', 'Bilik Gerakan & CMS')}</span>
                     <span className="contact-item-val" style={{ color: '#16a34a', fontWeight: 800 }}>
-                      {S(settings, 'contact_cms_hours', lang) || (lang === 'en' ? '24 Hours Daily (365 Days a Year)' : '24 Jam Setiap Hari (365 Hari Setahun)')}
+                      {S(settings, 'contact_cms_hours', lang, '24 Hours Daily (365 Days a Year)', '24 Jam Setiap Hari (365 Hari Setahun)')}
                     </span>
                   </div>
                 </div>
@@ -223,9 +223,9 @@ export default function Contact() {
           {/* Right Column: Interactive Form */}
           <div className="form-panel-card">
             <div className="form-panel-header">
-              <h2 className="form-panel-title">{S(settings, 'contact_form_title', lang) || (lang === 'en' ? 'Quotation Request Form' : 'Borang Permintaan Sebutharga')}</h2>
+              <h2 className="form-panel-title">{S(settings, 'contact_form_title', lang, 'Quotation Request Form', 'Borang Permintaan Sebutharga')}</h2>
               <p className="form-panel-desc">
-                {S(settings, 'contact_form_desc', lang) || (lang === 'en' ? 'Please fill in the required security assignment details. Our operations officer will contact you within 24 hours.' : 'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.')}
+                {S(settings, 'contact_form_desc', lang, 'Please fill in the required security assignment details. Our operations officer will contact you within 24 hours.', 'Sila isi maklumat penugasan keselamatan yang diperlukan. Pegawai operasi kami akan menghubungi anda dalam tempoh 24 jam.')}
               </p>
             </div>
 
@@ -408,7 +408,7 @@ export default function Contact() {
                   ) : (
                     <>
                       <Send size={16} />
-                      <span>{S(settings, 'contact_submit_text', lang) || (lang === 'en' ? 'SUBMIT QUOTATION REQUEST' : 'HANTAR PERMINTAAN SEBUTHARGA')}</span>
+                      <span>{S(settings, 'contact_submit_text', lang, 'SUBMIT QUOTATION REQUEST', 'HANTAR PERMINTAAN SEBUTHARGA')}</span>
                     </>
                   )}
                 </button>
